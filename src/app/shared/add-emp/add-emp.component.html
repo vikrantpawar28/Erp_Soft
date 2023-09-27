@@ -1,0 +1,72 @@
+<div class="grid col-span-12 p-10 ">
+    <div class="">
+        <form [formGroup]="emp_Form" (ngSubmit)="onSubmit()">
+            <div>
+                <fieldset class="my-6">
+                    <legend class="text-sm font-semibold">First Name</legend>
+                    <input class="py-1 outline-none border px-3 rounded-md" type="text" formControlName="employee_firstname" placeholder="Enter your first name" />
+                </fieldset>
+            </div>
+            <div>
+                <fieldset class="my-6">
+                    <legend class="text-sm font-semibold"> Last Name</legend>
+                    <input class="py-1 outline-none border px-3 rounded-md" type="text" formControlName="employee_lastname" placeholder="Enter your last  name" />
+                </fieldset>
+            </div>
+            <div>
+                <fieldset class="my-6">
+                    <legend class="text-sm font-semibold">Department</legend>
+                    <!-- <input class="py-1 outline-none border px-3 rounded-md" type="text"
+                        formControlName="employee_department" placeholder="Enter your derpartment" /> -->
+                        <!-- <select formControlName="employee_department">
+                            <option >choose</option>
+                            <option value="HR">HR</option>
+                            <option value="IT">IT</option>
+                            <option value="Marketing">Marketing</option>
+                        </select> -->
+                        <select>
+                            <option value="it">IT</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="branding">Branding</option>
+                            <option value="seller">Seller</option>
+                            <option value="hr">HR</option>
+                        </select>
+                </fieldset>
+            </div>
+            <div>
+                <fieldset class="my-6">
+                    <legend class="text-sm font-semibold">Contact</legend>
+                    <input class="py-1 outline-none border px-3 rounded-md" type="number"
+                        formControlName="contact_number" placeholder="Enter your contact number" />
+                </fieldset>
+            </div>
+            <div>
+                <fieldset class="my-6">
+                    <legend class="text-sm font-semibold">Email ID</legend>
+                    <input class="py-1 outline-none border px-3 rounded-md" type="email"
+                        formControlName="email_id" placeholder="Enter your Email ID" />
+                </fieldset>
+            </div>
+            <div>
+                <fieldset class="my-6">
+                    <legend class="text-sm font-semibold">Employeement Type</legend>
+                        <select formControlName="employment_status">
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                </fieldset>
+            </div>
+            <div>
+                <fieldset class="my-6">
+                    <legend class="text-sm font-semibold">Hire Date</legend>
+                    <input class="py-1 outline-none border px-3 rounded-md" type="date" formControlName="hire_date"
+                        placeholder="Enter your hire date" />
+                </fieldset>
+            </div>
+            <div class="flex justify-between">
+                <button class="text-sm font-sans border py-1 px-5 bg-gray-100 rounded-lg font-semibold my-1">Save</button>
+            </div>
+        </form>
+        <button class="text-sm font-sans border py-1 px-5 bg-gray-100 rounded-lg font-semibold my-1">exit</button>
+    </div>
+</div>
