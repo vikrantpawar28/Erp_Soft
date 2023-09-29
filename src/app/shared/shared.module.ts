@@ -11,12 +11,14 @@ import { ServicesService } from '../core/services.service';
 import { AddEmpComponent } from './add-emp/add-emp.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
+import { EmpPopDetailsComponent } from './emp-pop-details/emp-pop-details.component';
 @NgModule({
   declarations: [
     AdminCompanyComponent,
     AdminPayrollComponent,
     EmployeeDbComponent,
     AddEmpComponent,
+    EmpPopDetailsComponent,
   ],
   imports: [
     CommonModule,

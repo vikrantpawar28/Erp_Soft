@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ServicesService } from 'src/app/core/services.service';
 import { AddEmpComponent } from '../add-emp/add-emp.component';
+import { EmpPopDetailsComponent } from '../emp-pop-details/emp-pop-details.component';
 
 @Component({
   selector: 'app-employee-db',
@@ -31,7 +32,7 @@ export class EmployeeDbComponent implements OnInit {
     console.log('Selected value:', selectedValue);
   }
 
-  status:boolean = false;
+  status: boolean = false;
 
   fetchAsStatus() {
     this._servicesService.getEmployees().subscribe((data) => {
@@ -49,5 +50,24 @@ export class EmployeeDbComponent implements OnInit {
 
   add_emp() {
     this._dialog.open(AddEmpComponent);
+  }
+
+  //   showTable:any=false;
+  //  deails:any[]=[]
+  openDetails(data: any) {
+    // this.deails.push(data);
+    // console.log(this.deails);
+    // // this.showTable=true;
+    // if(this.showTable==true){
+    //   this.showTable=false;
+    // }
+    // else{
+    //   this.showTable=true;
+    // }
+    this._dialog.open(EmpPopDetailsComponent, {
+      data: {
+        data
+      },
+    });
   }
 }

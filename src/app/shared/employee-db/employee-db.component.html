@@ -17,7 +17,28 @@
         <div class="col-span-6">
             <input class="py-2 outline-none border px-3 rounded-md" type="text" placeholder="Search employee"
                 title="Search employee">
-            <select class="py-2 px-3 w-[150px] border rounded-md focus:outline-none ml-2" (change)="onSelectChange($event)">
+
+            <!-- <form>
+                <label for="default-search"
+                    class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                        </svg>
+                    </div>
+                    <input type="search" id="default-search"
+                        class="outline-none block w-[50%] p-3 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Search Mockups, Logos..." required>
+                    <button type="submit"
+                        class="text-white absolute top-[9px] left-[214px] bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium rounded-lg text-sm px-4 py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                </div>
+            </form> -->
+
+            <select class="py-2 px-3 w-[150px] border rounded-md focus:outline-none ml-2"
+                (change)="onSelectChange($event)">
                 <option value="all">All </option>
                 <option [value]=true>Active</option>
                 <option [value]=false>inActive</option>
@@ -25,38 +46,77 @@
         </div>
 
         <div class="col-span-6">
-            <button class="text-sm font-sans border py-2  px-4 bg-gray-50 mx-1 rounded-lg font-semibold my-1 float-right" (click)="add_emp()" >Add Employee</button>
+            <button
+                class="text-sm font-sans border py-2  px-4 bg-gray-50 mx-1 rounded-lg font-semibold my-1 float-right"
+                (click)="add_emp()">Add Employee</button>
         </div>
     </div>
 
     <div class="grid grid-cols-12">
         <div class="col-span-12 bg-white">
-            <table class="table-auto border-collapse border border-slate-400 w-full text-center">
-                <thead class="bg-gray-100 py-2">
-                    <tr>
-                        <th class="border w-[5%]">Id</th>
-                        <th class="border w-[19%]">Name</th>
-                        <th class="border w-[19%]">Department</th>
-                        <th class="border w-[19%]">Contact</th>
-                        <th class="border w-[19%]">Status</th>
-                        <th class="border w-[19%]">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let employee of employees;let i = index">
-                        <td class="border w-[5%]">{{i+1}}</td>
-                        <td class="border w-[19%]">{{employee.employee_firstname + ' ' +employee.employee_lastname}}
-                        </td>
-                        <td class="border w-[19%]">{{employee.employee_department}}</td>
-                        <td class="border w-[19%]">{{employee.contact_number}}</td>
-                        <td class="border w-[19%]">{{employee.employment_status}}</td>
-                        <td class="border w-[19%]">
-                            <button
-                                class="text-sm font-sans border py-1 px-5 bg-gray-100 rounded-lg font-semibold my-1">View</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="relative overflow-x-auto sm:rounded-lg">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Id
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Department
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Contact
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Status
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                            *ngFor="let employee of employees;let i = index">
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{i+1}}
+                            </th>
+                            <td class="px-6 py-4">
+                                {{employee.employee_firstname + ' ' +employee.employee_lastname}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{employee.employee_department}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{employee.contact_number}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{employee.employment_status}}
+                            </td>
+                            <td class="px-6 py-4">
+                                <button class="font-medium text-blue-600 dark:text-blue-500"
+                                    (click)="openDetails(employee)">View</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </div>
+
+<!-- <div *ngIf="showTable">
+    <table>
+        <tr>
+            <td>name</td>
+        </tr>
+        <tr *ngFor="let data of deails ">
+            <td>{{data.employee_firstname}}</td>
+        </tr>
+    </table>
+</div> -->

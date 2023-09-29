@@ -1,72 +1,134 @@
-<div class="grid col-span-12 p-10 ">
-    <div class="">
-        <form [formGroup]="emp_Form" (ngSubmit)="onSubmit()">
-            <div>
-                <fieldset class="my-6">
-                    <legend class="text-sm font-semibold">First Name</legend>
-                    <input class="py-1 outline-none border px-3 rounded-md" type="text" formControlName="employee_firstname" placeholder="Enter your first name" />
-                </fieldset>
-            </div>
-            <div>
-                <fieldset class="my-6">
-                    <legend class="text-sm font-semibold"> Last Name</legend>
-                    <input class="py-1 outline-none border px-3 rounded-md" type="text" formControlName="employee_lastname" placeholder="Enter your last  name" />
-                </fieldset>
-            </div>
-            <div>
-                <fieldset class="my-6">
-                    <legend class="text-sm font-semibold">Department</legend>
-                    <!-- <input class="py-1 outline-none border px-3 rounded-md" type="text"
-                        formControlName="employee_department" placeholder="Enter your derpartment" /> -->
-                        <!-- <select formControlName="employee_department">
-                            <option >choose</option>
-                            <option value="HR">HR</option>
-                            <option value="IT">IT</option>
-                            <option value="Marketing">Marketing</option>
-                        </select> -->
-                        <select>
-                            <option value="it">IT</option>
-                            <option value="marketing">Marketing</option>
-                            <option value="branding">Branding</option>
-                            <option value="seller">Seller</option>
-                            <option value="hr">HR</option>
-                        </select>
-                </fieldset>
-            </div>
-            <div>
-                <fieldset class="my-6">
-                    <legend class="text-sm font-semibold">Contact</legend>
-                    <input class="py-1 outline-none border px-3 rounded-md" type="number"
-                        formControlName="contact_number" placeholder="Enter your contact number" />
-                </fieldset>
-            </div>
-            <div>
-                <fieldset class="my-6">
-                    <legend class="text-sm font-semibold">Email ID</legend>
-                    <input class="py-1 outline-none border px-3 rounded-md" type="email"
-                        formControlName="email_id" placeholder="Enter your Email ID" />
-                </fieldset>
-            </div>
-            <div>
-                <fieldset class="my-6">
-                    <legend class="text-sm font-semibold">Employeement Type</legend>
-                        <select formControlName="employment_status">
-                            <option value="true">True</option>
-                            <option value="false">False</option>
-                        </select>
-                </fieldset>
-            </div>
-            <div>
-                <fieldset class="my-6">
-                    <legend class="text-sm font-semibold">Hire Date</legend>
-                    <input class="py-1 outline-none border px-3 rounded-md" type="date" formControlName="hire_date"
-                        placeholder="Enter your hire date" />
-                </fieldset>
-            </div>
-            <div class="flex justify-between">
-                <button class="text-sm font-sans border py-1 px-5 bg-gray-100 rounded-lg font-semibold my-1">Save</button>
-            </div>
-        </form>
-        <button class="text-sm font-sans border py-1 px-5 bg-gray-100 rounded-lg font-semibold my-1">exit</button>
-    </div>
+<div class="grid col-span-12  p-16">
+    <button type="button" mat-dialog-close
+        class="float-right ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+        data-dismiss-target="#toast-default" aria-label="Close">
+        <span class="sr-only">Close</span>
+        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+        </svg>
+    </button>
+    <!-- <form [formGroup]="emp_Form" (ngSubmit)="onSubmit()">
+        <div>
+            <fieldset class="my-6">
+                <legend class="text-sm font-semibold">First Name</legend>
+                <input class="py-1 outline-none border px-3 rounded-md" type="text" formControlName="employee_firstname"
+                    placeholder="Enter your first name" />
+            </fieldset>
+        </div>
+        <div>
+            <fieldset class="my-6">
+                <legend class="text-sm font-semibold"> Last Name</legend>
+                <input class="py-1 outline-none border px-3 rounded-md" type="text" formControlName="employee_lastname"
+                    placeholder="Enter your last  name" />
+            </fieldset>
+        </div>
+        <div>
+            <fieldset class="my-6">
+                <legend class="text-sm font-semibold">Department</legend>
+                <select>
+                    <option value="it">IT</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="branding">Branding</option>
+                    <option value="seller">Seller</option>
+                    <option value="hr">HR</option>
+                </select>
+            </fieldset>
+        </div>
+        <div>
+            <fieldset class="my-6">
+                <legend class="text-sm font-semibold">Contact</legend>
+                <input class="py-1 outline-none border px-3 rounded-md" type="number" formControlName="contact_number"
+                    placeholder="Enter your contact number" />
+            </fieldset>
+        </div>
+        <div>
+            <fieldset class="my-6">
+                <legend class="text-sm font-semibold">Email ID</legend>
+                <input class="py-1 outline-none border px-3 rounded-md" type="email" formControlName="email_id"
+                    placeholder="Enter your Email ID" />
+            </fieldset>
+        </div>
+        <div>
+            <fieldset class="my-6">
+                <legend class="text-sm font-semibold">Employeement Type</legend>
+                <select formControlName="employment_status">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </fieldset>
+        </div>
+        <div>
+            <fieldset class="my-6">
+                <legend class="text-sm font-semibold">Hire Date</legend>
+                <input class="py-1 outline-none border px-3 rounded-md" type="date" formControlName="hire_date"
+                    placeholder="Enter your hire date" />
+            </fieldset>
+        </div>
+        <div class="flex justify-between">
+            <button class="text-sm font-sans border py-1 px-5 bg-gray-100 rounded-lg font-semibold my-1">Save</button>
+        </div>
+    </form> -->
+
+    
+    <form class="w-[400px]" [formGroup]="emp_Form" (ngSubmit)="onSubmit()">
+        <div class="relative z-0 w-full mb-6 group">
+            <input type="text"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" " required formControlName="employee_firstname" />
+            <label class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">First Name</label>
+        </div>
+
+        <div class="relative z-0 w-full mb-6 group">
+            <input type="text"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" " required formControlName="employee_lastname" />
+            <label 
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Last Name</label>
+        </div>
+        <div class="relative z-0 w-full mb-6 group">
+            <select formControlName="employee_department"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                <option value="" disabled selected>Select an option</option>
+                <option value="IT">IT</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Sales">Sales</option>
+                    <option value="HR">HR</option>
+            </select>
+        </div>
+        <div class="relative z-0 w-full mb-6 group">
+            <input type="number"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" " required formControlName="contact_number" />
+            <label 
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Contact
+                Number</label>
+        </div>
+        <div class="relative z-0 w-full mb-6 group">
+            <input type="email" 
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" " required formControlName="email_id" />
+            <label 
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">E-Mail</label>
+        </div>
+        <div class="relative z-0 w-full mb-6 group">
+            <select formControlName="employment_status"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                <option value="" disabled selected>Status</option>
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
+        </div>
+        <div class="relative z-0 w-full mb-6 group">
+            <input type="date" 
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" " required formControlName="hire_date" />
+            <label 
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Hired
+                Date</label>
+        </div>
+        <button
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+    </form>
 </div>
