@@ -7,70 +7,7 @@
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
         </svg>
-    </button>
-    <!-- <form [formGroup]="emp_Form" (ngSubmit)="onSubmit()">
-        <div>
-            <fieldset class="my-6">
-                <legend class="text-sm font-semibold">First Name</legend>
-                <input class="py-1 outline-none border px-3 rounded-md" type="text" formControlName="employee_firstname"
-                    placeholder="Enter your first name" />
-            </fieldset>
-        </div>
-        <div>
-            <fieldset class="my-6">
-                <legend class="text-sm font-semibold"> Last Name</legend>
-                <input class="py-1 outline-none border px-3 rounded-md" type="text" formControlName="employee_lastname"
-                    placeholder="Enter your last  name" />
-            </fieldset>
-        </div>
-        <div>
-            <fieldset class="my-6">
-                <legend class="text-sm font-semibold">Department</legend>
-                <select>
-                    <option value="it">IT</option>
-                    <option value="marketing">Marketing</option>
-                    <option value="branding">Branding</option>
-                    <option value="seller">Seller</option>
-                    <option value="hr">HR</option>
-                </select>
-            </fieldset>
-        </div>
-        <div>
-            <fieldset class="my-6">
-                <legend class="text-sm font-semibold">Contact</legend>
-                <input class="py-1 outline-none border px-3 rounded-md" type="number" formControlName="contact_number"
-                    placeholder="Enter your contact number" />
-            </fieldset>
-        </div>
-        <div>
-            <fieldset class="my-6">
-                <legend class="text-sm font-semibold">Email ID</legend>
-                <input class="py-1 outline-none border px-3 rounded-md" type="email" formControlName="email_id"
-                    placeholder="Enter your Email ID" />
-            </fieldset>
-        </div>
-        <div>
-            <fieldset class="my-6">
-                <legend class="text-sm font-semibold">Employeement Type</legend>
-                <select formControlName="employment_status">
-                    <option value="true">True</option>
-                    <option value="false">False</option>
-                </select>
-            </fieldset>
-        </div>
-        <div>
-            <fieldset class="my-6">
-                <legend class="text-sm font-semibold">Hire Date</legend>
-                <input class="py-1 outline-none border px-3 rounded-md" type="date" formControlName="hire_date"
-                    placeholder="Enter your hire date" />
-            </fieldset>
-        </div>
-        <div class="flex justify-between">
-            <button class="text-sm font-sans border py-1 px-5 bg-gray-100 rounded-lg font-semibold my-1">Save</button>
-        </div>
-    </form> -->
-
-    
+    </button> 
     <form class="w-[400px]" [formGroup]="emp_Form" (ngSubmit)="onSubmit()">
         <div class="relative z-0 w-full mb-6 group">
             <input type="text"
@@ -128,7 +65,7 @@
                 class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Hired
                 Date</label>
         </div>
-        <button
+        <button (fetchDataEvent)="handleFetchData()"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
     </form>
 </div>

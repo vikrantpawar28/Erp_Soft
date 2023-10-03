@@ -1,15 +1,18 @@
 <div class="relative overflow-x-auto p-24">
-    <button type="button"  mat-dialog-close class="relative top-[-50px] right-[-50px] float-right ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-default" aria-label="Close">
+    <button type="button" mat-dialog-close
+        class="relative top-[-50px] right-[-50px] float-right ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+        data-dismiss-target="#toast-default" aria-label="Close">
         <span class="sr-only">Close</span>
         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
         </svg>
     </button>
 
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" *ngIf="showTable">
         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" class="px-6 py-3 rounded-l-lg" colspan="2">
+                <th scope="col" class="px-6 py-3 rounded-lg" colspan="2">
                     Detail's
                 </th>
             </tr>
@@ -20,7 +23,7 @@
                     Name
                 </th>
                 <td class="px-6 py-4">
-                    {{data.data.employee_firstname+""+data.data.employee_lastname}}
+                    {{data.data.employee_firstname+" "+data.data.employee_lastname}}
                 </td>
             </tr>
 
@@ -75,4 +78,66 @@
             </tr>
         </tfoot> -->
     </table>
+
+
+    <div *ngIf="!showTable">
+        <form #myForm="ngForm" class="flex flex-col">
+            <label>Email</label>
+            <input type="email" [(ngModel)]="email" [ngModelOptions]="{ standalone: true }" required email>
+            <label>Contact</label>
+            <input type="text" [(ngModel)]="contact" [ngModelOptions]="{ standalone: true }" required contact>
+            <label>Name</label>
+            <input type="text" [(ngModel)]="name1" [ngModelOptions]="{ standalone: true }" required name>
+            <label>Hire Date</label>
+            <input type="date" [(ngModel)]="hire_date" [ngModelOptions]="{ standalone: true }" required date>
+            <label>Department</label>
+            <select  [(ngModel)]="Department" [ngModelOptions]="{ standalone: true }" required department >
+                <option value="" disabled selected>Select an option</option>
+                <option value="IT">IT</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Sales">Sales</option>
+                    <option value="HR">HR</option>
+            </select>
+            <label>Status</label>
+            <select  [(ngModel)]="Status" [ngModelOptions]="{ standalone: true }" required status>
+                <option value="" disabled selected>Status</option>
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
+            <!-- Display an error message if email is invalid -->
+            <!-- <div
+                *ngIf="myForm.controls['email'].invalid && (myForm.controls['email'].dirty || myForm.controls['email'].touched)">
+                <p class="text-red-500">Invalid email format</p>
+            </div>
+            <div
+                *ngIf="myForm.controls['contact'].invalid && (myForm.controls['contact'].dirty || myForm.controls['contact'].touched)">
+                <p class="text-red-500">Invalid contact format</p>
+            </div>
+            <div
+                *ngIf="myForm.controls['name'].invalid && (myForm.controls['name'].dirty || myForm.controls['name'].touched)">
+                <p class="text-red-500">Invalid contact format</p>
+            </div> -->
+
+
+            <div class="flex justify-between items-center mt-8" *ngIf="!showTable">
+                <button
+                    class="text-green-700 border border-green-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center"
+                    (click)="saveDetails()" [disabled]="!myForm.valid">Save</button>
+
+                <button
+                    class="text-red-700 border border-red-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center"(click)="cancel()">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+
+
+<div class="flex justify-between items-center mt-8" *ngIf="showTable">
+    <button
+        class="text-green-700 border border-green-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-cente"
+        (click)="editDetails()">Edit</button>
+    <button
+        class="text-red-700 border border-red-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-cente">Delete</button>
+</div>
 </div>
