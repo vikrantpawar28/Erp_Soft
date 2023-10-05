@@ -81,63 +81,92 @@
 
 
     <div *ngIf="!showTable">
-        <form #myForm="ngForm" class="flex flex-col">
-            <label>Email</label>
-            <input type="email" [(ngModel)]="email" [ngModelOptions]="{ standalone: true }" required email>
-            <label>Contact</label>
-            <input type="text" [(ngModel)]="contact" [ngModelOptions]="{ standalone: true }" required contact>
-            <label>Name</label>
-            <input type="text" [(ngModel)]="name1" [ngModelOptions]="{ standalone: true }" required name>
-            <label>Hire Date</label>
-            <input type="date" [(ngModel)]="hire_date" [ngModelOptions]="{ standalone: true }" required date>
-            <label>Department</label>
-            <select  [(ngModel)]="Department" [ngModelOptions]="{ standalone: true }" required department >
-                <option value="" disabled selected>Select an option</option>
-                <option value="IT">IT</option>
+        <form #myForm="ngForm" class="flex flex-col space-y-4">
+
+            <!-- Email -->
+            <div class="mb-4">
+                <label for="email" class="text-sm font-medium">Email</label>
+                <input type="email" id="email" name="email" [(ngModel)]="email" [ngModelOptions]="{ standalone: true }"
+                    required email
+                    class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+            </div>
+
+            <!-- Contact -->
+            <div class="mb-4">
+                <label for="contact" class="text-sm font-medium">Contact</label>
+                <input type="text" id="contact" name="contact" [(ngModel)]="contact"
+                    [ngModelOptions]="{ standalone: true }" required contact
+                    class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+            </div>
+
+            <!-- Name -->
+            <div class="mb-4">
+                <label for="name1" class="text-sm font-medium">Name</label>
+                <input type="text" id="name1" name="name1" [(ngModel)]="name1" [ngModelOptions]="{ standalone: true }"
+                    required name
+                    class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+            </div>
+
+            <!-- Hire Date -->
+            <div class="mb-4">
+                <label for="hire_date" class="text-sm font-medium">Hire Date</label>
+                <input type="date" id="hire_date" name="hire_date" [(ngModel)]="hire_date"
+                    [ngModelOptions]="{ standalone: true }" required date
+                    class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+            </div>
+
+            <!-- Department -->
+            <div class="mb-4">
+                <label for="Department" class="text-sm font-medium">Department</label>
+                <select id="Department" name="Department" [(ngModel)]="Department"
+                    [ngModelOptions]="{ standalone: true }" required department
+                    class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="IT">IT</option>
                     <option value="Marketing">Marketing</option>
                     <option value="Finance">Finance</option>
                     <option value="Sales">Sales</option>
                     <option value="HR">HR</option>
-            </select>
-            <label>Status</label>
-            <select  [(ngModel)]="Status" [ngModelOptions]="{ standalone: true }" required status>
-                <option value="" disabled selected>Status</option>
-                <option value="true">True</option>
-                <option value="false">False</option>
-            </select>
-            <!-- Display an error message if email is invalid -->
-            <!-- <div
-                *ngIf="myForm.controls['email'].invalid && (myForm.controls['email'].dirty || myForm.controls['email'].touched)">
-                <p class="text-red-500">Invalid email format</p>
+                </select>
             </div>
-            <div
-                *ngIf="myForm.controls['contact'].invalid && (myForm.controls['contact'].dirty || myForm.controls['contact'].touched)">
-                <p class="text-red-500">Invalid contact format</p>
+
+            <!-- Status -->
+            <div class="mb-4">
+                <label for="Status" class="text-sm font-medium">Status</label>
+                <select id="Status" name="Status" [(ngModel)]="Status" [ngModelOptions]="{ standalone: true }" required
+                    status
+                    class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                    <option value="" disabled selected>Status</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
             </div>
-            <div
-                *ngIf="myForm.controls['name'].invalid && (myForm.controls['name'].dirty || myForm.controls['name'].touched)">
-                <p class="text-red-500">Invalid contact format</p>
-            </div> -->
 
+            <!-- Buttons -->
+            <div class="flex justify-between items-center mt-8">
+                <button type="button"
+                    class="text-green-700 border border-green-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-center"
+                    (click)="saveDetails()" [disabled]="!myForm.valid || !myForm.dirty" >
+                    Save
+                </button>
 
-            <div class="flex justify-between items-center mt-8" *ngIf="!showTable">
-                <button
-                    class="text-green-700 border border-green-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center"
-                    (click)="saveDetails()" [disabled]="!myForm.valid">Save</button>
-
-                <button
-                    class="text-red-700 border border-red-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center"(click)="cancel()">Cancel</button>
+                <button type="button"
+                    class="text-red-700 border border-red-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-cente"
+                    (click)="cancelEdit()">
+                    Cancel
+                </button>
             </div>
         </form>
     </div>
 
 
 
-<div class="flex justify-between items-center mt-8" *ngIf="showTable">
-    <button
-        class="text-green-700 border border-green-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-cente"
-        (click)="editDetails()">Edit</button>
-    <button
-        class="text-red-700 border border-red-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-cente">Delete</button>
-</div>
+
+    <div class="flex justify-between items-center mt-8" *ngIf="showTable">
+        <button
+            class="text-green-700 border border-green-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-cente"
+            (click)="editDetails()">Edit</button>
+        <button
+            class="text-red-700 border border-red-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-cente">Delete</button>
+    </div>
 </div>

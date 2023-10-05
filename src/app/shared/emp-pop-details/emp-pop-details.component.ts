@@ -9,8 +9,12 @@ import { ServicesService } from 'src/app/core/services.service';
 export class EmpPopDetailsComponent implements OnInit {
   resetForm: any;
   constructor(
+    
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public _servicesService: ServicesService
+    public _servicesService: ServicesService,
+    
+
+
   ) {
     this._servicesService.getEmployees;
     const isoDate = new Date('2023-09-25T00:00:00.000Z');
@@ -22,7 +26,6 @@ export class EmpPopDetailsComponent implements OnInit {
     console.log('nhgfjhfyh', this.data);
     this.formData = this.data;
   }
-
   showTable: any = true;
   contact: any = this.data.data.contact_number;
   email: any = this.data.data.email_id;
@@ -58,21 +61,15 @@ export class EmpPopDetailsComponent implements OnInit {
       this.showTable=true;
     });
   }
-  cancel(){
+  cancelEdit(){
     this.obj= {};
     this.showTable=true;
-
   }
-
-
   fetchData() {
     this._servicesService.getEmployees().subscribe((data) => {
       // this.employees = data;
-      this._servicesService.empData = data;
-     
-
-      
-      console.log( "DAtga from popup",data);
+      this._servicesService.empData = data; 
+      console.log( "Data from popup",data);
     });
   }
   

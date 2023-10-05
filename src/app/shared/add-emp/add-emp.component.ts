@@ -36,7 +36,6 @@ export class AddEmpComponent implements OnInit {
     });
   }
   handleFetchData() {
-    // Handle the fetched data here
     console.log('Data fetched in ComponentB');
   }
   fetchData() {
@@ -47,23 +46,17 @@ export class AddEmpComponent implements OnInit {
     });
    
   }
-  onSubmit() {
-
-    
+  onSubmit() { 
     console.log("data from service on submit",this._servicesService.empData);
     if (this.emp_Form.valid) {
       console.log(this.emp_Form.value);
       this._servicesService
         .postEmployees(this.emp_Form.value)
         .subscribe((Response) => {
-          
           alert('Data Submitted');
           console.log(Response);
-     
           this._dialog.closeAll();
           this.fetchData();
-          
-        
         });
       (error: any) => {
         console.error('Error adding data:', error);

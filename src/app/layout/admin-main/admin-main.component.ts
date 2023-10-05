@@ -8,7 +8,15 @@ import { Router } from '@angular/router';
 })
 export class AdminMainComponent {
   constructor(private router:Router){}
-open(){
-  this.router.navigate(['admin-main/emp_db'])
-}
+  open(){
+    this.router.navigate(['admin-main/emp_db'])
+  }
+
+  openProductsComponent(){
+    this.router.navigate(['admin-main/inv'])
+  }
+  OpenPayroll(){
+    
+  }
+
 }

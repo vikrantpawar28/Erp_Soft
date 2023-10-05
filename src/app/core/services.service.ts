@@ -9,6 +9,7 @@ export class ServicesService {
   private _url: string = 'http://192.168.29.20:3000/api/v1';
   empData:any;
   empBack:any;
+  prodData:any[]=[];
   constructor(private _http: HttpClient) {}
 
   getEmployees(): Observable<any> {

@@ -1,34 +1,36 @@
+
 <div class="p-5">
     <div class="grid grid-cols-12 border-b-2">
         <div class="col-span-8">
-            <span class="font-bold text-base">COMPANY EMPLOYEES</span>
+            <span class="font-bold text-base">INVENTORY MANGMENT</span>
         </div>
         <div class="col-span-4">
             <button
-                class="text-sm font-sans border py-2 px-5 bg-white mx-1 rounded-t-lg font-semibold my-1">Employees</button>
-            <button class="text-sm font-sans border py-2 px-5 bg-gray-50 mx-1 rounded-t-lg font-semibold my-1">Live
+                class="text-sm font-sans border py-2 px-5 bg-white mx-1 rounded-t-lg font-semibold my-1">Products</button>
+            <!-- <button class="text-sm font-sans border py-2 px-5 bg-gray-50 mx-1 rounded-t-lg font-semibold my-1">Live
                 View</button>
             <button class="text-sm font-sans border py-2 px-5 bg-gray-50 mx-1 rounded-t-lg font-semibold my-1">Org
-                Chart</button>
+                Chart</button> -->
         </div>
     </div>
 
     <div class="grid grid-cols-12 py-4">
         <div class="col-span-6">
-            <input class="py-2 outline-none border px-3 rounded-md" type="text" placeholder="Search employee"
+            <input class="py-2 outline-none border px-3 rounded-md" type="text" placeholder="Search products"
                 title="Search employee" [(ngModel)]="searchText" (input)="searchEmployees()">
             <select class="py-2 px-3 w-[150px] border rounded-md focus:outline-none ml-2"
                 (change)="onSelectChange($event)">
                 <option value="all">All </option>
-                <option [value]=true>Active</option>
-                <option [value]=false>inActive</option>
+                <option value="active">Active</option>
+                <option value="inactive">inActive</option>
+                <option value="out_Of_Stock">Out Of-Stock</option>
             </select>
         </div>
 
         <div class="col-span-6">
             <button
                 class="text-sm font-sans border py-2  px-4 bg-gray-50 mx-1 rounded-lg font-semibold my-1 float-right"
-                (click)="add_emp()">Add Employee</button>
+                (click)="add_product()">Add Products</button>
         </div>
     </div>
 
@@ -42,13 +44,13 @@
                                 Id
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Name
+                                Product Image
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Department
+                                Product Name
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Contact
+                                Category
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Status
@@ -60,27 +62,27 @@
                     </thead>
                     <tbody>
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                            *ngFor="let employee of (this.employees.length > 0 ? this.employees : this._servicesService.empData); let i = index">
+                            *ngFor="let employee of this._servicesService.prodData let i = index">
 
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{i+1}}
                             </th>
-                            <td class="px-6 py-4">
-                                {{employee.employee_firstname + ' ' +employee.employee_lastname}}
+                            <td class="px-6 py-1">
+                            <img src={{employee.pImage[0]}} class="w-12">
                             </td>
                             <td class="px-6 py-4">
-                                {{employee.employee_department}}
+                                {{employee.pName}}
                             </td>
                             <td class="px-6 py-4">
-                                {{employee.contact_number}}
+                                {{employee.pCategory}}
                             </td>
                             <td class="px-6 py-4">
-                                {{employee.employment_status}}
+                                {{employee.Availablity}}
                             </td>
                             <td class="px-6 py-4">
                                 <button class="font-medium text-blue-600 dark:text-blue-500"
-                                    (click)="openDetails(employee)">View</button>
+                                    (click)="openDetails(employee,i)">View</button>
                             </td>
                         </tr>
                     </tbody>

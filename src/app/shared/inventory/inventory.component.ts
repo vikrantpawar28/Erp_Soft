@@ -1,22 +1,53 @@
-import {
-  Component,
-  OnInit,
-  TemplateRef,
-  EventEmitter,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+
 import { MatDialog } from '@angular/material/dialog';
 import { ServicesService } from 'src/app/core/services.service';
 import { AddEmpComponent } from '../add-emp/add-emp.component';
 import { EmpPopDetailsComponent } from '../emp-pop-details/emp-pop-details.component';
+import { AddproductComponent } from '../addproduct/addproduct.component';
+import { ProductPopUpComponent } from '../product-pop-up/product-pop-up.component';
 
 @Component({
-  selector: 'app-employee-db',
-  templateUrl: './employee-db.component.html',
-  styleUrls: ['./employee-db.component.css'],
+  selector: 'app-inventory',
+  templateUrl: './inventory.component.html',
+  styleUrls: ['./inventory.component.css'],
 })
-export class EmployeeDbComponent implements OnInit {
-  employees: any[] = [];
+export class InventoryComponent {
+  // employees: any[] = [
+  //   {
+  //     pName: 'kurta',
+  //     pCategory: 'clothing',
+  //     psub_Category: 'Mens',
+  //     pImage: [
+  //       { imageURL: 'https://shorturl.at/yIJZ1', imageName: 'pink Kurta' },
+  //       { imageURL: 'https://shorturl.at/eqBFT', imageName: 'black Kurta' },
+  //     ],
+  //     Description: 'lorem ipsum fujfiuyetgiuweg8ifuwe few',
+  //     Brand: 'lucknowi',
+  //     Price: '450',
+  //     Dimensions: '35',
+  //     weight: '500gm',
+  //     Availablity: 'inStock',
+  //     SupplierInfo: 'jhfsafghj',
+  //   },
+  //   {
+  //     pName: 'shirts',
+  //     pCategory: 'clothing',
+  //     psub_Category: 'Mens',
+  //     pImage: [
+  //       { imageURL: 'https://shorturl.at/DEOW9', imageName: 'checks shirt' },
+  //       { imageURL: 'https://shorturl.at/tINV6', imageName: 'black shirt' },
+  //     ],
+  //     Description: 'lorem ipsum fujfiuyetgiuweg8ifuwe few',
+  //     Brand: 'Raymond',
+  //     Price: '1000',
+  //     Dimensions: '35',
+  //     weight: '500gm',
+  //     Availablity: 'out_Of_Stock',
+  //     SupplierInfo: 'jhfsafghj',
+  //   },
+  // ];
+  employees:any[]=this._servicesService.prodData;
   modalService: any;
   @Output() fetchDataEvent = new EventEmitter<void>();
   constructor(
@@ -26,18 +57,12 @@ export class EmployeeDbComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
-
-    // console.timeLog(this._servicesService.empBack=this._servicesService.empData.slice(0,9));
   }
 
-
-  
   fetchData() {
     this._servicesService.getEmployees().subscribe((data) => {
       // this.employees = data;
       this._servicesService.empData = data;
-     
-
       // this.employees = this._servicesService.empData;
       console.log(data);
     });
@@ -45,19 +70,24 @@ export class EmployeeDbComponent implements OnInit {
   onSelectChange(event: Event) {
     const selectedValue = (event.target as HTMLSelectElement).value;
     console.log('Selected value:', selectedValue);
-    if(selectedValue==="all"){
-      this.employees=[];
+    if (selectedValue === 'all') {
+      this.employees = [];
     }
 
-    if (selectedValue === 'true') {
-      this.employees = this._servicesService.empData.filter((employee: any) => {
-        return employee.employment_status == true;
+    if (selectedValue === 'active') {
+      this.employees = this.employees.filter((employee: any) => {
+        return employee.Availablity == true;
       });
     }
 
-    if (selectedValue === 'false') {
-      this.employees = this._servicesService.empData.filter((employee: any) => {
-        return employee.employment_status == false;
+    if (selectedValue === 'inactive') {
+      this.employees = this.employees.filter((employee: any) => {
+        return employee.Availablity == false;
+      });
+    }
+    if (selectedValue === 'out_Of_Stock') {
+      this.employees = this.employees.filter((employee: any) => {
+        return employee.Availablity == false;
       });
     }
     console.log('changed :    ', this.employees);
@@ -79,13 +109,13 @@ export class EmployeeDbComponent implements OnInit {
     });
   }
 
-  add_emp() {
-    this._dialog.open(AddEmpComponent);
+  add_product() {
+    this._dialog.open(AddproductComponent);
   }
 
   //   showTable:any=false;
   //  deails:any[]=[]
-  openDetails(data: any) {
+  openDetails(data: any,i:any) {
     // this.deails.push(data);
     // console.log(this.deails);
     // // this.showTable=true;
@@ -95,10 +125,10 @@ export class EmployeeDbComponent implements OnInit {
     // else{
     //   this.showTable=true;
     // }
-    console.log(data)
-    this._dialog.open(EmpPopDetailsComponent, {
+    console.log(data,i);
+    this._dialog.open(ProductPopUpComponent, {
       data: {
-        data,
+        data,i
       },
     });
   }
@@ -106,15 +136,17 @@ export class EmployeeDbComponent implements OnInit {
   searchText: string = '';
   searchEmployees() {
     if (this.searchText.trim() !== '') {
-      this.employees = this._servicesService.empData.filter((employee: any) => {
-        return employee.employee_firstname.toLowerCase().includes(this.searchText.toLowerCase());
+      this.employees = this.employees.filter((employee: any) => {
+        return employee.pName
+          .toLowerCase()
+          .includes(this.searchText.toLowerCase());
       });
     } else {
       this.employees = this._servicesService.empData;
     }
   }
 
-  currentPage: number = 0; 
+  currentPage: number = 0;
   itemsPerPage: number = 9;
 
   updateEmployees() {
@@ -136,7 +168,9 @@ export class EmployeeDbComponent implements OnInit {
 
   next() {
     // Increment the currentPage if it's within the valid range and update the employees
-    const totalPages = Math.ceil(this._servicesService.empData.length / this.itemsPerPage);
+    const totalPages = Math.ceil(
+      this._servicesService.empData.length / this.itemsPerPage
+    );
     if (this.currentPage < totalPages - 1) {
       this.currentPage++;
       this.updateEmployees();

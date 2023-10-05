@@ -12,6 +12,9 @@ import { AddEmpComponent } from './add-emp/add-emp.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import { EmpPopDetailsComponent } from './emp-pop-details/emp-pop-details.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { AddproductComponent } from './addproduct/addproduct.component';
+import { ProductPopUpComponent } from './product-pop-up/product-pop-up.component';
 @NgModule({
   declarations: [
     AdminCompanyComponent,
@@ -19,6 +22,9 @@ import { EmpPopDetailsComponent } from './emp-pop-details/emp-pop-details.compon
     EmployeeDbComponent,
     AddEmpComponent,
     EmpPopDetailsComponent,
+    InventoryComponent,
+    AddproductComponent,
+    ProductPopUpComponent,
   ],
   imports: [
     CommonModule,

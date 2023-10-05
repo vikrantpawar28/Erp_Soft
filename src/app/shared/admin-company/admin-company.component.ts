@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-company',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin-company.component.css']
 })
 export class AdminCompanyComponent {
+
+  constructor(private router:Router){}
+
 
 }
