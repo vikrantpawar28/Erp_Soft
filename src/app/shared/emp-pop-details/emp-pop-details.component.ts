@@ -13,8 +13,6 @@ export class EmpPopDetailsComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public _servicesService: ServicesService,
     
-
-
   ) {
     this._servicesService.getEmployees;
     const isoDate = new Date('2023-09-25T00:00:00.000Z');

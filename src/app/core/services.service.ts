@@ -10,6 +10,7 @@ export class ServicesService {
   empData:any;
   empBack:any;
   prodData:any[]=[];
+  url:string='C:\\Users\\Vikrant\\Downloads'+'\\';
   constructor(private _http: HttpClient) {}
 
   getEmployees(): Observable<any> {
@@ -24,5 +25,8 @@ export class ServicesService {
    putEmployees(data:any,id:any):Observable<any>{
     return this._http.put(`${this._url}/employees/${id}`,data)
    }
+
+
+   
 
 }

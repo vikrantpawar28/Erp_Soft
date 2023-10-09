@@ -23,18 +23,20 @@ export class ProductPopUpComponent {
     this.data;
   }
   showTable: any = true;
-  pName: any;
-  pdescription: any;
+  product_name: any;
+  product_description: any;
   pCategory: any;
-  sub_Category: any;
-  pBrand: any;
+  subcategory: any;
+  brand_name: any;
   pImage: any = [];
-  pPrice: any;
-  pDimensions: any;
-  pWeight: any;
-  pSupllierInfo: any;
+  product_price: any;
+  product_dimensions_length: any;
+  product_weight: any;
+  manufacturer_details: any;
   pReturnPolicy: any;
   pAvailablity: any;
+  available_stock:any;
+  min_required_stock:any;
 
   editDetails() {
     if (this.showTable == true) {
@@ -52,34 +54,43 @@ export class ProductPopUpComponent {
   }
 
   reset() {
-    this.pName = ' ';
-    this.pdescription = ' ';
+    this.product_name = ' ';
+    this.product_description = ' ';
     this.pCategory = ' ';
-    this.sub_Category = ' ';
+    this. subcategory = ' ';
     this.pImage = ' ';
-    this.pWeight = ' ';
-    this.pPrice = ' ';
-    this.pBrand = ' ';
+    this.product_weight = ' ';
+    this.product_price = ' ';
+    this.brand_name = ' ';
     this.pAvailablity = '';
-    this.pDimensions = '';
+    this.product_dimensions_length = '';
+    this.available_stock='';
+    this.min_required_stock=''
+    this.manufacturer_details='';
   }
 
   obj: any;
   saveDetails() {
     this.obj = {
-      pName: this.pName,
-      Description: this.pdescription,
+      pName: this.product_name,
+      Description: this.product_description,
       pCategory: this.pCategory,
-      psub_Category: this.sub_Category,
+      psub_Category: this.  subcategory,
       pImage: this.pImage,
-      weight: this.pWeight,
-      Price: this.pPrice,
-      Brand: this.pBrand,
+      weight: this.product_weight,
+      Price: this.product_price,
+      Brand: this.brand_name,
       Availanlity: this.pAvailablity,
-      Dimensions: this.pDimensions,
+      Dimensions: this.product_dimensions_length,
+      available_stock:this.available_stock,
+      min_required_stock:this.min_required_stock,
+      manufacturer_details:this.manufacturer_details
     };
     this._servicesService.prodData[this.data.i]=this.obj;
   }
+
+
+
 
 
 

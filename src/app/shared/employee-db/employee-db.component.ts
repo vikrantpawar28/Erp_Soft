@@ -26,12 +26,9 @@ export class EmployeeDbComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
-
     // console.timeLog(this._servicesService.empBack=this._servicesService.empData.slice(0,9));
   }
 
-
-  
   fetchData() {
     this._servicesService.getEmployees().subscribe((data) => {
       // this.employees = data;

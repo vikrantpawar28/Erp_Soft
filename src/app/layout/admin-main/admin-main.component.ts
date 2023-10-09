@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdminPayrollComponent } from 'src/app/shared/admin-payroll/admin-payroll.component';
 
 @Component({
   selector: 'app-admin-main',
@@ -16,7 +17,7 @@ export class AdminMainComponent {
     this.router.navigate(['admin-main/inv'])
   }
   OpenPayroll(){
-    
+    this.router.navigate(['admin-main/payroll'])
   }
 
 }

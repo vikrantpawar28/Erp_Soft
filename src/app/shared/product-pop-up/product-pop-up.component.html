@@ -122,14 +122,14 @@
                 <!-- Email -->
                 <div class="mx-2">
                     <label class="text-sm font-medium">Product Name</label>
-                    <input class="w-full" type="text" [(ngModel)]="pName" [ngModelOptions]="{standalone: true}" required
+                    <input class="w-full" type="text" [(ngModel)]="product_name" [ngModelOptions]="{standalone: true}" required
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
 
                 <!-- Contact -->
                 <div class="mx-2">
                     <label class="text-sm font-medium">Description</label>
-                    <textarea [(ngModel)]="pdescription" [ngModelOptions]="{standalone: true}"
+                    <textarea [(ngModel)]="product_description" [ngModelOptions]="{standalone: true}"
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300"></textarea>
                 </div>
             </div>
@@ -145,7 +145,7 @@
                 <!-- Hire Date -->
                 <div class="mx-2">
                     <label class="text-sm font-medium">Sub-Category</label>
-                    <input class="w-full" type="text" [(ngModel)]="sub_Category" [ngModelOptions]="{standalone: true}" required 
+                    <input class="w-full" type="text" [(ngModel)]="subcategory" [ngModelOptions]="{standalone: true}" required 
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
 
@@ -165,7 +165,7 @@
 
                 <div class="mx-2">
                     <label class="text-sm font-medium">Brand</label>
-                    <input class="w-full" type="text" [(ngModel)]="pBrand" [ngModelOptions]="{standalone: true}" required
+                    <input class="w-full" type="text" [(ngModel)]="brand_name" [ngModelOptions]="{standalone: true}" required
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
             </div>
@@ -178,20 +178,20 @@
                 </div>
                 <div class="mx-2">
                     <label class="text-sm font-medium">Price</label>
-                    <input class="w-full" type="text" [(ngModel)]="pPrice" [ngModelOptions]="{standalone: true}"
+                    <input class="w-full" type="text" [(ngModel)]="product_price" [ngModelOptions]="{standalone: true}"
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
             </div>
             <div class="flex justify-between">
                 <div class="mx-2">
-                    <label class="text-sm font-medium">Dimensions</label>
-                    <input class="w-full" type="text" [(ngModel)]="pDimensions" [ngModelOptions]="{standalone: true}"
+                    <label class="text-sm font-medium">Dimensions Length</label>
+                    <input class="w-full" type="text" [(ngModel)]="product_dimensions_length" [ngModelOptions]="{standalone: true}"
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
 
                 <div class="mx-2">
                     <label class="text-sm font-medium">Weight</label>
-                    <input class="w-full" type="text" [(ngModel)]="pWeight" [ngModelOptions]="{standalone: true}"
+                    <input class="w-full" type="text" [(ngModel)]="product_weight" [ngModelOptions]="{standalone: true}"
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
             </div>
@@ -199,7 +199,7 @@
             <div class="flex justify-between">
                 <div class="mx-2">
                     <label class="text-sm font-medium">Suplier Information</label>
-                    <input class="w-full" type="text" [(ngModel)]="pSupllierInfo" [ngModelOptions]="{standalone: true}"
+                    <input class="w-full" type="text" [(ngModel)]="manufacturer_details" [ngModelOptions]="{standalone: true}"
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
                 <div class="mx-2">

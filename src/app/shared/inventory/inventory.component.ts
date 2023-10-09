@@ -58,6 +58,8 @@ export class InventoryComponent {
   ngOnInit(): void {
     this.fetchData();
   }
+  str="file:///";
+  url:string='C:/Users/Vikrant/Downloads'+'/';
 
   fetchData() {
     this._servicesService.getEmployees().subscribe((data) => {
@@ -76,25 +78,24 @@ export class InventoryComponent {
 
     if (selectedValue === 'active') {
       this.employees = this.employees.filter((employee: any) => {
-        return employee.Availablity == true;
+        return employee.Availablity == 'active';
       });
     }
 
     if (selectedValue === 'inactive') {
       this.employees = this.employees.filter((employee: any) => {
-        return employee.Availablity == false;
+        return employee.Availablity == "inactive";
       });
     }
     if (selectedValue === 'out_Of_Stock') {
       this.employees = this.employees.filter((employee: any) => {
-        return employee.Availablity == false;
+        return employee.Availablity == "out_Of_Stock";
       });
     }
     console.log('changed :    ', this.employees);
   }
 
   status: boolean = false;
-
   fetchAsStatus() {
     this._servicesService.getEmployees().subscribe((data) => {
       this.employees = data.filter((item: any) => {
@@ -136,24 +137,20 @@ export class InventoryComponent {
   searchText: string = '';
   searchEmployees() {
     if (this.searchText.trim() !== '') {
-      this.employees = this.employees.filter((employee: any) => {
-        return employee.pName
-          .toLowerCase()
-          .includes(this.searchText.toLowerCase());
+      this.employees = this._servicesService.prodData.filter((employee: any) => {
+        return employee.pName.toLowerCase().includes(this.searchText.toLowerCase());
       });
     } else {
-      this.employees = this._servicesService.empData;
+      this.employees = this._servicesService.prodData;
     }
   }
 
   currentPage: number = 0;
   itemsPerPage: number = 9;
-
   updateEmployees() {
     // Calculate the start and end indices based on the currentPage and itemsPerPage
     const startIndex = this.currentPage * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-
     // Slice the data to get the current page's elements
     this.employees = this._servicesService.empData.slice(startIndex, endIndex);
   }
@@ -176,4 +173,5 @@ export class InventoryComponent {
       this.updateEmployees();
     }
   }
+
 }
