@@ -28,12 +28,16 @@
         </div>
 
         <div class="col-span-6">
+            <!-- <button
+                class="text-sm font-sans border py-2  px-4 bg-gray-50 mx-1 rounded-lg font-semibold my-1 float-right"
+                (click)="add_product()">Add category</button> -->
             <button
                 class="text-sm font-sans border py-2  px-4 bg-gray-50 mx-1 rounded-lg font-semibold my-1 float-right"
                 (click)="add_product()">Add Products</button>
         </div>
     </div>
 
+    
     <div class="grid grid-cols-12">
         <div class="col-span-12 bg-white">
             <div class="relative sm:rounded-lg overflow-y-scroll lg:h-[252px] xl:h-[466px] 2xl:h-[566px]">
@@ -69,18 +73,17 @@
                                 {{i+1}}
                             </th>
                             <td class="px-6 py-1">
-                            <img [src]=url+employee.pImage class="w-12">
-                           <h1>{{url+employee.pImage}}</h1>
+                            <img [src]=employee.product_image class="w-12">
                             
                             </td>
                             <td class="px-6 py-4">
-                                {{employee.pName}}
+                                {{employee.product_name}}
                             </td>
                             <td class="px-6 py-4">
                                 {{employee.pCategory}}
                             </td>
                             <td class="px-6 py-4">
-                                {{employee.Availablity}}
+                                {{employee.stock.available_stock}}
                             </td>
                             <td class="px-6 py-4">
                                 <button class="font-medium text-blue-600 dark:text-blue-500"

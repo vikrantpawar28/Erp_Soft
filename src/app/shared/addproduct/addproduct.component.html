@@ -8,7 +8,56 @@
                 d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
         </svg>
     </button>
-    <form class="w-[500px]" #myForm="ngForm">
+
+    <div class="grid gap-4 mb-3 grid-cols-2" *ngIf="this._servicesService.categoryData.length<0">
+        <form >
+            <h3>Create Categories</h3>
+            <fieldset>
+                <legend >Create Category</legend>
+                <input type="text" [(ngModel)]="categoryF" [ngModelOptions]="{standalone: true}" >
+            </fieldset>
+            <fieldset>
+                <legend >Create Subcategory</legend>
+                <input type="text" [(ngModel)]="subcategoryF" [ngModelOptions]="{standalone: true}" >
+            </fieldset>
+            <button  (click)="onsubmitCat()"  >Submit</button>
+        </form>
+    </div>
+
+
+
+    <!-- <div >
+<form  [formGroup]="category_form" >
+    <h1>add category and sub-category</h1>
+    <div class="flex justify-between">
+        <div class="relative z-0 w-full mb-6 group">
+                <select 
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                    <option value="" disabled selected>Status</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">InActive</option>
+                    <option value="out_of_stock">Out Of-Stock</option>
+                </select>
+            <label
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Category
+            </label>
+        </div>
+        <div class="relative z-0 w-full mb-6 group">
+            <input type="text" [(ngModel)]="product_subcategory" [ngModelOptions]="{standalone: true}"
+                class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" " required />
+            <label
+                class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Sub-Category</label>
+        </div>
+    </div>
+    <button   (click)="onsubmitCat()"
+    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+</form>
+
+</div> -->
+
+    <div *ngIf=" this._servicesService.categoryData.length>0" class="w-[450px]">
+        <!-- <form class="w-[500px]" #myForm="ngForm">
         <div class="flex justify-between mx-2">
             <div class="relative z-0 w-full mb-6 group">
                 <input type="text" [(ngModel)]="product_name" [ngModelOptions]="{standalone: true}"
@@ -26,26 +75,6 @@
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Description</label>
             </div>
         </div>
-
-
-        <div class="flex justify-between">
-            <div class="relative z-0 w-full mb-6 group">
-                <input type="text" [(ngModel)]="pCategory" [ngModelOptions]="{standalone: true}"
-                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" " required />
-                <label
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Category
-                </label>
-            </div>
-            <div class="relative z-0 w-full mb-6 group">
-                <input type="text" [(ngModel)]="subcategory" [ngModelOptions]="{standalone: true}"
-                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" " required />
-                <label
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Sub-Category</label>
-            </div>
-        </div>
-
 
         <div class="flex justify-between">
             <div class="relative z-0 w-full mb-6 group">
@@ -156,5 +185,240 @@
 
         <button (click)="submitData()" [disabled]="isSubmitDisabledt()"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-    </form>
+    </form> -->
+
+
+
+        <!-- <div class="wrapper">
+            <form [formGroup]="imageGroup" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+                <h3>Upload Product</h3>
+                <fieldset>
+                    <legend>Categories and subcategories</legend>
+
+                    <select formControlName="subcategory">
+                        <optgroup *ngFor="let category of  this._servicesService.categoryData"
+                            [label]="category.product_category">
+                            <option *ngFor="let ele of category.subcategories" [value]="ele._id">
+                                {{ele.product_subcategory}}
+                            </option>
+                        </optgroup>
+                    </select>
+                </fieldset>
+
+
+                <div class="flex justify-between">
+                    <fieldset>
+                        <legend>Product Name</legend>
+                        <input type="text" formControlName="product_name">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Product Description</legend>
+                        <input type="text" formControlName="product_description">
+                    </fieldset>
+                </div>
+
+                <div class="flex justify-between">
+                    <fieldset>
+                        <legend>Brand Name</legend>
+                        <input type="text" formControlName="brand_name">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Manufacturer Details</legend>
+                        <input type="text" formControlName="manufacturer_details">
+                    </fieldset>
+                </div>
+                <div class="flex justify-between">
+                    <fieldset>
+                        <legend>Upload an image</legend>
+                        <input type="file" accept="image/jpg,image/jpeg,image/png" (change)="loadImage($event)">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Upload an gif</legend>
+                        <input type="file" accept="image/gif" (change)="loadGif($event)">
+                    </fieldset>
+                </div>
+
+                <div class="flex justify-between">
+                    <fieldset>
+                        <legend>Price</legend>
+                        <input type="number" formControlName="product_price">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Currency</legend>
+                        <input type="text" formControlName="currency">
+                    </fieldset>
+                </div>
+
+                <div class="flex justify-between">
+                    <fieldset>
+                        <legend>Width</legend>
+                        <input type="number" formControlName="product_dimensions_width">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Length</legend>
+                        <input type="number" formControlName="product_dimensions_length">
+                    </fieldset>
+                </div>
+                <div class="flex justify-between">
+                    <fieldset>
+                        <legend>Height</legend>
+                        <input type="number" formControlName="product_dimensions_height">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Weight</legend>
+                        <input type="number" formControlName="product_weight">
+                    </fieldset>
+                </div>
+                <div class="flex justify-between">
+                    <fieldset>
+                        <legend>Available Stock</legend>
+                        <input type="number" formControlName="available_stock">
+                    </fieldset>
+                    <fieldset>
+                        <legend>Min required stock</legend>
+                        <input type="number" formControlName="min_required_stock">
+                    </fieldset>
+
+                </div>
+                <div class="flex justify-center">
+                <button class="btn">Submit</button>
+            </div>
+            </form>
+        </div> -->
+
+
+
+
+        <form  enctype="multipart/form-data">
+            <h3>Upload Product</h3>
+
+            <div class="grid gap-4 mb-3 grid-cols-12">
+                <div class="col-span-12">
+                    <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categories</label>
+                    <select [(ngModel)]="subcategory" [ngModelOptions]="{standalone: true}" class="w-full border p-2.5">
+                        <optgroup *ngFor="let category of  this._servicesService.categoryData"
+                            [label]="category.product_category">
+                            <option *ngFor="let ele of category.subcategories" [value]="ele._id">
+                                {{ele.product_subcategory}}
+                            </option>
+                        </optgroup>
+                    </select>
+                    <!-- <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white mt-5">Sub categories</label>
+                    <select formControlName="subcategory" class="w-full border p-2.5">
+                        <optgroup *ngFor="let category of  this._servicesService.categoryData"
+                            [label]="category.product_category">
+                            <option *ngFor="let ele of category.subcategories" [value]="ele._id">
+                                {{ele.product_subcategory}}
+                            </option>
+                        </optgroup>
+                    </select> -->
+                </div>
+
+                <div class="col-span-6">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Name</label>
+                    <input type="text" id="first_name" [(ngModel)]="product_name" [ngModelOptions]="{standalone: true}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                         required>
+                </div>
+                <div class="col-span-6">
+                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Description</label>
+                    <input type="text" [(ngModel)]="product_description" [ngModelOptions]="{standalone: true}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <div class="col-span-6">
+                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand Name</label>
+                    <input type="text" [(ngModel)]="brand_name" [ngModelOptions]="{standalone: true}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       required>
+                </div>
+                <div class="col-span-6">
+                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Manufacturer Details</label>
+                    <input type="text" [(ngModel)]="manufacturer_details" [ngModelOptions]="{standalone: true}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <div class="col-span-6">
+                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload an image</label>
+                    <input type="file" 
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        accept="image/jpg,image/jpeg,image/png" (change)="loadImage($event)" required>
+                </div>
+                <div class="col-span-6">
+                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload an gif</label>
+                    <input type="file" 
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        accept="image/jpg,image/jpeg,image/png/gif" (change)="loadGif($event)" required>
+                </div>
+                <div class="col-span-6">
+                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">price</label>
+                    <input type="text" [(ngModel)]="product_price" [ngModelOptions]="{standalone: true}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <div class="col-span-6">
+                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Currency</label>
+                    <input type="text" [(ngModel)]="currency" [ngModelOptions]="{standalone: true}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <div class="col-span-6">
+                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Width</label>
+                    <input type="number" [(ngModel)]="product_dimensions_width" [ngModelOptions]="{standalone: true}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <div class="col-span-6">
+                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Length</label>
+                    <input type="number" [(ngModel)]="product_dimensions_length" [ngModelOptions]="{standalone: true}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <div class="col-span-6">
+                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Height</label>
+                    <input type="number" [(ngModel)]="product_dimensions_height" [ngModelOptions]="{standalone: true}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       required>
+                </div>
+                <div class="col-span-6">
+                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Weight</label>
+                    <input type="number" [(ngModel)]="product_weight" [ngModelOptions]="{standalone: true}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        required>
+                </div>
+                <div class="col-span-6">
+                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Available Stock</label>
+                    <input type="number" [(ngModel)]="available_stock" [ngModelOptions]="{standalone: true}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                         required>
+                </div>
+                <div class="col-span-6">
+                    <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Min required stock</label>
+                    <input type="number" [(ngModel)]="min_required_stock" [ngModelOptions]="{standalone: true}"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                         required>
+                </div>
+            </div>
+            <button type="submit" (click)="onSubmit()"
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+        </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
 </div>

@@ -62,11 +62,9 @@ export class InventoryComponent {
   url:string='C:/Users/Vikrant/Downloads'+'/';
 
   fetchData() {
-    this._servicesService.getEmployees().subscribe((data) => {
-      // this.employees = data;
-      this._servicesService.empData = data;
-      // this.employees = this._servicesService.empData;
-      console.log(data);
+    this._servicesService.getProducts().subscribe((data) => {
+      this._servicesService.prodData=data
+      console.log("this is product data",this._servicesService.prodData);
     });
   }
   onSelectChange(event: Event) {

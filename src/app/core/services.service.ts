@@ -11,6 +11,7 @@ export class ServicesService {
   empBack:any;
   prodData:any[]=[];
   url:string='C:\\Users\\Vikrant\\Downloads'+'\\';
+  categoryData:any;
   constructor(private _http: HttpClient) {}
 
   getEmployees(): Observable<any> {
@@ -25,7 +26,19 @@ export class ServicesService {
    putEmployees(data:any,id:any):Observable<any>{
     return this._http.put(`${this._url}/employees/${id}`,data)
    }
+   addCategory(data:any):Observable<any>{
+    return this._http.post<any>(`${this._url}/category`,data)
+   }
+   getCategory():Observable<any>{
+    return this._http.get<any>(`${this._url}/category`)
+   }
 
+   uploadImages(formData:any):Observable<any>{
+    return this._http.post<any>(`${this._url}/products`,formData)
+   }
+   getProducts():Observable<any>{
+    return this._http.get<any>(`${this._url}/products`)
+   }
 
    
 
