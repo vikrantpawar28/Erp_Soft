@@ -19,5 +19,8 @@ export class AdminMainComponent {
   OpenPayroll(){
     this.router.navigate(['admin-main/payroll'])
   }
+  OpenProject(){
+    this.router.navigate(['admin-main/projects'])
+  }
 
 }

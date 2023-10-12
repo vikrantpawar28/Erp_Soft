@@ -13,40 +13,7 @@ import { ProductPopUpComponent } from '../product-pop-up/product-pop-up.componen
   styleUrls: ['./inventory.component.css'],
 })
 export class InventoryComponent {
-  // employees: any[] = [
-  //   {
-  //     pName: 'kurta',
-  //     pCategory: 'clothing',
-  //     psub_Category: 'Mens',
-  //     pImage: [
-  //       { imageURL: 'https://shorturl.at/yIJZ1', imageName: 'pink Kurta' },
-  //       { imageURL: 'https://shorturl.at/eqBFT', imageName: 'black Kurta' },
-  //     ],
-  //     Description: 'lorem ipsum fujfiuyetgiuweg8ifuwe few',
-  //     Brand: 'lucknowi',
-  //     Price: '450',
-  //     Dimensions: '35',
-  //     weight: '500gm',
-  //     Availablity: 'inStock',
-  //     SupplierInfo: 'jhfsafghj',
-  //   },
-  //   {
-  //     pName: 'shirts',
-  //     pCategory: 'clothing',
-  //     psub_Category: 'Mens',
-  //     pImage: [
-  //       { imageURL: 'https://shorturl.at/DEOW9', imageName: 'checks shirt' },
-  //       { imageURL: 'https://shorturl.at/tINV6', imageName: 'black shirt' },
-  //     ],
-  //     Description: 'lorem ipsum fujfiuyetgiuweg8ifuwe few',
-  //     Brand: 'Raymond',
-  //     Price: '1000',
-  //     Dimensions: '35',
-  //     weight: '500gm',
-  //     Availablity: 'out_Of_Stock',
-  //     SupplierInfo: 'jhfsafghj',
-  //   },
-  // ];
+
   employees:any[]=this._servicesService.prodData;
   modalService: any;
   @Output() fetchDataEvent = new EventEmitter<void>();
@@ -57,15 +24,19 @@ export class InventoryComponent {
 
   ngOnInit(): void {
     this.fetchData();
+
   }
   str="file:///";
   url:string='C:/Users/Vikrant/Downloads'+'/';
+  // isLoading: boolean = true; // Set to true initially
 
   fetchData() {
     this._servicesService.getProducts().subscribe((data) => {
       this._servicesService.prodData=data
       console.log("this is product data",this._servicesService.prodData);
+      // this.isLoading = false;
     });
+    // this.isLoading = false;
   }
   onSelectChange(event: Event) {
     const selectedValue = (event.target as HTMLSelectElement).value;
@@ -112,18 +83,9 @@ export class InventoryComponent {
     this._dialog.open(AddproductComponent);
   }
 
-  //   showTable:any=false;
-  //  deails:any[]=[]
+  
   openDetails(data: any,i:any) {
-    // this.deails.push(data);
-    // console.log(this.deails);
-    // // this.showTable=true;
-    // if(this.showTable==true){
-    //   this.showTable=false;
-    // }
-    // else{
-    //   this.showTable=true;
-    // }
+
     console.log(data,i);
     this._dialog.open(ProductPopUpComponent, {
       data: {

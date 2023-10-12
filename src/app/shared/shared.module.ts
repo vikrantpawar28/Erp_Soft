@@ -15,6 +15,7 @@ import { EmpPopDetailsComponent } from './emp-pop-details/emp-pop-details.compon
 import { InventoryComponent } from './inventory/inventory.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { ProductPopUpComponent } from './product-pop-up/product-pop-up.component';
+import { ProjectComponent } from './project/project.component';
 @NgModule({
   declarations: [
     AdminCompanyComponent,
@@ -25,6 +26,7 @@ import { ProductPopUpComponent } from './product-pop-up/product-pop-up.component
     InventoryComponent,
     AddproductComponent,
     ProductPopUpComponent,
+    ProjectComponent,
   ],
   imports: [
     CommonModule,

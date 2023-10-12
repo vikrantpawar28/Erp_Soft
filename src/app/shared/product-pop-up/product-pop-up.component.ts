@@ -26,24 +26,22 @@ export class ProductPopUpComponent implements OnInit {
   subcategory: string = '';
 
   showTable: any = true;
-  product_name: any;
-  product_description: any;
-  product_category: any;
-  product_subcategory: any;
-  brand: any;
+  product_name: any=this.data.data.product_name;
+  product_description: any=this.data.data.product_description;
+  product_category: any=this.data.data.product_category;
+  product_subcategory: any=this.data.data.product_subcategory;
+  brand: any=this.data.data.brand_name;
   pImage: any = [];
-  product_price: any;
-  product_dimensions_length: any;
-  product_dimensions_weight: any;
-  product_weight: any;
-  manufacturer_details: any;
-  pReturnPolicy: any;
-  pAvailablity: any;
-  available_stock: any;
-  min_required_stock: any;
-  currency: any;
-  product_dimensions_width: any;
-  product_dimensions_height: any;
+  product_price: any=this.data.data.price.product_price;
+  product_dimensions_length: any=this.data.data.dimension.product_dimensions_length;
+  product_dimensions_weight: any=this.data.data.product_description;
+  product_weight: any=this.data.data.product_weight;
+  manufacturer_details: any=this.data.data.manufacturer_details;
+  available_stock: any=this.data.data.stock.available_stock;
+  min_required_stock: any=this.data.data.stock.min_required_stock;
+  currency: any=this.data.data.price.currency;
+  product_dimensions_width: any=this.data.data.dimension.product_dimensions_width;
+  product_dimensions_height: any=this.data.data.dimension.product_dimensions_height;
   selectImageFile: File | null = null;
   selectGifFile: File | null = null;
 
@@ -71,7 +69,6 @@ export class ProductPopUpComponent implements OnInit {
     this.product_weight = ' ';
     this.product_price = ' ';
     this.brand = ' ';
-    this.pAvailablity = '';
     this.product_dimensions_length = '';
     this.available_stock = '';
     this.min_required_stock = '';
@@ -88,10 +85,7 @@ export class ProductPopUpComponent implements OnInit {
       this.obj = {
         product_name: this.product_name,
         product_description: this.product_description,
-        // product_category: this.product_category,
         subcategory: this.subcategory,
-        // product_image: this.selectImageFile,
-        // product_multimedia:this.selectGifFile,
         product_weight: this.product_weight,
         product_price: this.product_price,
         currency: this.currency,
@@ -100,15 +94,10 @@ export class ProductPopUpComponent implements OnInit {
         product_dimensions_length: this.product_dimensions_length,
         available_stock: this.available_stock,
         min_required_stock: this.min_required_stock,
-        brand: this.brand,
+        brand_name: this.brand,
         manufacturer_details: this.manufacturer_details,
       };
-      this._servicesService
-        .updateProducts(this.obj, this.data.data.id)
-        .subscribe((res) => {
-          alert(res.message);
-          this.showTable = true;
-        });
+    
 
       const formData = new FormData();
       Object.keys(this.obj).forEach((key) => {
@@ -117,10 +106,12 @@ export class ProductPopUpComponent implements OnInit {
 
       formData.append('image', this.selectImageFile);
       formData.append('gif', this.selectGifFile);
-// console.log(this.selectImageFile,this.selectGifFile)
-this._servicesService.uploadImages(formData).subscribe(res => {
-  alert(res.message);
-})
+      this._servicesService
+      .updateProducts(formData, this.data.data.id)
+      .subscribe((res) => {
+        alert(res.message);
+        this.showTable = true;
+      });
       console.log('this is formdata', formData);
     }
 
