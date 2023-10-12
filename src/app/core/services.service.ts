@@ -39,6 +39,9 @@ export class ServicesService {
    getProducts():Observable<any>{
     return this._http.get<any>(`${this._url}/products`)
    }
+   updateProducts(data:any,id:any):Observable<any>{
+    return this._http.put(`${this._url}/products/${id}`,data)
+   }
 
    
 

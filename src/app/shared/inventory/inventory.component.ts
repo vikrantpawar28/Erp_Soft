@@ -136,7 +136,7 @@ export class InventoryComponent {
   searchEmployees() {
     if (this.searchText.trim() !== '') {
       this.employees = this._servicesService.prodData.filter((employee: any) => {
-        return employee.pName.toLowerCase().includes(this.searchText.toLowerCase());
+        return employee.product_name.toLowerCase().includes(this.searchText.toLowerCase());
       });
     } else {
       this.employees = this._servicesService.prodData;

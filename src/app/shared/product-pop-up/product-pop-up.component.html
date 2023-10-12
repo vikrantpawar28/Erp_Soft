@@ -1,4 +1,4 @@
-<div class="relative overflow-x-auto p-24">
+<div class="relative overflow-x-auto p-20">
     <button type="button" mat-dialog-close
         class="relative top-[-50px] right-[-50px] float-right ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
         data-dismiss-target="#toast-default" aria-label="Close">
@@ -9,11 +9,11 @@
         </svg>
     </button>
 
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" *ngIf="showTable" >
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 p" *ngIf="showTable">
         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3 rounded-lg" colspan="2">
-                    Detail's
+                    Product Detail's
                 </th>
             </tr>
         </thead>
@@ -32,7 +32,7 @@
                     Category
                 </th>
                 <td class="px-6 py-4">
-                    {{data.data.pCategory}}
+                    {{data.data.product_category}}
                 </td>
             </tr>
 
@@ -41,7 +41,7 @@
                     Sub Category
                 </th>
                 <td class="px-6 py-4">
-                    {{data.data.psub_Category}}
+                    {{data.data.product_subcategory}}
                 </td>
             </tr>
 
@@ -58,7 +58,7 @@
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     Status
                 </th>
-                <td class="px-6 py-4" [innerHTML]="data.data.employment_status?'Active':'InActive'"></td>
+                <td class="px-6 py-4" [innerHTML]="data.data.available_stock?'Active':'InActive'"></td>
             </tr>
 
             <tr class="bg-white dark:bg-gray-800">
@@ -66,9 +66,10 @@
                     Image
                 </th>
                 <td class="px-6 py-4">
-                  <img class="w-[50px]" [src]=data.data.product_image>
+                    <img class="w-[50px]" [src]=data.data.product_image>
                 </td>
             </tr>
+            
 
             <tr class="bg-white dark:bg-gray-800">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -81,7 +82,7 @@
 
             <tr class="bg-white dark:bg-gray-800">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    Dimensions
+                    Height
                 </th>
                 <td class="px-6 py-4">
                     {{data.data.dimension.product_dimensions_height}}
@@ -104,30 +105,43 @@
                     {{data.data.product_description}}
                 </td>
             </tr>
-        </tbody>
-        <!-- <tfoot>
-            <tr class="font-semibold text-gray-900 dark:text-white">
-                <th scope="row" class="px-6 py-3 text-base">Total</th>
-                <td class="px-6 py-3">3</td>
-                <td class="px-6 py-3">21,000</td>
+            <tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Length
+                </th>
+                <td class="px-6 py-4">
+                    {{data.data.dimension.product_dimensions_length}}
+                </td>
             </tr>
-        </tfoot> -->
+            <tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Currency
+                </th>
+                <td class="px-6 py-4">
+                    {{data.data.price.currency}}
+                </td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Min required stock
+                </th>
+                <td class="px-6 py-4">
+                    {{data.data.stock.min_required_stock}}
+                </td>
+            </tr>
+        </tbody>
     </table>
 
 
 
     <div *ngIf="!showTable">
-
-        
         <form #myForm="ngForm" class="flex flex-col space-y-4">
-
-           
-
             <div class="flex justify-between">
                 <!-- Email -->
                 <div class="mx-2">
                     <label class="text-sm font-medium">Product Name</label>
-                    <input class="w-full" type="text" [(ngModel)]="product_name" [ngModelOptions]="{standalone: true}" required
+                    <input class="w-full" type="text" [(ngModel)]="product_name" [ngModelOptions]="{standalone: true}"
+                        required
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
 
@@ -141,36 +155,30 @@
 
             <div class="flex justify-between">
                 <!-- Name -->
-                <div class="mx-2">
-                    <label for="name1" class="text-sm font-medium">Category</label>
-                    <input class="w-full" type="text" [(ngModel)]="pCategory" [ngModelOptions]="{standalone: true}" required
-                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
-                </div>
-
-                <!-- Hire Date -->
-                <div class="mx-2">
-                    <label class="text-sm font-medium">Sub-Category</label>
-                    <input class="w-full" type="text" [(ngModel)]="subcategory" [ngModelOptions]="{standalone: true}" required 
-                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                <div class="col-span-12">
+                    <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categories</label>
+                    <select [(ngModel)]="subcategory" [ngModelOptions]="{standalone: true}" class="w-full border p-2.5">
+                        <optgroup *ngFor="let category of  this._servicesService.categoryData"
+                            [label]="category.product_category">
+                            <option *ngFor="let ele of category.subcategories" [value]="ele._id">
+                                {{ele.product_subcategory}}
+                            </option>
+                        </optgroup>
+                    </select>
                 </div>
 
             </div>
             <div class="flex justify-between">
-                <!-- Status -->
-                <div class="mx-2">
-                    <label class="text-sm font-medium">Availbility</label>
-                    <select [(ngModel)]="pAvailablity" [ngModelOptions]="{standalone: true}" required
-                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
-                        <option value="" disabled selected>Status</option>
-                        <option value="active">Active</option>
-                        <option value="inactive">InActive</option>
-                        <option value="out_of_stock">Out Of-Stock</option>
-                    </select>
-                </div>
 
                 <div class="mx-2">
+                    <label class="text-sm font-medium">Products gif</label>
+                    <input class="w-full" type="file" (change)="loadGif($event)"  required
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                </div>
+                <div class="mx-2">
                     <label class="text-sm font-medium">Brand</label>
-                    <input class="w-full" type="text" [(ngModel)]="brand_name" [ngModelOptions]="{standalone: true}" required
+                    <input class="w-full" type="text" [(ngModel)]="brand" [ngModelOptions]="{standalone: true}"
+                        required
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
             </div>
@@ -178,38 +186,80 @@
             <div class="flex justify-between">
                 <div class="mx-2">
                     <label class="text-sm font-medium">Products Image</label>
-                    <input class="w-full" type="file" [(ngModel)]="pImage" [ngModelOptions]="{standalone: true}"
+                    <input class="w-full" type="file" (change)="loadImage($event)" alt="product image"
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
                 <div class="mx-2">
                     <label class="text-sm font-medium">Price</label>
-                    <input class="w-full" type="text" [(ngModel)]="product_price" [ngModelOptions]="{standalone: true}"
+                    <input class="w-full" type="number" [(ngModel)]="product_price" [ngModelOptions]="{standalone: true}"
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
             </div>
             <div class="flex justify-between">
                 <div class="mx-2">
-                    <label class="text-sm font-medium">Dimensions Length</label>
-                    <input class="w-full" type="text" [(ngModel)]="product_dimensions_length" [ngModelOptions]="{standalone: true}"
+                    <label class="text-sm font-medium"> Length</label>
+                    <input class="w-full" type="number" [(ngModel)]="product_dimensions_length"
+                        [ngModelOptions]="{standalone: true}"
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
 
                 <div class="mx-2">
                     <label class="text-sm font-medium">Weight</label>
-                    <input class="w-full" type="text" [(ngModel)]="product_weight" [ngModelOptions]="{standalone: true}"
+                    <input class="w-full" type="number" [(ngModel)]="product_weight" [ngModelOptions]="{standalone: true}"
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
             </div>
 
             <div class="flex justify-between">
                 <div class="mx-2">
-                    <label class="text-sm font-medium">Suplier Information</label>
-                    <input class="w-full" type="text" [(ngModel)]="manufacturer_details" [ngModelOptions]="{standalone: true}"
+                    <label class="text-sm font-medium">Manufacturer Details</label>
+                    <input class="w-full" type="text" [(ngModel)]="manufacturer_details"
+                        [ngModelOptions]="{standalone: true}"
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
                 <div class="mx-2">
-                    <label class="text-sm font-medium">Return Policy</label>
-                    <input class="w-full" type="text" [(ngModel)]="pReturnPolicy" [ngModelOptions]="{standalone: true}"
+                    <label class="text-sm font-medium">Height</label>
+                    <input class="w-full" type="number" [(ngModel)]="product_dimensions_height"
+                        [ngModelOptions]="{standalone: true}"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                </div>
+            </div>
+
+            <div class="flex justify-between">
+                <div class="mx-2">
+                    <label class="text-sm font-medium">Currency</label>
+                    <input class="w-full" type="text" [(ngModel)]="currency" [ngModelOptions]="{standalone: true}"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                </div>
+                <div class="mx-2">
+                    <label class="text-sm font-medium">Width</label>
+                    <input class="w-full" type="number" [(ngModel)]="product_dimensions_width"
+                        [ngModelOptions]="{standalone: true}"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                </div>
+            </div>
+            <div class="flex justify-between">
+                <div class="mx-2">
+                    <label class="text-sm font-medium">Available Stock</label>
+                    <input class="w-full" type="number" [(ngModel)]="available_stock" [ngModelOptions]="{standalone: true}"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                </div>
+
+                <!-- Status -->
+                <!-- <div class="mx-2">
+                    <label class="text-sm font-medium">Availbility</label>
+                    <select [(ngModel)]="available_stock" [ngModelOptions]="{standalone: true}" required
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                        <option value="" disabled selected>Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">InActive</option>
+                        <option value="out_of_stock">Out Of-Stock</option>
+                    </select>
+                </div> -->
+                <div class="mx-2">
+                    <label class="text-sm font-medium">Min required Stock</label>
+                    <input class="w-full" type="number" [(ngModel)]="min_required_stock"
+                        [ngModelOptions]="{standalone: true}"
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
             </div>
@@ -218,7 +268,7 @@
             <div class="flex justify-between items-center mt-8">
                 <button type="button"
                     class="text-green-700 border border-green-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-center"
-                    (click)="saveDetails()" >
+                    (click)="saveDetails()">
                     Save
                 </button>
 
@@ -235,8 +285,9 @@
     <div class="flex justify-between items-center mt-8" *ngIf="showTable">
         <button
             class="text-green-700 border border-green-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-cente"
-            (click)="editDetails()" >Edit</button>
+            (click)="editDetails()">Edit</button>
         <button
-            class="text-red-700 border border-red-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-cente" (click)="deleteDetails()">Delete</button>
+            class="text-red-700 border border-red-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-cente"
+            (click)="deleteDetails()">Delete</button>
     </div>
 </div>

@@ -99,9 +99,6 @@ tempCategory: any;
       product_category: [this.product_category, [Validators.required]],
       product_subcategory: [this.product_subcategory, [Validators.required]],
     })
-
-
-
     this.imageGroup = this._fb.group({
       subcategory: ['', [Validators.required]],
       product_name: ['', [Validators.required]],
@@ -133,13 +130,12 @@ getCategory(){
      })
 }
   submitData() {
-
     const prodData = {
       pName: this.product_name,
       Description: this.  product_description,
       pCategory: this.pCategory,
       psub_Category: this.subcategory,
-      pImage: this.pImage,
+      // pImage: this.pImage,
       Brand: this.  brand_name,
       Price: this.product_price,
       Length: this. product_dimensions_length,
@@ -187,12 +183,8 @@ getCategory(){
     });
   }
 
-
   category_form!:FormGroup;
   category:any;
-
-
-
 
   categoryF:any;
   subcategoryF:any;
@@ -206,21 +198,12 @@ getCategory(){
     this._servicesService.addCategory(this.category).subscribe((res)=>{
       alert(res.message)
     })
-
-
-
   }
 
   categories: any[] = [];
   obj:any;
 
   onSubmit() {
-
-
-
-
-
-   
   //   if (this.imageGroup.valid && this.selectImageFile && this.selectGifFile) {
 
   //     const formData = new FormData();
@@ -237,12 +220,7 @@ getCategory(){
   //       alert(res.message);
   //     })
   //   }
-
-
-  
   if ( this.selectImageFile && this.selectGifFile) {
-
-
   this.obj={
       subcategory: this.subcategory,
       product_name: this.product_name,
@@ -259,7 +237,6 @@ getCategory(){
       min_required_stock: this.min_required_stock
     }
     
-
     const formData = new FormData();
     Object.keys(this.obj).forEach((key) => {
             formData.append(key, this.obj[key]);
@@ -275,10 +252,6 @@ getCategory(){
   }console.log(this.obj)
 
    }
-
-
-
-
   loadImage(event: any) {
     this.selectImageFile = event.target.files[0];
   }
@@ -286,8 +259,4 @@ getCategory(){
   loadGif(event: any) {
     this.selectGifFile = event.target.files[0]
   }
-
-
-
-
 }
