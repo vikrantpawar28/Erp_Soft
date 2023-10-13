@@ -1,9 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-
 import { MatDialog } from '@angular/material/dialog';
 import { ServicesService } from 'src/app/core/services.service';
-import { AddEmpComponent } from '../add-emp/add-emp.component';
-import { EmpPopDetailsComponent } from '../emp-pop-details/emp-pop-details.component';
 import { AddproductComponent } from '../addproduct/addproduct.component';
 import { ProductPopUpComponent } from '../product-pop-up/product-pop-up.component';
 
@@ -112,7 +109,7 @@ export class InventoryComponent {
     const startIndex = this.currentPage * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
     // Slice the data to get the current page's elements
-    this.employees = this._servicesService.empData.slice(startIndex, endIndex);
+    this.employees = this._servicesService.prodData.slice(startIndex, endIndex);
   }
 
   previous() {
@@ -126,7 +123,7 @@ export class InventoryComponent {
   next() {
     // Increment the currentPage if it's within the valid range and update the employees
     const totalPages = Math.ceil(
-      this._servicesService.empData.length / this.itemsPerPage
+      this._servicesService.prodData.length / this.itemsPerPage
     );
     if (this.currentPage < totalPages - 1) {
       this.currentPage++;

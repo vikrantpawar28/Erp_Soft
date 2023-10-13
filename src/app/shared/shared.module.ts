@@ -16,6 +16,8 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { ProductPopUpComponent } from './product-pop-up/product-pop-up.component';
 import { ProjectComponent } from './project/project.component';
+import { AddprojectComponent } from './addproject/addproject.component';
+import { ProjectPopUpComponent } from './project-pop-up/project-pop-up.component';
 @NgModule({
   declarations: [
     AdminCompanyComponent,
@@ -27,6 +29,8 @@ import { ProjectComponent } from './project/project.component';
     AddproductComponent,
     ProductPopUpComponent,
     ProjectComponent,
+    AddprojectComponent,
+    ProjectPopUpComponent,
   ],
   imports: [
     CommonModule,

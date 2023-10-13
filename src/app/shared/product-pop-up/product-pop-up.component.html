@@ -1,4 +1,4 @@
-<div class="relative overflow-x-auto p-20">
+<div class="relative overflow-x-auto p-14">
     <button type="button" mat-dialog-close
         class="relative top-[-50px] right-[-50px] float-right ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
         data-dismiss-target="#toast-default" aria-label="Close">
@@ -50,7 +50,7 @@
                     Brand
                 </th>
                 <td class="px-6 py-4">
-                    {{data.data.brand}}
+                    {{data.data.brand_name}}
                 </td>
             </tr>
 
@@ -67,6 +67,14 @@
                 </th>
                 <td class="px-6 py-4">
                     <img class="w-[50px]" [src]=data.data.product_image alt="image">
+                </td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    GIF
+                </th>
+                <td class="px-6 py-4">
+                    <img class="w-[50px]" [src]=data.data.product_multimedia alt="image">
                 </td>
             </tr>
             

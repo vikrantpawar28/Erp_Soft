@@ -1,1 +1,123 @@
-<p>project works!</p>
+<div class="p-5">
+    <div class="grid grid-cols-12 border-b-2">
+        <div class="col-span-8">
+            <span class="font-bold text-base">PROJECT MANGMENT</span>
+        </div>
+        <div class="col-span-4">
+            <button
+                class="text-sm font-sans border py-2 px-5 bg-white mx-1 rounded-t-lg font-semibold my-1">Projects</button>
+
+        </div>
+    </div>
+
+    <div class="grid grid-cols-12 py-4">
+        <div class="col-span-6">
+            <input class="py-2 outline-none border px-3 rounded-md" type="text" placeholder="Search Projects"
+                title="Search employee" [(ngModel)]="searchText" (input)="searchProjects()">
+            <select class="py-2 px-3 w-[150px] border rounded-md focus:outline-none ml-2" [(ngModel)]="selectedValue"
+                (change)="onSelectChange(selectedValue)">
+                <option value="all" selected>All </option>
+                <option value="complete">Complete</option>
+                <option value="incomplete">Incomplete</option>
+                <option value="pending">Pending</option>
+            </select>
+        </div>
+
+        <div class="col-span-6">
+
+            <button
+                class="text-sm font-sans border py-2  px-4 bg-gray-50 mx-1 rounded-lg font-semibold my-1 float-right"
+                (click)="add_project()">Add project</button>
+        </div>
+    </div>
+
+
+
+    <div class="grid grid-cols-12">
+        <div class="col-span-12 bg-white">
+            <div class="relative sm:rounded-lg overflow-y-scroll lg:h-[252px] xl:h-[466px] 2xl:h-[566px]">
+
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Id
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Project Name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Start Date
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Status
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                            *ngFor="let employee of (this.employees.length > 0 ? this.employees : this._servicesService.projData) let i = index">
+
+                            <th scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{i+1}}
+                            </th>
+
+                            <td class="px-6 py-4">
+                                {{employee.project_name}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{employee.project_start_date|date:'dd/MM/YYYY'}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{employee.project_status}}
+                            </td>
+                            <td class="px-6 py-4">
+                                <button class="font-medium text-blue-600 dark:text-blue-500"
+                                    (click)="openDetails(employee,i)">View</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="flex justify-center lg:mt-6 xl:mt-[40px]">
+                <nav aria-label="Page navigation example">
+                    <ul class="flex items-center -space-x-px h-8 text-sm">
+                        <li (click)="previous()">
+                            <a
+                                class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <span class="sr-only">Previous</span>
+                                <svg class="w-2.5 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M5 1 1 5l4 4" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
+                        </li>
+                        <li (click)="next()">
+                            <a
+                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <span class="sr-only">Next</span>
+                                <svg class="w-2.5 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 9 4-4-4-4" />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+    <!-- </ng-template> -->
+</div>

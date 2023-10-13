@@ -10,6 +10,8 @@ export class ServicesService {
   empData:any;
   empBack:any;
   prodData:any[]=[];
+  projectData:any[]=[];
+  projData:any[]=[];
   url:string='C:\\Users\\Vikrant\\Downloads'+'\\';
   categoryData:any;
   constructor(private _http: HttpClient) {}
@@ -43,6 +45,16 @@ export class ServicesService {
     return this._http.put(`${this._url}/products/${id}`,data)
    }
 
+   getProjects():Observable<any>{
+    return this._http.get<any>(`${this._url}/project`)
+   }
+      
+   postProjects(data:any):Observable<any>{
+    return this._http.post(`${this._url}/project`,data)
+   }
+   putProjects(data:any,id:any):Observable<any>{
+    return this._http.put(`${this._url}/project/${id}`,data)
+   }
    
 
 }
