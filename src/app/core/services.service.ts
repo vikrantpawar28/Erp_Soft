@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ServicesService {
-  private _url: string = 'http://192.168.29.20:3000/api/v1';
+  private _url: string = 'https://erp-soft-api.onrender.com/api/v1';
   empData:any;
   empBack:any;
   prodData:any[]=[];

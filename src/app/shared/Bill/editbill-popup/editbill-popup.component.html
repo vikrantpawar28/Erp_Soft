@@ -1,0 +1,57 @@
+<div class="relative overflow-x-auto p-8 w-[550px] h-[400px] ">
+    <div class="flex flex-nowrap justify-between w-full py-4">
+        <h1 class="font-bold text-lg">Edit Details</h1>
+        <button type="button" mat-dialog-close
+            class=" top-[-50px] right-[-50px] float-right ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+            data-dismiss-target="#toast-default" aria-label="Close">
+            <span class="sr-only">Close</span>
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+        </button>
+    </div>
+
+    <div>
+        <form [formGroup]="billFrom" (ngSubmit)="onSubmit()" class="flex flex-col space-y-4">
+            <div class="flex justify-between">
+                <div class="mx-2">
+                    <label class="text-sm font-medium">Client Name</label>
+                    <input class="w-full" type="text" formControlName="client_name"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                </div>
+                <div class="mx-2">
+                    <label class="text-sm font-medium">Products</label>
+                    <input class="w-full" type="text" formControlName="products"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                </div>
+            </div>
+            <div class="flex justify-between">
+                <div class="mx-2">
+                    <label class="text-sm font-medium">Issue Date</label>
+                    <input class="w-full" type="date" formControlName="issue_date"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                </div>
+                <div class="mx-2">
+                    <label class="text-sm font-medium">Qty</label>
+                    <input class="w-full" type="number" formControlName="qty"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                </div>
+            </div>
+
+            <div class="flex  justify-center items-center mt-8">
+                <button type="button"
+                    class="text-white border bg-[#6F4EF6] hover:bg-green-400 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-center">
+                    Save Bill
+                </button>
+                
+            <button type="button"
+            class="text-white border bg-[#DF7272]   hover:bg-green-300 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-cente">
+            Cancel
+        </button>
+            </div>
+        </form>
+    </div>
+
+
+</div>

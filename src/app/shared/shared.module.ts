@@ -18,6 +18,9 @@ import { ProductPopUpComponent } from './product-pop-up/product-pop-up.component
 import { ProjectComponent } from './project/project.component';
 import { AddprojectComponent } from './addproject/addproject.component';
 import { ProjectPopUpComponent } from './project-pop-up/project-pop-up.component';
+import { ManageBillComponent } from './Bill/manage-bill/manage-bill.component';
+import { ViewbillPopupComponent } from '../shared/Bill/viewbill-popup/viewbill-popup.component';
+import { EditbillPopupComponent } from '../shared/Bill/editbill-popup/editbill-popup.component';
 @NgModule({
   declarations: [
     AdminCompanyComponent,
@@ -31,6 +34,9 @@ import { ProjectPopUpComponent } from './project-pop-up/project-pop-up.component
     ProjectComponent,
     AddprojectComponent,
     ProjectPopUpComponent,
+    ManageBillComponent,
+    ViewbillPopupComponent,
+    EditbillPopupComponent,
   ],
   imports: [
     CommonModule,

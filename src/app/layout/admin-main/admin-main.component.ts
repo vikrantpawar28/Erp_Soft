@@ -9,6 +9,7 @@ import { AdminPayrollComponent } from 'src/app/shared/admin-payroll/admin-payrol
 })
 export class AdminMainComponent {
   constructor(private router:Router){}
+  Selected_value:any;
   open(){
     this.router.navigate(['admin-main/emp_db'])
   }
@@ -21,6 +22,12 @@ export class AdminMainComponent {
   }
   OpenProject(){
     this.router.navigate(['admin-main/projects'])
+  }
+  openAddbill(){
+    this.router.navigate([''])
+  }
+  openManagebill(){
+this.router.navigate(['admin-main/managebill'])
   }
 
 }
