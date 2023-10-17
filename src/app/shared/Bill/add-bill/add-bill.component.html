@@ -1,0 +1,124 @@
+<div class="grid grid-cols-2 gap-8 p-16">
+  
+    <form #billForm="ngForm" class="w-[400px]">
+      <div class="relative z-0 w-full mb-6 group">
+        <label  class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Select Vendor</label>
+        <input list="selectedVendor" id="selectedVendordata" name="selectedVendor" [(ngModel)]="selectedVendor" placeholder="Search and select a vendor" (change)="addProduct(selectedVendor)" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+        <datalist id="selectedVendor">
+          <option *ngFor="let employee of this.service.empData" >{{employee.employee_firstname}}</option>
+        </datalist>
+      </div>
+      
+  
+      <div class="relative z-0 w-full mb-6 group">
+        <label for="customerName" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Customer Name</label>
+        <input type="text" id="customerName" name="customerName" [(ngModel)]="customerName" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
+      </div>
+  
+      <div class="relative z-0 w-full mb-6 group">
+        <label for="billDate" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Bill Date</label>
+        <input type="date" id="billDate" name="billDate" [(ngModel)]="billDate" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
+      </div>
+  
+      <div class="relative z-0 w-full mb-6 group">
+        <label for="selectedProduct" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Select Product</label>
+        <input list="items" id="selectedProduct" name="selectedProduct" [(ngModel)]="selectedProduct" placeholder="Search and select a Product" (change)="addProduct(selectedProduct)" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+        <datalist id="items">
+          <option *ngFor="let item of service.prodData" [value]=item.product_name>{{ item.product_name }}</option>
+        </datalist>
+      </div>
+
+      
+      
+  
+      <div class="relative z-0 w-full mb-6 group">
+        <label for="gstPercentage" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">GST Percentage (%)</label>
+        <input type="number" id="gstPercentage" name="gstPercentage" [(ngModel)]="gstPercentage" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+      </div>
+  
+      <div class="relative z-0 w-full mb-6 group">
+        <label for="discountPercentage" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Discount Percentage (%)</label>
+        <input type="number" id="discountPercentage" name="discountPercentage" [(ngModel)]="discountPercentage" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+      </div>
+  
+      <div class="relative z-0 w-full mb-6 group">
+        <label for="extraChargesPercentage" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Extra Charges (%)</label>
+        <input type="number" id="extraChargesPercentage" name="extraChargesPercentage" [(ngModel)]="extraChargesPercentage" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+      </div>
+      <div class="relative z-0 w-full mb-6 group">
+        <label  class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Grand Total </label>
+        <label class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">{{ calculateTotal()}}</label>
+      </div>
+      
+      <div class="relative z-0 w-full mb-6 group">
+        <label for="purchaseNote" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Purchase Note </label>
+        <input type="text" id="purchaseNote" name="purchaseNote" [(ngModel)]="purchaseNote" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+      </div>
+  
+      <button (click)="submitForm()" [disabled]="!billForm.valid" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+    </form>
+  </div>
+
+  <div class="flex justify-end fixed inset-y-0 right-0 max-h-[300px] overflow-y-auto mt-[120px] mr-[90px]">
+    <table class="w-2/3 text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky">
+        <tr>
+          <th scope="col" class="px-6 py-3">Serial Number</th>
+          <th scope="col" class="px-6 py-3">Product Name</th>
+          <th scope="col" class="px-6 py-3">Quantity</th>
+          <th scope="col" class="px-6 py-3">Price</th>
+        
+
+          <th scope="col" class="px-6 py-3">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr  *ngFor="let product of selectedProducts; let i = index" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+          <td scope="row"
+          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            {{ i + 1 }}</td>
+          <td class="px-6 py-4">{{ product.productName }}</td>
+          <td class="px-6 py-4"><input type="number" [(ngModel)]="product.quantity" name="quantity" class="w-full"></td>
+          <td class="px-6 py-4">{{product.price}}</td>
+        
+
+          <td class="px-6 py-4"><button (click)="removeProduct(i)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Remove</button></td>
+        
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="max-w-md mx-auto mt-[-720px]">
+    <table class="w-full text-left mb-8">
+      <thead>
+        <tr>
+          <th class="px-4 py-2">Description</th>
+          <th class="px-4 py-2">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="px-4 py-2">Total Amount</td>
+          <td class="px-4 py-2">{{total()}}</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2">GST</td>
+          <td class="px-4 py-2">{{gstPercentage}}</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2">Extra Charges</td>
+          <td class="px-4 py-2">{{  extraCharges() }}</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2">Discount</td>
+          <td class="px-4 py-2">-{{discountFunction()}}</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-2 font-semibold">Grand Total</td>
+          <td class="px-4 py-2 font-semibold">{{calculateTotal()}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+

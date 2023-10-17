@@ -10,7 +10,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class ViewbillPopupComponent implements OnInit{
   resetForm: any;
-  
+  showOptions: boolean = false;
   constructor(
     public dialogRef: MatDialogRef<ViewbillPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -25,7 +25,12 @@ export class ViewbillPopupComponent implements OnInit{
     this.fetchData();
   }
 
-
+  sendViaEmail(){
+    this.showOptions=false;
+  }
+  sendViaWhatsApp(){
+    this.showOptions=false;
+  }
   
   showTable: any = true;
   // project_name: any = this.data.data.project_name;

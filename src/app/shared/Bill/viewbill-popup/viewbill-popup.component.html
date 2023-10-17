@@ -117,11 +117,19 @@
         </div>
 
         <div class="flex  items-center mt-8">
-            <button type="button"
-                class="text-white border bg-[#6F4EF6] hover:bg-green-400 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-center">
-                Send Bill
-            </button>
-
+            <div>
+                <button class="text-white border bg-[#6F4EF6] hover:bg-green-400 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-center"
+                        (click)="showOptions = !showOptions">
+                    Send Bill
+                </button>
+            
+                <!-- Display options when the button is clicked -->
+                <div *ngIf="showOptions">
+                    <button (click)="sendViaEmail()">Send via Email</button>
+                    <button (click)="sendViaWhatsApp()">Send via WhatsApp</button>
+                </div>
+            </div>
+            
             <button type="button"
                 class="text-white border bg-[#DF7272]   hover:bg-green-300 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-cente">
                 Update Bill

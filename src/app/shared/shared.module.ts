@@ -6,6 +6,9 @@ import { AdminPayrollComponent } from './admin-payroll/admin-payroll.component';
 import { EmployeeDbComponent } from './employee-db/employee-db.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input'
+import { MatDividerModule } from '@angular/material/divider';
 import { MatSelectModule } from '@angular/material/select';
 import { ServicesService } from '../core/services.service';
 import { AddEmpComponent } from './add-emp/add-emp.component';
@@ -21,6 +24,8 @@ import { ProjectPopUpComponent } from './project-pop-up/project-pop-up.component
 import { ManageBillComponent } from './Bill/manage-bill/manage-bill.component';
 import { ViewbillPopupComponent } from '../shared/Bill/viewbill-popup/viewbill-popup.component';
 import { EditbillPopupComponent } from '../shared/Bill/editbill-popup/editbill-popup.component';
+import { LoginComponent } from '../shared/Login/login/login.component';
+import { AddBillComponent } from './Bill/add-bill/add-bill.component';
 @NgModule({
   declarations: [
     AdminCompanyComponent,
@@ -37,6 +42,8 @@ import { EditbillPopupComponent } from '../shared/Bill/editbill-popup/editbill-p
     ManageBillComponent,
     ViewbillPopupComponent,
     EditbillPopupComponent,
+    LoginComponent,
+    AddBillComponent,
   ],
   imports: [
     CommonModule,
@@ -46,7 +53,9 @@ import { EditbillPopupComponent } from '../shared/Bill/editbill-popup/editbill-p
     MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatInputModule,
+    MatDividerModule
     
   ],
   exports: [AdminCompanyComponent, AdminPayrollComponent],

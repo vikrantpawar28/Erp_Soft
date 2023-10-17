@@ -16,12 +16,16 @@ export class ServicesService {
   categoryData:any;
   constructor(private _http: HttpClient) {}
 
+  logIn():Observable<any>{
+    return this._http.get(`${this._url}/user/login`)
+  }
+
   getEmployees(): Observable<any> {
     return this._http.get(`${this._url}/employees`);
   };
 
    postEmployees(data:any):Observable<any>{
-    console.log("empdatafromService",this.empBack);
+    // console.log("empdatafromService",this.empBack);
     return this._http.post(`${this._url}/employees`,data)
    }
    
@@ -55,6 +59,8 @@ export class ServicesService {
    putProjects(data:any,id:any):Observable<any>{
     return this._http.put(`${this._url}/project/${id}`,data)
    }
+
+
    
 
 }

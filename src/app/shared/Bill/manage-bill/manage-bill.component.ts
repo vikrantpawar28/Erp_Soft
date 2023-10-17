@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ServicesService } from 'src/app/core/services.service';
 import { ViewbillPopupComponent } from '../viewbill-popup/viewbill-popup.component';
 import { EditbillPopupComponent } from '../editbill-popup/editbill-popup.component';
+import { AddBillComponent } from '../add-bill/add-bill.component';
+import { Router } from '@angular/router';
 // import { AddEmpComponent } from '../add-emp/add-emp.component';
 // import { EmpPopDetailsComponent } from '../emp-pop-details/emp-pop-details.component';
 // import { AddproductComponent } from '../addproduct/addproduct.component';
@@ -20,9 +22,11 @@ export class ManageBillComponent {
   modalService: any;
    
   @Output() fetchDataEvent = new EventEmitter<void>();
+  dialogRef: any;
   constructor(
     private _dialog: MatDialog,
-    public _servicesService: ServicesService
+    public _servicesService: ServicesService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +35,9 @@ export class ManageBillComponent {
 
   }
  
-
+  addbill(){
+    this.router.navigate(['/admin-main/addbill']);
+  }
   fetchData() {
     this._servicesService.getProjects().subscribe((data) => {
       this._servicesService.projData=data;
@@ -97,6 +103,12 @@ export class ManageBillComponent {
       this._dialog.open(EditbillPopupComponent, {
         data: selectedValue, // Pass the selectedValue as data
       });
+    }
+    if (selectedValue === 'deleteBill') {
+      // this._servicesService.projectData.splice(this.data.i, 1);
+      // alert('deleted');
+      // // this.reset();
+      // this.dialogRef.close();
     }
    
   }

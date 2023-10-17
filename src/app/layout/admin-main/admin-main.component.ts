@@ -24,7 +24,7 @@ export class AdminMainComponent {
     this.router.navigate(['admin-main/projects'])
   }
   openAddbill(){
-    this.router.navigate([''])
+    this.router.navigate(['admin-main/addbill'])
   }
   openManagebill(){
 this.router.navigate(['admin-main/managebill'])

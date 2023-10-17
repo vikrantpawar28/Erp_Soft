@@ -77,7 +77,7 @@
                     <img class="w-[50px]" [src]=data.data.product_multimedia alt="image">
                 </td>
             </tr>
-            
+
 
             <tr class="bg-white dark:bg-gray-800">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -164,7 +164,7 @@
             <div class="flex justify-between">
                 <!-- Name -->
                 <div class="col-span-12">
-                    <label  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categories</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categories</label>
                     <select [(ngModel)]="subcategory" [ngModelOptions]="{standalone: true}" class="w-full border p-2.5">
                         <optgroup *ngFor="let category of  this._servicesService.categoryData"
                             [label]="category.product_category">
@@ -177,16 +177,20 @@
 
             </div>
             <div class="flex justify-between">
-
                 <div class="mx-2">
+                    <label class="text-sm font-medium">Manufacturer Details</label>
+                    <input class="w-full" type="text" [(ngModel)]="manufacturer_details"
+                        [ngModelOptions]="{standalone: true}"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                </div>
+                <!-- <div class="mx-2">
                     <label class="text-sm font-medium">Products gif</label>
                     <input class="w-full" type="file" (change)="loadGif($event)"  required
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
-                </div>
+                </div> -->
                 <div class="mx-2">
                     <label class="text-sm font-medium">Brand</label>
-                    <input class="w-full" type="text" [(ngModel)]="brand" [ngModelOptions]="{standalone: true}"
-                        required
+                    <input class="w-full" type="text" [(ngModel)]="brand" [ngModelOptions]="{standalone: true}" required
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
             </div>
@@ -199,7 +203,8 @@
                 </div>
                 <div class="mx-2">
                     <label class="text-sm font-medium">Price</label>
-                    <input class="w-full" type="number" [(ngModel)]="product_price" [ngModelOptions]="{standalone: true}"
+                    <input class="w-full" type="number" [(ngModel)]="product_price"
+                        [ngModelOptions]="{standalone: true}"
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
             </div>
@@ -213,15 +218,16 @@
 
                 <div class="mx-2">
                     <label class="text-sm font-medium">Weight</label>
-                    <input class="w-full" type="number" [(ngModel)]="product_weight" [ngModelOptions]="{standalone: true}"
+                    <input class="w-full" type="number" [(ngModel)]="product_weight"
+                        [ngModelOptions]="{standalone: true}"
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
             </div>
 
             <div class="flex justify-between">
                 <div class="mx-2">
-                    <label class="text-sm font-medium">Manufacturer Details</label>
-                    <input class="w-full" type="text" [(ngModel)]="manufacturer_details"
+                    <label class="text-sm font-medium">Available Stock</label>
+                    <input class="w-full" type="number" [(ngModel)]="available_stock"
                         [ngModelOptions]="{standalone: true}"
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
@@ -247,11 +253,7 @@
                 </div>
             </div>
             <div class="flex justify-between">
-                <div class="mx-2">
-                    <label class="text-sm font-medium">Available Stock</label>
-                    <input class="w-full" type="number" [(ngModel)]="available_stock" [ngModelOptions]="{standalone: true}"
-                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
-                </div>
+
 
                 <!-- Status -->
                 <!-- <div class="mx-2">
