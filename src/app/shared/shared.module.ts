@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminCompanyComponent } from './admin-company/admin-company.component';
+
 import { MatIconModule } from '@angular/material/icon';
 import { AdminPayrollComponent } from './admin-payroll/admin-payroll.component';
 import { EmployeeDbComponent } from './employee-db/employee-db.component';
@@ -26,9 +26,13 @@ import { ViewbillPopupComponent } from '../shared/Bill/viewbill-popup/viewbill-p
 import { EditbillPopupComponent } from '../shared/Bill/editbill-popup/editbill-popup.component';
 import { LoginComponent } from '../shared/Login/login/login.component';
 import { AddBillComponent } from './Bill/add-bill/add-bill.component';
+import { CRMComponent } from './CRM/crm/crm.component';
+
+import { AddLeadComponent } from './CRM/Lead_Mangment/add-lead/add-lead.component';
+import { PopUpLeadComponent } from './CRM/Lead_Mangment/pop-up-lead/pop-up-lead.component';
+
 @NgModule({
   declarations: [
-    AdminCompanyComponent,
     AdminPayrollComponent,
     EmployeeDbComponent,
     AddEmpComponent,
@@ -44,6 +48,10 @@ import { AddBillComponent } from './Bill/add-bill/add-bill.component';
     EditbillPopupComponent,
     LoginComponent,
     AddBillComponent,
+    CRMComponent,
+   
+    AddLeadComponent,
+        PopUpLeadComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +66,7 @@ import { AddBillComponent } from './Bill/add-bill/add-bill.component';
     MatDividerModule
     
   ],
-  exports: [AdminCompanyComponent, AdminPayrollComponent],
+  exports: [ AdminPayrollComponent],
   providers: [ServicesService],
 })
 export class SharedModule {}

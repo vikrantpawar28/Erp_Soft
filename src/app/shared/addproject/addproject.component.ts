@@ -30,59 +30,58 @@ export class AddprojectComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this._servicesService.getProjects().subscribe((data) => {
-      this._servicesService.projectData = data;
-      console.log(data);
-    });
-    this.fetchData();
+    
+    
 
     this.projectGroup = this._fb.group({
       project_name: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z]+$')],
+        [Validators.required, Validators.pattern('^[a-zA-Z ]+$')],
       ],
       project_details: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z]+$')],
+        [Validators.required, Validators.pattern('^[a-zA-Z ]+$')],
       ],
-
       project_start_date: [
         '',
-        [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)],
+        [Validators.required],
       ],
       project_due_date: [
         '',
-        [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)],
+        [Validators.required],
       ],
       project_workers: [
-        '',
+        ,
         [Validators.required, Validators.pattern('^[0-9]+$')],
       ],
       project_status: ['', [Validators.required]],
     });
-  }
+  }    
   fetchData() {
     this._servicesService.getProjects().subscribe((data) => {
-      this._servicesService.projectData = data;
-      console.log('this is product data', this._servicesService.projectData);
+      this._servicesService.projData=data;
+      this._servicesService.projectData=data
+      console.log("this is product data",this._servicesService.projectData);
     });
   }
 
   onSubmit() {
-    if (this.projectGroup.valid) {
+    console.log("proj", this.projectGroup.value)
+  if(this.projectGroup.valid){
       console.log(this.projectGroup.value);
       this._servicesService
         .postProjects(this.projectGroup.value)
         .subscribe((res) => {
           alert(res.message);
+          this.fetchData();
           console.log(res);
           this.dialogRef.close();
-          this.fetchData();
+          
         });
       (error: any) => {
         console.error('Error adding data:', error);
         alert(error);
       };
-    }
+  }
   }
 }

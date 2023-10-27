@@ -1,4 +1,4 @@
-<div class="relative overflow-x-auto p-14">
+<!-- <div class="relative overflow-x-auto p-14">
     <button type="button" mat-dialog-close
         class="relative top-[-50px] right-[-50px] float-right ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
         data-dismiss-target="#toast-default" aria-label="Close">
@@ -41,7 +41,7 @@
                     Start Date
                 </th>
                 <td class="px-6 py-4">
-                    {{data.data.project_start_date |date:'dd/MM/YYYY'   }}
+                    {{data.data.project_start_date |date:'dd/MM/YYYY'}}
                 </td>
             </tr>
 
@@ -81,7 +81,7 @@
     <div *ngIf="!showTable">
         <form #myForm="ngForm" class="flex flex-col space-y-4">
             <div class="flex justify-between">
-                <!-- Email -->
+          
                 <div class="mx-2">
                     <label class="text-sm font-medium">Project Name</label>
                     <input class="w-full" type="text" [(ngModel)]="project_name" [ngModelOptions]="{standalone: true}"
@@ -89,7 +89,7 @@
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
 
-                <!-- Contact -->
+               
                 <div class="mx-2">
                     <label class="text-sm font-medium">Project Detail's</label>
                     <textarea [(ngModel)]="project_details" [ngModelOptions]="{standalone: true}"
@@ -123,7 +123,6 @@
                         class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
                 </div>
 
-                <!-- Status -->
                 <div class="mx-2">
                     <label class="text-sm font-medium">Status</label>
                     <select  required  [(ngModel)]="project_status" [ngModelOptions]="{standalone: true}"
@@ -137,7 +136,7 @@
                 
             </div>
 
-            <!-- Buttons -->
+          
             <div class="flex justify-between items-center mt-8">
                 <button type="button"
                     class="text-green-700 border border-green-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-center"
@@ -163,4 +162,161 @@
             class="text-red-700 border border-red-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-cente"
             (click)="deleteDetails()">Delete</button>
     </div>
-</div>
+</div> -->
+
+
+
+
+
+
+
+<div class="p-7 sm:p-12 bg-white">
+    <button mat-dialog-close
+        class="absolute top-2 right-2 bg-gray-100 text-gray-500 hover:text-gray-900 rounded-md hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8"
+        type="button" mat-dialog-close data-dismiss-target="#toast-default" aria-label="Close">
+        <span class="sr-only">Close</span>
+        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+        </svg>
+    </button>
+    <div class="grid grid-cols-12 gap-y-5" *ngIf="showTable">
+        <span class="col-span-12 bg-gray-100 px-3 py-1">  Project Detail's</span>
+        <div class="col-span-12 flex px-3 py-1 items-center">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800">  Project Name</span></div>
+            <div class="col-span-10 text-right w-full"><span class="ml-4 text-xs font-normal">
+                {{data.data.project_name}}</span></div>
+        </div>
+        <div class="col-span-12  flex px-3 py-1 items-center">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800"> Project Details</span></div>
+            <div class="col-span-10  text-right w-full"><span
+                    class="ml-4 text-xs font-normal">  {{data.data.project_details}}</span>
+            </div>
+        </div>
+        <div class="col-span-12  flex px-3 py-1 items-center">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800">Start Date</span></div>
+            <div class="col-span-10  text-right w-full"><span
+                    class="ml-4 text-xs font-normal"> {{data.data.project_start_date |date:'dd/MM/YYYY'}}</span></div>
+        </div>
+
+
+        <div class="col-span-12 flex px-3 py-1 items-center">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800">Due Date</span></div>
+            <div class="col-span-10  text-right w-full"><span class="ml-4 text-xs font-normal">
+                {{data.data.project_due_date|date:'YYYY/MM/dd'}}</span></div>
+        </div>
+        <div class="col-span-12  flex px-3 py-1 items-center ">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800">Status</span></div>
+            <div class="col-span-10  text-right w-full"><span class="ml-4 text-xs font-normal"
+               [innerHTML]="checkStatus()">></span></div>
+        </div>
+
+        <div class="col-span-12 flex px-3 py-1 items-center ">
+            <div class="col-span-2 "><span class="text-sm font-medium text-gray-800">Project Workers</span></div>
+            <div class="col-span-10  text-right w-full"><span
+                    class="ml-4 text-xs font-normal">  {{data.data.project_workers}}</span></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div *ngIf="!showTable">
+        <form #editForm="ngForm" (ngSubmit)="saveDetails()" novalidate>
+            <div class="grid grid-cols-12 py-2 gap-5 mt-4">
+                <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="email">Project Name</label>
+                    <input [ngModelOptions]="{standalone: true}"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        type="text" name="project_name" #project_nameField="ngModel" [(ngModel)]="project_name" required />
+                    <div *ngIf="project_nameField.invalid && (project_nameField.dirty || project_nameField.touched)">
+                        <span class="text-red-200">*Project Name is required .</span>
+                    </div>
+                </div>
+                <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" >Project Detail's</label>
+                    <textarea [ngModelOptions]="{standalone: true}"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        [(ngModel)]="project_details" required type="text"
+                        #project_detailsField="ngModel" ></textarea>
+                    <div *ngIf="project_detailsField.invalid && (project_detailsField.dirty || project_detailsField.touched)">
+                        <span class="text-red-200">*Project Detail's is required.</span>
+                    </div>
+                </div>
+                <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" >Start-Date</label>
+                    <input [(ngModel)]="project_start_date" required [ngModelOptions]="{standalone: true}"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        type="date"  #project_start_dateField="ngModel" />
+                    <div *ngIf="project_start_dateField.invalid && (project_start_dateField.dirty || project_start_dateField.touched)">
+                        <span class="text-red-200">*Start Date is required.</span>
+                    </div>
+                </div>
+                <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75">Due-Date</label>
+                    <input [(ngModel)]="project_due_date" required [ngModelOptions]="{standalone: true}"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        type="date"  #project_due_dateField="ngModel" />
+
+                    <div *ngIf="project_due_dateField.invalid && (project_due_dateField.dirty || project_due_dateField.touched)">
+                        <span class="text-red-200">*Due-Date is required.</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col col-span-6 mt-2 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75">Project Workers</label>
+                    <input [(ngModel)]="project_workers" required [ngModelOptions]="{standalone: true}"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    type="number"  #project_workersField="ngModel" />
+                    <div *ngIf="project_workersField.invalid && (project_workersField.dirty || project_workersField.touched)">
+                        <span class="text-red-200">*Project-Workers is required.</span>
+                    </div>
+                </div>
+                <div class="flex flex-col col-span-6 mt-2 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="department">Project-Status</label>
+                    <select [(ngModel)]="project_status" required #project_statustField="ngModel"
+                        [ngModelOptions]="{standalone: true}"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-0 hover-bg-gray-100">
+                        <option value="" disabled>Select an option</option>
+                        <option class="text-center" value="complete">Complete</option>
+                        <option class="text-center" value="incomplete">Incomplete</option>
+                        <option class="text-center" value="pending">Pending</option>
+                       
+                    </select>
+                    <div *ngIf="project_statustField.invalid && (project_statustField.dirty || project_statustField.touched)">
+                        <span class="text-red-200">*Project-Status is required.</span>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="py-1 flex gap-x-4 mt-4 mx-2">
+                <button type="submit" [disabled]="editForm.invalid "
+                    class="bg-[#6F4EF6] hover:bg-[#41b78e] mt-5 shadow-md shadow-gray-400 text-base text-white font-normal py-[10px] px-8 tracking-wide">Save</button>
+                <button type="button" (click)="cancelEdit()"
+                    class="text-red-700 border bg-red-300 mt-5 shadow-md shadow-gray-400 text-base font-normal py-[10px] px-8 tracking-wide">Cancel</button>
+            </div>
+        </form>
+
+    </div>
+
+
+    <div class class="grid grid-cols-12 gap-x-4 mt-8 mx-2" *ngIf="showTable">
+        <button
+            class="col-span-6 bg-[#6F4EF6] hover:bg-[#41b78e] focus:outline-none font-normal text-sm w-full sm:w-auto px-5 py-2 text-cente"
+            (click)="editDetails()">Edit</button>
+        <button
+            class="col-span-6 text-red-700 border bg-red-300  focus:outline-none font-normal  text-sm w-full sm:w-auto px-5 py-2 text-cente"
+            (click)="deleteDetails()">Delete</button>
+    </div>

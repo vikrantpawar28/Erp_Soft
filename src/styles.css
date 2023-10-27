@@ -5,3 +5,43 @@
 /* @import "~font-awesome/css/font-awesome.css"; */
 
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0");
+/* Vertical scrollbar */
+::-webkit-scrollbar {
+  width: 4px; /* Adjust the width as needed */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a0a0a0; /* Adjust the color as needed */
+  border-radius: 3px; /* Adjust the corner radius as needed */
+}
+
+/* Horizontal scrollbar */
+::-webkit-scrollbar-track:horizontal {
+  background: #f0f0f0; /* Adjust the background color for the horizontal track */
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+  background: #a0a0a0; /* Adjust the color for the horizontal thumb */
+  border-radius: 3px; /* Adjust the corner radius for the horizontal thumb */
+}
+input[type="radio"]:checked {
+  border-color: #dc7234; /* Change to your desired color */
+  background-color: #dc7234; /* Change to your desired color */
+}
+
+/* Hide spinners in Webkit-based browsers (Chrome, Safari) */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide spinners in Firefox */
+input[type="number"]{
+  -moz-appearance: textfield;
+}
+
+option[value=first] { 
+  background-color: yellow;
+  padding: 10px;
+}

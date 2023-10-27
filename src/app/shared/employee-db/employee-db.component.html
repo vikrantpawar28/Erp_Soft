@@ -1,4 +1,4 @@
-<div class="p-5">
+<!-- <div class="p-5">
     <div class="grid grid-cols-12 border-b-2">
         <div class="col-span-8">
             <span class="font-bold text-base">COMPANY EMPLOYEES</span>
@@ -17,12 +17,12 @@
         <div class="col-span-6">
             <input class="py-2 outline-none border px-3 rounded-md" type="text" placeholder="Search employee"
                 title="Search employee" [(ngModel)]="searchText" (input)="searchEmployees()">
-                <select class="py-2 px-3 w-[150px] border rounded-md focus:outline-none ml-2"
-                    (change)="onSelectChange($event)">
-                    <option value="all">All </option>
-                    <option [value]=true>Active</option>
-                    <option [value]=false>inActive</option>
-                </select>
+            <select class="py-2 px-3 w-[150px] border rounded-md focus:outline-none ml-2"
+                (change)="onSelectChange($event)">
+                <option value="all">All </option>
+                <option [value]=true>Active</option>
+                <option [value]=false>inActive</option>
+            </select>
         </div>
 
         <div class="col-span-6">
@@ -76,10 +76,15 @@
                                 {{employee.contact_number}}
                             </td>
                             <td class="px-6 py-4">
-                                {{employee.employment_status}}
+                                <span 
+                                [ngClass]="{
+                                    'text-[12px] font-semibold leading-[18px] text-[#00FF00] px-2.5 h-5 rounded-[10px] inline-block border border-solid border-[#00FF00]': employee.employment_status === true,
+                                    'text-[12px] font-semibold leading-[18px] text-[#FFE9B6] px-2.5 h-5 rounded-[10px] inline-block border border-solid border-[#FFE9B6]': employee.employment_status === false
+                                  }">
+                                    {{employee.employment_status}}</span>
                             </td>
                             <td class="px-6 py-4">
-                                <button class="font-medium text-blue-600 dark:text-blue-500"
+                                <button class="font-medium text-blue-600 dark:text-blue-500 px-2.5 h-5  inline-block border border-solid border-[#1D4ED8] "
                                     (click)="openDetails(employee)">View</button>
                             </td>
                         </tr>
@@ -91,7 +96,7 @@
                 <nav aria-label="Page navigation example">
                     <ul class="flex items-center -space-x-px h-8 text-sm">
                         <li (click)="previous()">
-                            <a 
+                            <a
                                 class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                                 <span class="sr-only">Previous</span>
                                 <svg class="w-2.5 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -105,12 +110,9 @@
                             <a
                                 class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"></a>
                         </li>
-                        <!-- <li>
-                            <a href="#"
-                                class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                        </li> -->
+                       
                         <li (click)="next()">
-                            <a 
+                            <a
                                 class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                                 <span class="sr-only">Next</span>
                                 <svg class="w-2.5 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -124,6 +126,88 @@
                 </nav>
             </div>
 
+        </div>
+    </div>
+</div> -->
+
+
+
+
+
+<div class="gird grid-cols-12">
+    <div class="p-6 col-span-12 lg:col-span-6 lg:block bg-[#eef0f8] rounded-xl">
+        <div class="flex justify-between bg-white p-4">
+            <span class="text-base tracking-tight font-semibold text-black">Company Employees</span>
+        </div>
+        <div class="grid grid-cols-12"> 
+            <div class="py-4 col-span-12 grid grid-cols-12 gap-2">
+                <div class="col-span-12 sm:col-span-4 ">
+                    <input class="py-2 outline-none border px-3 rounded-md w-full " type="text"
+                        placeholder="Search Projects" title="Search employee"  [(ngModel)]="searchText" (input)="searchEmployees()">
+                </div>
+                <div class="col-span-6 sm:col-span-2">
+                    <div class="col-span-6 sm:col-span-2">
+                        <select class="py-2 px-3 border rounded-md focus:outline-none w-full" (change)="onSelectChange($event)" >
+                            <option value="all">All </option>
+                            <option [value]='true'>Active</option>
+                            <option [value]='false'>inActive</option>
+                        </select>
+                    </div>
+                    
+                </div>  
+                <div class=" col-span-6 sm:col-span-6 flex justify-end">
+                    <button
+                    class="text-sm font-sans border py-2 px-4 bg-gray-50 font-semibold "
+                    (click)="add_emp()">Add
+                    Employee</button>  
+                </div>                
+            </div>
+        </div>
+
+        <div class="bg-white mt-5 w-full border min-h-[100px] overflow-x-scroll sm:overflow-x-auto">
+            <table class="w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase dark:text-gray-400 sticky top-[-1px] bg-white  ">
+                    <tr class="border-b border-gray-200 dark:border-gray-700">
+                        <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800 sticky left-[-1px]">
+                            ID
+                        </th>
+                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Name</th>
+                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Department</th>
+                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Contact</th>
+                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Status</th>
+                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm text-gray-500 dark:text-gray-400">
+                    <tr class="border-b border-gray-200 dark:border-gray-700"
+                        *ngFor="let employee of (this.employees.length > 0 ? this.employees : this._servicesService.empData); let i = index">
+                        <td scope="row"
+                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 sticky left-[-1px]">
+                            {{i+1}}
+                        </td>
+                        <td class="px-6 py-4"> {{employee.employee_firstname + ' ' +employee.employee_lastname}}
+                        </td>
+                        <td scope="row"
+                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
+                            {{employee.employee_department}}
+                        </td>
+                        <td scope="row"
+                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
+                            {{employee.contact_number}}
+                        </td>
+                        <td scope="row"
+                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
+                            {{employee.employment_status}}
+
+                        </td>
+                        <td scope="row"
+                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
+                            <button class="font-medium text-blue-600 dark:text-blue-500 px-2.5 h-5 inline-block"
+                                (click)="openDetails(employee)">View</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

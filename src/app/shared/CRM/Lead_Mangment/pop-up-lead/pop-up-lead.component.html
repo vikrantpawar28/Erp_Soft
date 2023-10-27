@@ -1,0 +1,249 @@
+<div class="relative overflow-x-auto p-14">
+    <button type="button" mat-dialog-close
+        class="relative top-[-50px] right-[-50px] float-right ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+        data-dismiss-target="#toast-default" aria-label="Close">
+        <span class="sr-only">Close</span>
+        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+        </svg>
+    </button>
+
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 p" *ngIf="showTable">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3 rounded-lg" colspan="2">
+                    Lead's  Detail's
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                   Name
+                </th>
+                <td class="px-6 py-4">
+                    {{data.data.project_name}}
+                </td>
+            </tr>
+
+            <tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Contact Number
+                </th>
+                <td class="px-6 py-4">
+                    {{data.data.project_details}}
+                </td>
+            </tr>
+
+            <tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Email
+                </th>
+                <td class="px-6 py-4">
+                    {{data.data.project_start_date |date:'dd/MM/YYYY' }}
+                </td>
+            </tr>
+
+            <tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Company Name
+                </th>
+                <td class="px-6 py-4">
+                    {{data.data.project_due_date|date:'dd/MM/YYYY'}}
+                </td>
+            </tr>
+
+            <tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Company Size
+                </th>
+                <td class="px-6 py-4" [innerHTML]="checkStatus()"></td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Company Industry
+                </th>
+                <td class="px-6 py-4">
+                    {{data.data.project_workers}}
+                </td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Lead Status
+                </th>
+                <td class="px-6 py-4">
+                    {{data.data.project_workers}}
+                </td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Follow-up Date
+                </th>
+                <td class="px-6 py-4">
+                    {{data.data.project_workers}}
+                </td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Conversation Date
+                </th>
+                <td class="px-6 py-4">
+                    {{data.data.project_workers}}
+                </td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Lead Tag
+                </th>
+                <td class="px-6 py-4">
+                    {{data.data.project_workers}}
+                </td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Lead Description
+                </th>
+                <td class="px-6 py-4">
+                    {{data.data.project_workers}}
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+
+    <div *ngIf="!showTable">
+        <form #myForm="ngForm" class="flex flex-col space-y-4">
+            <div class="flex justify-between">
+                <!-- Email -->
+                <div class="mx-2">
+                    <label class="text-sm font-medium"> Name</label>
+                    <input class="w-full" type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"
+                        required
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                </div>
+
+                <!-- Contact -->
+                <div class="mx-2">
+                    <label class="text-sm font-medium"> Contact Number</label>
+                    <input type="number" [(ngModel)]="contact" [ngModelOptions]="{standalone: true}"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300"/>
+                </div>
+            </div>
+
+
+            <div class="flex justify-between">
+                <div class="mx-2">
+                    <label class="text-sm font-medium"> Email</label>
+                    <input class="w-full" type="email" [(ngModel)]="email"
+                        [ngModelOptions]="{standalone: true}"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                </div>
+
+                <div class="mx-2">
+                    <label class="text-sm font-medium">Company Name</label>
+                    <input class="w-full" type="text" [(ngModel)]="company_name"
+                        [ngModelOptions]="{standalone: true}"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                </div>
+            </div>
+
+
+
+
+            <div class="flex justify-between">
+                <div class="mx-2">
+                    <label class="text-sm font-medium">Company Size</label>
+                    <input class="w-full" type="number" [(ngModel)]="company_size"
+                        [ngModelOptions]="{standalone: true}"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                </div>
+
+                <!-- Status -->
+                <div class="mx-2">
+                    <label class="text-sm font-medium">  Lead Status</label>
+                    <select required [(ngModel)]="lead_status" [ngModelOptions]="{standalone: true}"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                        <option value="" disabled selected>Status</option>
+                        <option value="complete">Complete</option>
+                        <option value="incomplete">Incomplete</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+
+            </div>
+            
+            <div class="flex justify-between">
+                <div class="mx-2">
+                    <label class="text-sm font-medium"> Company Industry</label>
+                    <input class="w-full" type="text" [(ngModel)]="company_industry"
+                        [ngModelOptions]="{standalone: true}"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                </div>
+
+                <div class="mx-2">
+                    <label class="text-sm font-medium"> Follow-up Date</label>
+                    <input class="w-full" type="date" [(ngModel)]="follow_date"
+                        [ngModelOptions]="{standalone: true}"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                </div>
+            </div>
+            
+            <div class="flex justify-between">
+                <div class="mx-2">
+                    <label class="text-sm font-medium"> Conversation Date</label>
+                    <input class="w-full" type="date" [(ngModel)]="conversation"
+                        [ngModelOptions]="{standalone: true}"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                </div>
+
+                <div class="mx-2">
+                    <label class="text-sm font-medium">  Lead Tag</label>
+                    <select required [(ngModel)]="lead_tag" [ngModelOptions]="{standalone: true}"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                        <option value="" disabled selected>Status</option>
+                        <option value="complete">Complete</option>
+                        <option value="incomplete">Incomplete</option>
+                        <option value="pending">Pending</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="flex justify-between">
+                <div class="mx-2">
+                    <label class="text-sm font-medium">  Lead Description</label>
+                    <textarea class="w-full" type="text" [(ngModel)]="lead_description"
+                        [ngModelOptions]="{standalone: true}"
+                        class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300"></textarea>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex justify-between items-center mt-8">
+                <button type="button"
+                    class="text-green-700 border border-green-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-center"
+                    (click)="saveDetails()">
+                    Save
+                </button>
+
+                <button type="button"
+                    class="text-red-700 border border-red-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-cente"
+                    (click)="cancelEdit()">
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="flex justify-between items-center mt-8" *ngIf="showTable">
+        <button
+            class="text-green-700 border border-green-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-cente"
+            (click)="editDetails()">Edit</button>
+        <button
+            class="text-red-700 border border-red-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-cente"
+            (click)="deleteDetails()">Delete</button>
+    </div>
+</div>

@@ -1,18 +1,22 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ServicesService } from 'src/app/core/services.service';
 
-import { AddprojectComponent } from '../addproject/addproject.component';
-import { ProjectPopUpComponent } from '../project-pop-up/project-pop-up.component';
+import { AddprojectComponent } from '../../addproject/addproject.component';
+
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ProjectPopUpComponent } from '../../project-pop-up/project-pop-up.component';
+import { AddLeadComponent } from '../Lead_Mangment/add-lead/add-lead.component';
+import { PopUpLeadComponent } from '../Lead_Mangment/pop-up-lead/pop-up-lead.component';
 
 @Component({
-  selector: 'app-project',
-  templateUrl: './project.component.html',
-  styleUrls: ['./project.component.css']
+  selector: 'app-crm',
+  templateUrl: './crm.component.html',
+  styleUrls: ['./crm.component.css']
 })
-export class ProjectComponent implements OnInit{
+export class CRMComponent implements OnInit {
   employees:any[]=this._servicesService.projectData;
-  modalService: any;
+  modalService: any; 
+  activeTab: string = 'leadManagement';
    
   @Output() fetchDataEvent = new EventEmitter<void>();
   constructor(
@@ -25,18 +29,25 @@ export class ProjectComponent implements OnInit{
 
 
   }
+  switchToLeadManagement() {
+    this.activeTab = 'leadManagement';
+  }
+  switchToOpportunity() {
+    this.activeTab = 'opportunity';
+  }
+
   str="file:///";
   url:string='C:/Users/Vikrant/Downloads'+'/';
- 
+  // isLoading: boolean = true; // Set to true initially
 
   fetchData() {
     this._servicesService.getProjects().subscribe((data) => {
       this._servicesService.projData=data;
       this._servicesService.projectData=data
       console.log("this is product data",this._servicesService.projectData);
-      
+      // this.isLoading = false;
     });
-    
+    // this.isLoading = false;
   }
   selectedValue:any="all";
   onSelectChange(event: Event) {
@@ -98,15 +109,15 @@ export class ProjectComponent implements OnInit{
     });
   }
 
-  add_project() {
-    this._dialog.open(AddprojectComponent);
+  add_lead() {
+    this._dialog.open(AddLeadComponent);
   }
 
   
   openDetails(data: any,i:any) {
 
     console.log(data,i);
-    this._dialog.open(ProjectPopUpComponent, {
+    this._dialog.open(PopUpLeadComponent, {
       data: {
         data,i
       },

@@ -8,22 +8,27 @@ import { ProjectComponent } from './shared/project/project.component';
 import{ManageBillComponent} from './shared/Bill/manage-bill/manage-bill.component'
 import { LoginComponent } from './shared/Login/login/login.component';
 import{AddBillComponent} from './shared/Bill/add-bill/add-bill.component'
+import { CRMComponent } from './shared/CRM/crm/crm.component';
+import { authGuard } from './auth.guard';
+
 
 const routes: Routes = [
  
-  // { path: '', redirectTo: 'login',pathMatch: 'full'},
-  { path: 'admin-main',component: AdminMainComponent,  children:[
+  { path: '', redirectTo: 'login',pathMatch: 'full'},
+  { path: 'admin-main',component: AdminMainComponent, canActivate:[authGuard], children:[
     { path:'emp_db', component:EmployeeDbComponent},
     {path:'inv',component:InventoryComponent},
     {path:'payroll',component:AdminPayrollComponent},
     {path:'projects',component:ProjectComponent},
     {path:'managebill',component:ManageBillComponent},
-    {path:'addbill',component:AddBillComponent}
+    {path:'addbill',component:AddBillComponent},
+    {path:'crm',component:CRMComponent}
   ]},
 
   {
     path: "login", component: LoginComponent
-  }
+  },
+
   
 ];
 

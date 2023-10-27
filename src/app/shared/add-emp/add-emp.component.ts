@@ -8,6 +8,7 @@ import {
   FormGroup,
   FormBuilder,
   Validators,
+  MaxLengthValidator,
 } from '@angular/forms';
 import { ServicesService } from 'src/app/core/services.service';
 @Component({
@@ -25,19 +26,18 @@ export class AddEmpComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.fetchData();
     this.emp_Form = this._fb.group({
       employee_firstname: ['', [Validators.required]],
-      employee_lastname: ['', [Validators.required]],
+      employee_lastname: ['', Validators.required],
       employee_department: ['', [Validators.required]],
       contact_number: ['', [Validators.required]],
       email_id:['',[Validators.required,Validators.email]],
-      employment_status: ['', [Validators.required]],
-      hire_date: ['', [Validators.required,Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)]],
+      employment_status: [false, [Validators.required]],
+      hire_date: ['', [Validators.required]],
     });
   }
-  handleFetchData() {
-    console.log('Data fetched in ComponentB');
-  }
+
   fetchData() {
     this._servicesService.getEmployees().subscribe((data) => {
      
@@ -47,22 +47,35 @@ export class AddEmpComponent implements OnInit {
    
   }
   onSubmit() { 
-    console.log("data from service on submit",this._servicesService.empData);
+    // console.log("data from service on submit",this._servicesService.empData);
+
     if (this.emp_Form.valid) {
       console.log(this.emp_Form.value);
       this._servicesService
         .postEmployees(this.emp_Form.value)
         .subscribe((Response) => {
           alert('Data Submitted');
+          this.fetchData();
           console.log(Response);
           this._dialog.closeAll();
-          this.fetchData();
+         
         });
       (error: any) => {
         console.error('Error adding data:', error);
         alert(error)
       };
     }
+  }
+  isDropdownOpen = false;
+  selectedValue: string = 'Select an option';
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  selectOption(value: string) {
+    this.selectedValue = value;
+    this.isDropdownOpen = false;
   }
 
 }

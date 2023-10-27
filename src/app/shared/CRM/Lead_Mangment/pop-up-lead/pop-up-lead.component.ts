@@ -3,34 +3,37 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ServicesService } from 'src/app/core/services.service';
 import { MatDialogRef } from '@angular/material/dialog';
 @Component({
-  selector: 'app-project-pop-up',
-  templateUrl: './project-pop-up.component.html',
-  styleUrls: ['./project-pop-up.component.css'],
+  selector: 'app-pop-up-lead',
+  templateUrl: './pop-up-lead.component.html',
+  styleUrls: ['./pop-up-lead.component.css'],
 })
-export class ProjectPopUpComponent implements OnInit {
+export class PopUpLeadComponent implements OnInit {
   resetForm: any;
   constructor(
-    private dialogRef: MatDialogRef<ProjectPopUpComponent>,
+    private dialogRef: MatDialogRef<PopUpLeadComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public _servicesService: ServicesService
   ) {
     this._servicesService.projectData;
-    
   }
-
   formData: any[] = [];
   ngOnInit() {
     this.data;
+    this.fetchData();
   }
 
   showTable: any = true;
-  project_name: any = this.data.data.project_name;
-  project_details: any = this.data.data.project_details;
-  project_start_date: any = this.data.data.project_start_date;
-  project_due_date: any = this.data.data.project_due_date;
-  project_workers: any = this.data.data.project_workers;
-  project_status: any = this.data.data.project_status;
-
+  name: any;
+  contact: any;
+  follow_date: any;
+  conversation: any;
+  company_name: any;
+  company_size: any;
+  company_industry: any;
+  lead_status: any;
+  email: any;
+  lead_tag: any;
+  lead_description: any;
   editDetails() {
     if (this.showTable == true) {
       this.showTable = false;
@@ -47,12 +50,17 @@ export class ProjectPopUpComponent implements OnInit {
   }
 
   reset() {
-    this.project_name = '';
-    this.project_details = '';
-    this.project_start_date = '';
-    this.project_due_date = '';
-    this.project_workers = '';
-    this.project_status = '';
+    this.name = '';
+    this.contact = '';
+    this.follow_date = '';
+    this.conversation = '';
+    this.company_name = '';
+    this.company_size = '';
+    this.company_industry = '';
+    this.lead_status = '';
+    this.email = '';
+    this.lead_tag = '';
+    this.lead_description = '';
   }
   pGif: any;
   obj: any;
@@ -60,24 +68,36 @@ export class ProjectPopUpComponent implements OnInit {
     console.log(this.data.data.id);
 
     this.obj = {
-      project_name: this.project_name,
-      project_details: this.project_details,
+      name: this.name,
+      contact: this.contact,
+      email: this.email,
+company_details:{
+  company_name: this.company_name,
+  company_size: this.company_size,
+  industry: this.company_industry
 
-      project_start_date: this.project_start_date,
-      project_due_date: this.project_due_date,
-      project_workers: this.project_workers,
-      project_status: this.project_status,
+},
+lead_status: this.lead_status,
+dates:{
+  follow_up_date: this.follow_date,
+  conversation_date: this.conversation,
+},
+     
+     
+      
+      lead_tag: this.lead_tag,
+      lead_description: this.lead_description,
     };
     console.log('this is obj', this.obj);
-    this._servicesService
-      .putProjects(this.obj, this.data.data._id)
-      .subscribe((res) => {
-        this.fetchData();
-        alert(res.message);
-        console.log(res);
-        this.showTable = true;
-        this.dialogRef.close();
-      });
+    // this._servicesService
+    //   .putProjects(this.obj, this.data.data._id)
+    //   .subscribe((res) => {
+    //     this.fetchData();
+    //     alert(res.message);
+    //     console.log(res);
+    //     this.showTable = true;
+    //     this.dialogRef.close();
+    //   });
   }
 
   cancelEdit() {

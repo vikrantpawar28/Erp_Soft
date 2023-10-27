@@ -1,3 +1,16 @@
 .validation {
     border:red 1px solid
 }
+
+.custom-select-dropdown {
+    display: none;
+    overflow-y: auto;
+    border-top: none;
+    z-index: 1;
+}
+
+.custom-select-option {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}

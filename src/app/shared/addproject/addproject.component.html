@@ -1,176 +1,169 @@
-<div class="grid col-span-12  p-8">
-    <button type="button" mat-dialog-close
-        class="float-right ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
-        data-dismiss-target="#toast-default" aria-label="Close">
-        <span class="sr-only">Close</span>
-        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-        </svg>
-    </button>
-
-    <!-- <div class="grid gap-4 mb-3 grid-cols-2" *ngIf="showCategoryForm;else elseBlock ">
-        <form [formGroup]="categoryGroup" (ngSubmit)="onsubmitCat()">
-            <h3>Create Categories</h3>
-            <fieldset>
-                <legend>Create Category</legend>
-                <input type="text" formControlName="product_category">
-            </fieldset>
-            <fieldset>
-                <legend>Create Subcategory</legend>
-                <input type="text" formControlName="product_subcategory">
-            </fieldset>
-            <button>Submit</button>
-        </form>
-    </div> -->
-
-    <!-- <ng-template #elseBlock> -->
-
+    <!-- <div class="grid col-span-12  p-8">
+        <button type="button" mat-dialog-close
+            class="float-right ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+            data-dismiss-target="#toast-default" aria-label="Close">
+            <span class="sr-only">Close</span>
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+        </button>
         <div class="w-[450px]">
 
-            <form [formGroup]="projectGroup" >
+            <form [formGroup]="projectGroup">
                 <h3>Upload Project</h3>
 
                 <div class="grid gap-4 mb-3 grid-cols-12">
-                    <!-- <div class="col-span-12">
-                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categories</label>
-                        <select class="w-full border p-2.5" formControlName="subcategory">
-                            <optgroup *ngFor="let category of categorydata" [label]="category.product_category">
-                                <option *ngFor="let ele of category.subcategories" [value]="ele._id">
-                                    {{ele.product_subcategory}}
-                                </option>
-                            </optgroup>
-                        </select>
-                    </div> -->
 
-                    <!-- [ngClass]="{'is-invalid':imageGroup.controls.product_name.errors}" -->
                     <div class="col-span-6">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project Name</label>
-                        <input type="text" id="first_name" formControlName="project_name" 
-                        [ngClass]="{'validation': projectGroup.get('project_name')?.touched &&( projectGroup.get('project_name')?.hasError('required'))}"
-                            Class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            >
-                             <!-- <span *ngIf="imageGroup?.get('product_name')?.invalid && (imageGroup?.get('product_name')?.dirty || imageGroup?.get('product_name')?.touched)" class="text-red-400">
-                                * Product Name is required
-                              </span> -->
+                        <input type="text" id="first_name" formControlName="project_name"
+                            [ngClass]="{'validation': projectGroup.get('project_name')?.touched &&( projectGroup.get('project_name')?.hasError('required'))}"
+                            Class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
                     </div>
                     <div class="col-span-6">
-                        <label 
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project
                             Details</label>
-                        <textarea formControlName="project_details" [ngClass]="{'validation': projectGroup.get('project_details')?.touched && ( projectGroup.get('project_details')?.hasError('required'))}"
+                        <textarea formControlName="project_details"
+                            [ngClass]="{'validation': projectGroup.get('project_details')?.touched && ( projectGroup.get('project_details')?.hasError('required'))}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required></textarea>
                     </div>
-                    <!-- <div class="col-span-6">
-                        <label for="last_name"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand
-                            Name</label>
-                        <input type="text" formControlName="brand_name"[ngClass]="{'validation': imageGroup.get('brand_name')?.touched || imageGroup.get('brand_name')?.dirty, 'is-invalid': imageGroup.get('brand_name')?.hasError('required')}"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required>
-                    </div> -->
+
                     <div class="col-span-6">
-                        <label 
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start Date
-                            </label>
-                        <input type="date" formControlName="project_start_date" [ngClass]="{'validation': projectGroup.get('project_start_date')?.touched &&( projectGroup.get('project_start_date')?.hasError('required'))}"
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start Date
+                        </label>
+                        <input type="date" formControlName="project_start_date"
+                            [ngClass]="{'validation': projectGroup.get('project_start_date')?.touched &&( projectGroup.get('project_start_date')?.hasError('required'))}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required>
                     </div>
-                    <!-- <div class="col-span-6">
-                        <label for="last_name"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload
-                            an image</label>
-                        <input type="file"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            accept="image/jpg,image/jpeg,image/png" (change)="loadImage($event)" required>
-                    </div>
+
                     <div class="col-span-6">
-                        <label for="last_name"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload
-                            an gif</label>
-                        <input type="file"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            accept="image/gif" (change)="loadGif($event)" required>
-                    </div> -->
-                    <div class="col-span-6">
-                        <label 
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Due date</label>
-                        <input type="Date" formControlName="project_due_date" [ngClass]="{'validation': projectGroup.get('project_due_date')?.touched && (projectGroup.get('project_due_date')?.hasError('required'))}"
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Due date</label>
+                        <input type="Date" formControlName="project_due_date"
+                            [ngClass]="{'validation': projectGroup.get('project_due_date')?.touched && (projectGroup.get('project_due_date')?.hasError('required'))}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required>
                     </div>
                     <div class="col-span-6">
-                        <label 
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project Workers</label>
-                        <input type="number" formControlName="project_workers" [ngClass]="{'validation': projectGroup.get('project_workers')?.touched &&(  projectGroup.get('project_workers')?.hasError('required'))}"
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Project Workers</label>
+                        <input type="number" formControlName="project_workers"
+                            [ngClass]="{'validation': projectGroup.get('project_workers')?.touched &&(  projectGroup.get('project_workers')?.hasError('required'))}"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             required>
                     </div>
                     <div class="col-span-6">
                         <select formControlName="project_status"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        >
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option value="" disabled selected>Status</option>
                             <option value="complete">Complete</option>
                             <option value="incomplete">Incomplete</option>
                             <option value="pending">Pending</option>
                         </select>
                     </div>
-                    <!-- <div class="col-span-6">
-                        <label for="last_name"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Width</label>
-                        <input type="number" formControlName="product_dimensions_width"[ngClass]="{'validation': imageGroup.get('product_dimensions_width')?.touched || imageGroup.get('product_dimensions_width')?.dirty, 'is-invalid': imageGroup.get('product_dimensions_width')?.hasError('required')}"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required>
-                    </div>
-                    <div class="col-span-6">
-                        <label for="last_name"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Length</label>
-                        <input type="number" formControlName="product_dimensions_length"[ngClass]="{'validation': imageGroup.get('product_dimensions_length')?.touched || imageGroup.get('product_dimensions_length')?.dirty, 'is-invalid': imageGroup.get('product_dimensions_length')?.hasError('required')}"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm  rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required>
-                    </div>
-                    <div class="col-span-6">
-                        <label for="last_name"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Height</label>
-                        <input type="number" formControlName="product_dimensions_height" [ngClass]="{'validation': imageGroup.get('product_dimensions_height')?.touched || imageGroup.get('product_dimensions_height')?.dirty, 'is-invalid': imageGroup.get('product_dimensions_height')?.hasError('required')}"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required>
-                    </div>
-                    <div class="col-span-6">
-                        <label for="last_name"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Weight</label>
-                        <input type="number" formControlName="product_weight" [ngClass]="{'validation': imageGroup.get('product_weight')?.touched || imageGroup.get('product_weight')?.dirty, 'is-invalid': imageGroup.get('product_weight')?.hasError('required')}"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required>
-                    </div>
-                    <div class="col-span-6">
-                        <label for="last_name"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Available Stock</label>
-                        <input type="number" formControlName="available_stock"[ngClass]="{'validation': imageGroup.get('available_stock')?.touched || imageGroup.get('available_stock')?.dirty, 'is-invalid': imageGroup.get('available_stock')?.hasError('required')}"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required>
-                    </div>
-                    <div class="col-span-6">
-                        <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Min
-                            required stock</label>
-                        <input type="number" formControlName="min_required_stock" [ngClass]="{'validation': imageGroup.get('min_required_stock')?.touched || imageGroup.get('min_required_stock')?.dirty, 'is-invalid': imageGroup.get('min_required_stock')?.hasError('required')}"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            required>
-                    </div> -->
+
                 </div>
-                <button (click)="onSubmit()" 
+                <button (click)="onSubmit()"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
             </form>
+        </div> -->
+
+
+
+
+
+
+        <button
+        class="absolute top-2 right-2 bg-gray-100 text-gray-500 hover:text-gray-900 rounded-md hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8"
+        type="button" mat-dialog-close data-dismiss-target="#toast-default" aria-label="Close">
+        <span class="sr-only">Close</span>
+        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+        </svg>
+    </button>
+    <div class="bg-white p-6 rounded-lg flex flex-col">
+        <div class="flex pb-2">
+            <span class="text-lg font-semibold">Upload Project</span>
         </div>
-        <!-- <button
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            (click)="onShowCategoryForm()">Add
-            Category</button> -->
-    <!-- </ng-template> -->
-</div>
+        <form [formGroup]="projectGroup" (ngSubmit)="onSubmit()">
+            <div class="grid grid-cols-12 py-2 gap-5 mt-4">
+                <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Project Name</label>
+                    <input
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        formControlName="project_name"
+                        [ngClass]="{'validation': projectGroup.get('project_name')?.touched &&   projectGroup.get('project_name')?.hasError('required')}"
+                        type="text" name="" value="" required />
+                        <div *ngIf="projectGroup.get('project_name')?.touched && projectGroup.get('project_name')?.hasError('required')">
+                            <span class="text-red-200">* Project Name is required</span>
+                        </div>
+                </div>
 
+                <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Project Details</label>
+                    <textarea
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    formControlName="project_details"
+                    [ngClass]="{'validation': projectGroup.get('project_details')?.touched && projectGroup.get('project_details')?.hasError('required')}"
+                    type="text"
+                    required
+                    ></textarea>
+                    <div *ngIf="projectGroup.get('project_details')?.touched && projectGroup.get('project_details')?.hasError('required')">
+                    <span class="text-red-200">*Project Details is required</span>
+                    </div>
+                </div>
+                
+                <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Start-Date</label>
+                    <input formControlName="project_start_date"
+                        [ngClass]="{'validation': projectGroup.get('project_start_date')?.touched &&   projectGroup.get('project_start_date')?.hasError('required')}"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        type="date" name="" value="" required />
+                        <div *ngIf="projectGroup.get('project_start_date')?.touched && projectGroup.get('project_start_date')?.hasError('required')">
+                            <span class="text-red-200">*Hire Date is required</span>
+                        </div>
+                </div>
+                <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Due-Date</label>
+                    <input formControlName="project_due_date"
+                        [ngClass]="{'validation': projectGroup.get('project_due_date')?.touched &&   projectGroup.get('project_due_date')?.hasError('required')}"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        type="date" name="" value="" required />
+                        <div *ngIf="projectGroup.get('project_due_date')?.touched && projectGroup.get('project_due_date')?.hasError('required')">
+                            <span class="text-red-200">*Due Date is required</span>
+                        </div>
+                </div>
 
+                <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Project Workers</label>
+                    <input formControlName="project_workers"
+                        [ngClass]="{'validation': projectGroup.get('project_workers')?.touched &&   projectGroup.get('project_workers')?.hasError('required')}"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        type="number" name="" value="" required />
+                        <div *ngIf="projectGroup.get('project_workers')?.touched && projectGroup.get('project_workers')?.hasError('required')">
+                            <span class="text-red-200">*Project Workers is required</span>
+                        </div>
+                </div>
+            
+                <div class="flex flex-col col-span-6 mt-2 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Status</label>
+                    <select formControlName="project_status" class="bg-[#FCFCFC] hover:bg-gray-100 border"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-0 hover:bg-gray-100">
+                        <option value="" disabled selected>Status</option>
+                            <option value="complete">Complete</option>
+                            <option value="incomplete">Incomplete</option>
+                            <option value="pending">Pending</option>
+                    </select>
+                </div>
+            
 
+            </div>
+            <div class="py-2">
+                <button [disabled]='projectGroup.invalid'
+                    class="bg-[#6F4EF6] hover:bg-[#41b78e] mt-5 shadow-md shadow-gray-400 text-base rounded-lg text-white font-semibold py-[10px] px-8 tracking-wide">Submit</button>
+            </div>
+        </form>
+    </div>

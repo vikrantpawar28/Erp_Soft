@@ -1,90 +1,6 @@
-<div class="p-5">
-    <div class="grid grid-cols-12 border-b-2">
-        <div class="col-span-8">
-            <span class="font-bold text-base">PROJECT MANGMENT</span>
-        </div>
-        <div class="col-span-4">
-            <button
-                class="text-sm font-sans border py-2 px-5 bg-white mx-1 rounded-t-lg font-semibold my-1">Projects</button>
-
-        </div>
-    </div>
-
-    <div class="grid grid-cols-12 py-4">
-        <div class="col-span-6">
-            <input class="py-2 outline-none border px-3 rounded-md" type="text" placeholder="Search Projects"
-                title="Search employee" [(ngModel)]="searchText" (input)="searchProjects()">
-            <select class="py-2 px-3 w-[150px] border rounded-md focus:outline-none ml-2" [(ngModel)]="selectedValue"
-                (change)="onSelectChange(selectedValue)">
-                <option value="all" selected>All </option>
-                <option value="complete">Complete</option>
-                <option value="incomplete">Incomplete</option>
-                <option value="pending">Pending</option>
-            </select>
-        </div>
-
-        <div class="col-span-6">
-
-            <button
-                class="text-sm font-sans border py-2  px-4 bg-gray-50 mx-1 rounded-lg font-semibold my-1 float-right"
-                (click)="add_project()">Add project</button>
-        </div>
-    </div>
 
 
-
-    <div class="grid grid-cols-12">
-        <div class="col-span-12 bg-white">
-            <div class="relative sm:rounded-lg overflow-y-scroll lg:h-[252px] xl:h-[466px] 2xl:h-[566px]">
-
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">
-                                Id
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Project Name
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Start Date
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Status
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Actions
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                            *ngFor="let employee of (this.employees.length > 0 ? this.employees : this._servicesService.projData) let i = index">
-
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{i+1}}
-                            </th>
-
-                            <td class="px-6 py-4">
-                                {{employee.project_name}}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{employee.project_start_date|date:'dd/MM/YYYY'}}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{employee.project_status}}
-                            </td>
-                            <td class="px-6 py-4">
-                                <button class="font-medium text-blue-600 dark:text-blue-500"
-                                    (click)="openDetails(employee,i)">View</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="flex justify-center lg:mt-6 xl:mt-[40px]">
+            <!-- -- <div class="flex justify-center lg:mt-6 xl:mt-[40px]">
                 <nav aria-label="Page navigation example">
                     <ul class="flex items-center -space-x-px h-8 text-sm">
                         <li (click)="previous()">
@@ -115,9 +31,87 @@
                         </li>
                     </ul>
                 </nav>
-            </div>
+            </div> -- -->
 
+       
+
+
+
+
+
+
+
+
+<div class="gird grid-cols-12">
+    <div class="p-6 col-span-12 lg:col-span-6 lg:block bg-[#eef0f8] rounded-xl">
+        <div class="flex justify-between bg-white p-4">
+            <span class="text-base tracking-tight font-semibold text-black">PROJECT MANGMENT</span>
+        </div>
+        <div class="grid grid-cols-12">
+            <div class="py-4 col-span-12 grid grid-cols-12 gap-2">
+                <div class="col-span-12 sm:col-span-4 ">
+                    <input class="py-2 outline-none border px-3 rounded-md w-full " type="text"
+                        placeholder="Search Projects" title="Search employee" [(ngModel)]="searchText"
+                        (input)="searchProjects()">
+                </div>
+                <div class="col-span-6 sm:col-span-2">
+                    <div class="col-span-6 sm:col-span-2">
+                        <select class="py-2 px-3 border rounded-md focus:outline-none w-full"
+                            [(ngModel)]="selectedValue" (change)="onSelectChange(selectedValue)">
+                            <option value="all" selected>All </option>
+                            <option value="complete">Complete</option>
+                            <option value="incomplete">Incomplete</option>
+                            <option value="pending">Pending</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class=" col-span-6 sm:col-span-6 flex justify-end">
+                    <button class="text-sm font-sans border py-2 px-4 bg-gray-50 font-semibold "
+                        (click)="add_project()">Add
+                        Project</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white mt-5 w-full border min-h-[100px] overflow-x-scroll sm:overflow-x-auto">
+            <table class="w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-700 uppercase dark:text-gray-400 sticky top-[-1px] bg-white  ">
+                    <tr class="border-b border-gray-200 dark:border-gray-700">
+                        <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800 sticky left-[-1px]">
+                            ID
+                        </th>
+                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800"> Project Name</th>
+                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Start Date</th>
+                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Status</th>
+                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm text-gray-500 dark:text-gray-400">
+                    <tr class="border-b border-gray-200 dark:border-gray-700"
+                        *ngFor="let employee of (this.employees.length > 0 ? this.employees : this._servicesService.projData) let i = index">
+                        <td scope="row"
+                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 sticky left-[-1px]">
+                            {{i+1}}
+                        </td>
+                        <td class="px-6 py-4"> {{employee.project_name}}
+                        </td>
+                        <td scope="row"
+                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
+                            {{employee.project_start_date|date:'dd/MM/YYYY'}}
+                        </td>
+                        <td scope="row"
+                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
+                            {{employee.project_status}}
+                        </td>
+                        <td scope="row"
+                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
+                            <button class="font-medium text-blue-600 dark:text-blue-500 px-2.5 h-5 inline-block"
+                                (click)="openDetails(employee,i)">View</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-    <!-- </ng-template> -->
 </div>

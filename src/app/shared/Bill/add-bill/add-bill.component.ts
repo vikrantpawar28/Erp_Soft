@@ -108,7 +108,7 @@ export class AddBillComponent {
   submitForm() {
     // Handle form submission here
     this.finalData = {
-      vendorName: this.selectedVendor,
+      emplyeeId: this.selectedVendor,
       customerName: this.customerName,
       billDate: this.billDate,
       selectedProducts: this.selectedProducts,

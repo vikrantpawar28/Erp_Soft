@@ -18,6 +18,7 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
+    "types": ["@auth0/angular-jwt"],
     "useDefineForClassFields": false,
     "lib": [
       "ES2022",
