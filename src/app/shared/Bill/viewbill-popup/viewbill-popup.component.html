@@ -16,24 +16,24 @@
     <div class="grid grid-cols-12 p-10">
         <div class="col-span-4 border p-8">
             <span class="font-semibold text-xs">Billed to</span>
-            <p class="mt-4">
-                Name:Richard Joseph
-                Email:info@example.com
-                Phone:+02 782 930 782
-                Address:Milton Street, New York, USA
+            <p class="mt-4" *ngFor="let employee of( this._servicesService.singleBillData)let i = index">
+                Name: {{employee.customerName}}
+                Phone: {{employee.customerContact}}
             </p>
         </div>
-        <div class="col-span-4 border font-semibold text-xs p-8"> Shipped to</div>
+        <div class="col-span-4 border font-semibold text-xs p-8"> Shipped to
+           <p *ngFor="let employee of( this._servicesService.singleBillData)let i = index">{{employee.shippingDetails}}</p>
+        </div>
         <div class="col-span-4 border flex flex-col p-8">
             <div>
                 <span class="text-xs font-semibold">Issue Date:</span>
-                <p></p>
+                <p *ngFor="let employee of( this._servicesService.singleBillData)let i = index">{{employee.billDate}}</p>
             </div>
         </div>
     </div>
 
     <div class="">
-       
+
 
         <div class="relative overflow-x-auto">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -63,14 +63,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                        <td class=" px-6 py-4">1</td>
-                        <td class=" px-6 py-4">2</td>
-                        <td class=" px-6 py-4">3</td>
-                        <td class=" px-6 py-4">4</td>
-                        <td class=" px-6 py-4">5</td>
-                        <td class=" px-6 py-4">6</td>
-                        <td class=" px-6 py-4">7</td>
+                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700" *ngFor="let employee of( this._servicesService.singleBillData)let i = index">
+                        <td class=" px-6 py-4">{{i+1}}</td>
+                        <td class=" px-6 py-4">{{employee.products}}</td>
+                        <td class=" px-6 py-4">{{employee.price}}</td>
+                        <td class=" px-6 py-4">{{employee.quantity}}</td>
+                        <td class=" px-6 py-4">{{employee.taxGST}}</td>
+                        <td class=" px-6 py-4">{{employee.discount}}</td>
+                        <td class=" px-6 py-4">{{employee.total}}</td>
                     </tr>
                     <tr class=" border-b">
                         <td colspan="4" class=" px-6 py-4 font-bold ">Total =</td>
@@ -118,18 +118,19 @@
 
         <div class="flex  items-center mt-8">
             <div>
-                <button class="text-white border bg-[#6F4EF6] hover:bg-green-400 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-center"
-                        (click)="showOptions = !showOptions">
+                <button
+                    class="text-white border bg-[#6F4EF6] hover:bg-green-400 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-center"
+                    (click)="showOptions = !showOptions">
                     Send Bill
                 </button>
-            
+
                 <!-- Display options when the button is clicked -->
                 <div *ngIf="showOptions">
                     <button (click)="sendViaEmail()">Send via Email</button>
                     <button (click)="sendViaWhatsApp()">Send via WhatsApp</button>
                 </div>
             </div>
-            
+
             <button type="button"
                 class="text-white border bg-[#DF7272]   hover:bg-green-300 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-cente">
                 Update Bill

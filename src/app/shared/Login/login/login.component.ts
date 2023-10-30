@@ -63,7 +63,13 @@ export class LoginComponent implements OnInit {
   contact_number: any;
   role: any;
   togglePasswordVisibility() {
-    this.hidePassword = !this.hidePassword;
+    // this.hidePassword = !this.hidePassword;
+    if(this.password.type==="password"){
+      this.password.type="text";
+    }
+    else{
+      this.password.type
+    }
   }
   togglePasswordVisibility1() {
     this.hidePasswordc1 = !this.hidePasswordc1;

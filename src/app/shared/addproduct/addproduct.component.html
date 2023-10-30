@@ -173,7 +173,7 @@
 <div class="bg-white p-6 rounded-lg flex flex-col">
 
     <div class="grid grid-cols-12 py-2 mt-4" *ngIf="showCategoryForm;else elseBlock ">
-        <form class="col-span-12" [formGroup]="categoryGroup" (ngSubmit)="onsubmitCat()" (ngSubmit)="onsubmitCat()">
+        <form class="col-span-12" [formGroup]="categoryGroup" (ngSubmit)="onsubmitCat()">
             <h3 class="text-lg font-semibold">Create Categories</h3>
             <div class="gap-2 mt-3 sm:flex">
                 <fieldset class="text-sm font-semibold opacity-75">
@@ -204,119 +204,187 @@
 
 
     <ng-template #elseBlock>
-        <div class="bg-red-200rounded-lg grid grid-cols-12">
+        <div
+            class="bg-white px-2 rounded-lg grid grid-cols-12 overflow-y-scroll sm:overflow-y-auto h-[90vh] sm:h-full mt-5 sm:mt-0">
             <!-- <div class="flex pb-2"> -->
-            <span class="text-lg font-semibold col-span-12 bg-yellow-200">Upload Product</span>
+            <span class="text-lg font-semibold col-span-12 bg-white py-1">Upload Product</span>
 
             <!-- <div class="py-2 gap-5 mt-4"> -->
-                <form [formGroup]="imageGroup" (ngSubmit)="onSubmit()" class="col-span-12 grid grid-cols-12 gap-4 bg-purple-200">
-                    <div class="col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4 ">
-                        <label class="text-sm font-semibold opacity-75" for="">Categories</label>
-                        <select formControlName="subcategory"
-                            class="border bg-[#FCFCFC] text-sm font-normal  py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-0 hover:bg-gray-100 w-full"
-                            [ngClass]="{'validation': imageGroup.get('subcategory')?.touched &&   imageGroup.get('subcategory')?.hasError('required')}"
-                            type="text" name="" value="" required>
-                            <optgroup *ngFor="let category of categorydata" [label]="category.product_category">
-                                <option *ngFor="let ele of category.subcategories" [value]="ele._id">
-                                    {{ele.product_subcategory}}
-                                </option>
-                            </optgroup>
-                        </select>
-                        <div
-                            *ngIf="imageGroup.get('subcategory')?.touched && imageGroup.get('subcategory')?.hasError('required')">
-                            <span class="text-red-200">*Sub-Category is required</span>
-                        </div>
+            <form [formGroup]="imageGroup" (ngSubmit)="onSubmit()" class="col-span-12 grid grid-cols-12 gap-4 sm:mt-0 ">
+                <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4 ">
+                    <label class="text-sm font-semibold opacity-75" for="">Categories</label>
+                    <select formControlName="subcategory"
+                        class=" border bg-[#FCFCFC] text-sm font-normal  py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100 w-full"
+                        [ngClass]="{'validation': imageGroup.get('subcategory')?.touched &&   imageGroup.get('subcategory')?.hasError('required')}"
+                        type="text" name="" value="" required>
+                        <optgroup *ngFor="let category of categorydata" [label]="category.product_category">
+                            <option *ngFor="let ele of category.subcategories" [value]="ele._id">
+                                {{ele.product_subcategory}}
+                            </option>
+                        </optgroup>
+                    </select>
+                    <div
+                        *ngIf="imageGroup.get('subcategory')?.touched && imageGroup.get('subcategory')?.hasError('required')">
+                        <span class="text-red-200">*Sub-Category is required</span>
                     </div>
-
-                    <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
-                        <label class="text-sm font-semibold opacity-75" for="">Product Name</label>
-                        <input
-                            class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                            formControlName="product_name"
-                            [ngClass]="{'validation': imageGroup.get('product_name')?.touched &&   imageGroup.get('product_name')?.hasError('required')}"
-                            type="text" name="" value="" required />
-                        <div
-                            *ngIf="imageGroup.get('product_name')?.touched && imageGroup.get('product_name')?.hasError('required')">
-                            <span class="text-red-200">*Product Name is required</span>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
-                        <label class="text-sm font-semibold opacity-75" for="">Brand Name</label>
-                        <input
-                            class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                            formControlName="brand_name"
-                            [ngClass]="{'validation': imageGroup.get('brand_name')?.touched && imageGroup.get('brand_name')?.hasError('required')}"
-                            type="text" required />
-                        <div
-                            *ngIf="imageGroup.get('brand_name')?.touched && imageGroup.get('brand_name')?.hasError('required')">
-                            <span class="text-red-200">*Brand Name is required</span>
-                        </div>
-                    </div>
-
-
-                    <!-- <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
-                        <label class="text-sm font-semibold opacity-75" for="">Contact Number</label>
-                        <input formControlName="contact_number"
-                            [ngClass]="{'validation': emp_Form.get('contact_number')?.touched &&   emp_Form.get('contact_number')?.hasError('required')}"
-                            class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                            type="number" name="" value="" required />
-                        <div
-                            *ngIf="emp_Form.get('contact_number')?.touched && emp_Form.get('contact_number')?.hasError('required')">
-                            <span class="text-red-200">*Contact Number is required</span>
-                        </div>
-                    </div> -->
-
-                    <!-- <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
-                        <label class="text-sm font-semibold opacity-75" for="">Email</label>
-                        <input formControlName="email_id"
-                            [ngClass]="{'validation': emp_Form.get('email_id')?.touched &&   emp_Form.get('email_id')?.hasError('required')}"
-                            class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                            type="email" name="" value="" required />
-                        <div
-                            *ngIf="emp_Form.get('email_id')?.touched && emp_Form.get('email_id')?.hasError('required')">
-                            <span class="text-red-200">*Email-Id is required</span>
-                        </div>
-                    </div> -->
-                    <!-- <div class="flex flex-col col-span-6 mt-2 sm:col-span-12 md:col-span-6 lg:col-span-4">
-                        <label class="text-sm font-semibold opacity-75" for="">Status</label>
-                        <select formControlName="employment_status"
-                            class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-0 hover:bg-gray-100">
-                            <option value="" disabled selected>Select an option</option>
-                            <option value="true">True</option>
-                            <option value="false">False</option>
-                        </select>
-                    </div> -->
-                    <!-- <div class="flex flex-col col-span-6 mt-2 sm:col-span-12 md:col-span-6 lg:col-span-4">
-                        <label class="text-sm font-semibold opacity-75" for="">Department</label>
-                        <select formControlName="employee_department" class="bg-[#FCFCFC] hover:bg-gray-100 border"
-                            class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-0 hover:bg-gray-100">
-                            <option value="" disabled selected>Select an option</option>
-                            <option class="text-center" value="IT">IT</option>
-                            <option class="text-center" value="Marketing">Marketing</option>
-                            <option class=" text-center" value="Finance">Finance</option>
-                            <option class=" text-center" value="Sales">Sales</option>
-                            <option class=" text-center" value="HR">HR</option>
-                        </select>
-                    </div> -->
-                    <!-- <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
-                        <label class="text-sm font-semibold opacity-75" for="">Hire-Date</label>
-                        <input formControlName="hire_date"
-                            [ngClass]="{'validation': emp_Form.get('hire_date')?.touched &&   emp_Form.get('hire_date')?.hasError('required')}"
-                            class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                            type="date" name="" value="" required />
-                        <div
-                            *ngIf="emp_Form.get('hire_date')?.touched && emp_Form.get('hire_date')?.hasError('required')">
-                            <span class="text-red-200">*Hire Date is required</span>
-                        </div>
-                    </div> -->
-                </form>
-                <div class="py-col-span-12">
-                    <button [disabled]="imageGroup.invalid"
-                        class="bg-[#6F4EF6] hover:bg-[#41b78e] mt-5 shadow-md shadow-gray-400 text-base rounded-lg text-white font-semibold py-[6px] px-8 tracking-wide">Submit</button>
                 </div>
-            <!-- </div> -->
-            <!-- </div> -->
+
+                <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Product Name</label>
+                    <input
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        formControlName="product_name"
+                        [ngClass]="{'validation': imageGroup.get('product_name')?.touched &&   imageGroup.get('product_name')?.hasError('required')}"
+                        type="text" name="" value="" required />
+                    <div
+                        *ngIf="imageGroup.get('product_name')?.touched && imageGroup.get('product_name')?.hasError('required')">
+                        <span class="text-red-200">*Product Name is required</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Brand Name</label>
+                    <input
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        formControlName="brand_name"
+                        [ngClass]="{'validation': imageGroup.get('brand_name')?.touched && imageGroup.get('brand_name')?.hasError('required')}"
+                        type="text" required />
+                    <div
+                        *ngIf="imageGroup.get('brand_name')?.touched && imageGroup.get('brand_name')?.hasError('required')">
+                        <span class="text-red-200">*Brand Name is required</span>
+                    </div>
+                </div>
+
+
+                <!-- <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Upload an image</label>
+                    <input
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        type="file" name="" value="" required accept="image/jpg,image/jpeg,image/png"
+                        (change)="loadImage($event)" />
+                </div> -->
+                <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Price</label>
+                    <input formControlName="product_price"
+                        [ngClass]="{'validation': imageGroup.get('product_price')?.touched &&   imageGroup.get('product_price')?.hasError('required')}"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        type="number" name="" value="" required>
+                    <div
+                        *ngIf="imageGroup.get('product_price')?.touched && imageGroup.get('product_price')?.hasError('required')">
+                        <span class="text-red-200">*Price is required</span>
+                    </div>
+                </div>
+                <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Currency</label>
+                    <input formControlName="currency"
+                        [ngClass]="{'validation': imageGroup.get('currency')?.touched &&   imageGroup.get('currency')?.hasError('required')}"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        type="text" name="" value="" required>
+                    <div
+                        *ngIf="imageGroup.get('currency')?.touched && imageGroup.get('currency')?.hasError('required')">
+                        <span class="text-red-200">*Currency is required</span>
+                    </div>
+                </div>
+                <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Width</label>
+                    <input formControlName="product_dimensions_width"
+                        [ngClass]="{'validation': imageGroup.get('product_dimensions_width')?.touched &&   imageGroup.get('product_dimensions_width')?.hasError('required')}"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        type="number" name="" value="" required>
+                    <div
+                        *ngIf="imageGroup.get('product_dimensions_width')?.touched && imageGroup.get('product_dimensions_width')?.hasError('required')">
+                        <span class="text-red-200">*Width is required</span>
+                    </div>
+                </div>
+                <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Length</label>
+                    <input formControlName="product_dimensions_length"
+                        [ngClass]="{'validation': imageGroup.get('product_dimensions_length')?.touched &&   imageGroup.get('product_dimensions_length')?.hasError('required')}"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        type="number" name="" value="" required>
+                    <div
+                        *ngIf="imageGroup.get('product_dimensions_length')?.touched && imageGroup.get('product_dimensions_length')?.hasError('required')">
+                        <span class="text-red-200">*Length is required</span>
+                    </div>
+                </div>
+                <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Height</label>
+                    <input formControlName="product_dimensions_height"
+                        [ngClass]="{'validation': imageGroup.get('product_dimensions_height')?.touched &&   imageGroup.get('product_dimensions_height')?.hasError('required')}"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        type="number" name="" value="" required>
+                    <div
+                        *ngIf="imageGroup.get('product_dimensions_height')?.touched && imageGroup.get('product_dimensions_height')?.hasError('required')">
+                        <span class="text-red-200">*Height is required</span>
+                    </div>
+                </div>
+                <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Weight</label>
+                    <input formControlName="product_weight"
+                        [ngClass]="{'validation': imageGroup.get('product_weight')?.touched &&   imageGroup.get('product_weight')?.hasError('required')}"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        type="number" name="" value="" required>
+                    <div
+                        *ngIf="imageGroup.get('product_weight')?.touched && imageGroup.get('product_weight')?.hasError('required')">
+                        <span class="text-red-200">*Weight is required</span>
+                    </div>
+                </div>
+                <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Available-Stock</label>
+                    <input formControlName="available_stock"
+                        [ngClass]="{'validation': imageGroup.get('available_stock')?.touched &&   imageGroup.get('available_stock')?.hasError('required')}"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        type="number" name="" value="" required>
+                    <div
+                        *ngIf="imageGroup.get('available_stock')?.touched && imageGroup.get('available_stock')?.hasError('required')">
+                        <span class="text-red-200">*Available-Stock is required</span>
+                    </div>
+                </div>
+                <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Min Required-Stock</label>
+                    <input formControlName="min_required_stock"
+                        [ngClass]="{'validation': imageGroup.get('min_required_stock')?.touched &&   imageGroup.get('min_required_stock')?.hasError('required')}"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        type="number" name="" value="" required>
+                    <div
+                        *ngIf="imageGroup.get('min_required_stock')?.touched && imageGroup.get('min_required_stock')?.hasError('required')">
+                        <span class="text-red-200">*Min Required-Stock is required</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Manufacturer Details</label>
+                    <textarea formControlName="manufacturer_details"
+                        [ngClass]="{'validation': imageGroup.get('manufacturer_details')?.touched &&   imageGroup.get('manufacturer_details')?.hasError('required')}"
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        type="number" name="" value="" required></textarea>
+                    <div
+                        *ngIf="imageGroup.get('manufacturer_details')?.touched && imageGroup.get('manufacturer_details')?.hasError('required')">
+                        <span class="text-red-200">*Manufacturer Details is required</span>
+                    </div>
+                </div>
+                <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                    <label class="text-sm font-semibold opacity-75" for="">Product Description</label>
+                    <textarea
+                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                        formControlName="product_description"
+                        [ngClass]="{'validation': imageGroup.get('product_description')?.touched && imageGroup.get('product_description')?.hasError('required')}"
+                        type="text" required></textarea>
+                    <div
+                        *ngIf="imageGroup.get('product_description')?.touched && imageGroup.get('product_description')?.hasError('required')">
+                        <span class="text-red-200">*Product Description is required</span>
+                    </div>
+                </div>
+                <div class="py-col-span-12">
+                    <button  [disabled]="imageGroup.invalid"
+                        class="bg-[#6F4EF6] hover:bg-[#41b78e] mt-5 text-base  text-white font-semibold py-[6px] px-8 tracking-wide">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="py-col-span-12">
+            <button (click)="onShowCategoryForm()"
+                class="bg-[#6F4EF6] hover:bg-[#41b78e] mt-5 text-base  text-white font-semibold py-[6px] px-8 tracking-wide">Add
+                Category</button>
         </div>
     </ng-template>
 </div>

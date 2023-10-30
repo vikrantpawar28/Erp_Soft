@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-// import { ServicesService } from 'src/app/core/services.service';
 import { ServicesService } from'../../../core/services.service'
 interface Product {
   productName: string;
@@ -33,6 +32,12 @@ export class AddBillComponent {
 
       console.log('vedors', this.vendor);
     });
+   
+    this.service.getBill().subscribe((data) => {
+      this.service.billData = data;
+      console.log('Bill', this.service.billData);
+
+    });
   }
 
   vendorName = '';
@@ -40,13 +45,13 @@ export class AddBillComponent {
   billDate = '';
   selectedProduct: any;
   selectedProducts: Product[] = []; // Initialize as an empty array
-
+  selectedProductData:Product[] = [];
   gstPercentage = 0;
   discountPercentage = 0;
   extraChargesPercentage = 0;
   purchaseNote: any;
   grandTotal: any = this.calculateTotal();
-
+  customerContact:any;
   addProduct(data: any) {
     if (this.selectedProduct) {
       const matchingProduct = this.service.prodData.find(
@@ -59,8 +64,11 @@ export class AddBillComponent {
         price: matchingProduct.price.product_price,
       };
       this.selectedProducts.push(newProduct);
-      console.log(this.selectedProducts);
+      
       this.selectedProduct = [];
+      this.selectedProductData.push(matchingProduct.id);
+
+      console.log(this.selectedProductData  );
     }
   }
   gst: any;
@@ -108,16 +116,33 @@ export class AddBillComponent {
   submitForm() {
     // Handle form submission here
     this.finalData = {
-      emplyeeId: this.selectedVendor,
+      employeeId: this.selectedVendor,
       customerName: this.customerName,
+      customerContact:this.customerContact,
       billDate: this.billDate,
-      selectedProducts: this.selectedProducts,
-      gstPercentage: this.gstPercentage,
-      discountPercentage: this.discountPercentage,
-      extraChargesPercentage: this.extraChargesPercentage,
-      grandTotal: this.calculateTotal(),
-      purchaseNote: this.purchaseNote,
+      products: this.selectedProductData,
+      taxGST: this.gstPercentage,
+      // discountPercentage: this.discountPercentage,
+      // extraChargesPercentage: this.extraChargesPercentage,
+      totalAmount: this.total(),
+      grandTotal:this.calculateTotal(),
+      shippingDetails: this.purchaseNote,
     };
+
+    this.service
+    .postBill(this.finalData)
+    .subscribe((Response) => {
+      alert('Data Submitted');
+      this.fetchData();
+      console.log(Response);
+      // this._dialog.closeAll();
+     
+    });
+  (error: any) => {
+    console.error('Error adding data:', error);
+    alert(error)
+  };
+
     console.log('Form submitted', this.finalData);
   }
 }

@@ -68,12 +68,12 @@
                             </span>
                         <span class="font-semibold  text-black  hover:text-[#6F72F5]  ml-4">Projects</span>
                     </li>
-                    <li class="bg-white hover:bg-gray-100 cursor-pointer w-[230px] p-4 rounded-lg flex" (click)="OpenCRM()">
+                    <!-- <li class="bg-white hover:bg-gray-100 cursor-pointer w-[230px] p-4 rounded-lg flex" (click)="OpenCRM()">
                         <span class="material-symbols-outlined text-[#6F72F5]">
                             data_table
                             </span>
                         <span class="font-semibold  text-black  hover:text-[#6F72F5]  ml-4" >CRM</span>
-                    </li>
+                    </li> -->
                     <!-- <li class="bg-white hover:bg-gray-100 cursor-pointer w-[230px] p-4 rounded-lg flex" (click)="OpenPayroll()">
                         <span class="material-symbols-outlined text-[#6F72F5]">
                             payments
@@ -186,12 +186,12 @@
 
                         <div class="flex flex-col">
                             <div class="flex flex-col py-7">
-                                <span class="text-2xl font-bold">$24,575</span>
-                                <span class="font-semibold text-gray-580 mt-1">Opening Balance</span>
+                                <span class="text-2xl font-bold">&#8377;{{this._serviceService.dashData[0].totalBillingAmmount}}</span>
+                                <span class="font-semibold text-gray-580 mt-1">Total Balance</span>
                             </div>
 
                             <div class="bg-white rounded-3xl w-[60px] flex justify-center px-1 py-2">
-                                <span>+65%</span>
+                                <!-- <span>+65%</span> -->
                             </div>
                         </div>
                     </div>
@@ -204,12 +204,13 @@
 
                         <div class="flex flex-col">
                             <div class="flex flex-col py-7">
-                                <span class="text-2xl font-bold">$24,575</span>
+                                <span class="text-2xl font-bold">{{this._serviceService.dashData[0].transactions
+                                }}</span>
                                 <span class="font-semibold text-gray-580 mt-1">Today's Transaction</span>
                             </div>
 
                             <div class="bg-white rounded-3xl w-[60px] flex justify-center px-1 py-2">
-                                <span>+65%</span>
+                                <!-- <span>+65%</span> -->
                             </div>
                         </div>
                     </div>
@@ -222,12 +223,12 @@
 
                         <div class="flex flex-col">
                             <div class="flex flex-col py-7">
-                                <span class="text-2xl font-bold">$24,575</span>
+                                <span class="text-2xl font-bold">&#8377;24,575</span>
                                 <span class="font-semibold text-gray-580 mt-1">Today's Expence</span>
                             </div>
 
                             <div class="bg-white rounded-3xl w-[60px] flex justify-center px-1 py-2">
-                                <span>+65%</span>
+                                <!-- <span>+65%</span> -->
                             </div>
                         </div>
                     </div>
@@ -240,12 +241,12 @@
 
                         <div class="flex flex-col">
                             <div class="flex flex-col py-7">
-                                <span class="text-2xl font-bold">$24,575</span>
+                                <span class="text-2xl font-bold">&#8377;24,575</span>
                                 <span class="font-semibold text-gray-580 mt-1">Today's Net Income</span>
                             </div>
 
                             <div class="bg-white rounded-3xl w-[60px] flex justify-center px-1 py-2">
-                                <span>+65%</span>
+                                <!-- <span>+65%</span> -->
                             </div>
                         </div>
                     </div>
@@ -384,7 +385,7 @@
                 <div class="bg-white mt-5 w-full overflow-x-hidden overflow-y-scroll h-[405px]">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <tbody class="text-sm text-gray-500 dark:text-gray-400">
-                            <tr>
+                            <tr *ngFor="let data of this._serviceService.dashData[0].salesEmployeesName">
                                 <td class="w-[50px]">
                                     <img class="mx-auto"
                                         src="https://cashier-bdevs.vercel.app/assets/img/user/user-1.png"
@@ -392,7 +393,7 @@
                                 </td>
                                 <td scope="row"
                                     class="px-6 py-4 font-medium whitespace-nowrap dark:text-white dark:bg-gray-800 flex flex-col">
-                                    <span>Pranav Joshi</span>
+                                    <span>{{data}}</span>
                                     <span class="mt-1 text-xs font-light">+91 2154653289</span>
                                 </td>
                                 <td class="px-6 py-4">
@@ -400,37 +401,7 @@
                                 </td>
                             </tr>
 
-                            <tr>
-                                <td class="w-[50px]">
-                                    <img class="mx-auto"
-                                        src="https://cashier-bdevs.vercel.app/assets/img/user/user-1.png"
-                                        alt="User picture" />
-                                </td>
-                                <td scope="row"
-                                    class="px-6 py-4 font-medium whitespace-nowrap dark:text-white dark:bg-gray-800 flex flex-col">
-                                    <span>Tushar Dhotre</span>
-                                    <span class="mt-1 text-xs font-light">+91 2154653289</span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="border border-green-600 rounded-2xl py-1 px-3">Offline</span>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="w-[50px]">
-                                    <img class="mx-auto"
-                                        src="https://cashier-bdevs.vercel.app/assets/img/user/user-1.png"
-                                        alt="User picture" />
-                                </td>
-                                <td scope="row"
-                                    class="px-6 py-4 font-medium whitespace-nowrap dark:text-white dark:bg-gray-800 flex flex-col">
-                                    <span>Swarup sutar</span>
-                                    <span class="mt-1 text-xs font-light">+91 2154653289</span>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="border border-red-600 rounded-2xl py-1 px-3">Online</span>
-                                </td>
-                            </tr>
+                         
                         </tbody>
                     </table>
                 </div>

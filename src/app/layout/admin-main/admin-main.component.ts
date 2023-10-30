@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { ServicesService } from '../../core/services.service';
 
 @Component({
   selector: 'app-admin-main',
@@ -16,10 +17,17 @@ export class AdminMainComponent implements OnInit{
   IsMobile:boolean=false;
   constructor(
     private router: Router,
-    private BreakpointObserver: BreakpointObserver
+    private BreakpointObserver: BreakpointObserver,
+    public _serviceService:ServicesService
   ) {}
 
   ngOnInit(): void {
+
+    this._serviceService.getDashboard().subscribe((data) => {
+      this._serviceService.dashData[0] = data;
+      console.log('this is dashboard data', this._serviceService.dashData);
+    });
+
     this.BreakpointObserver.observe([
       Breakpoints.Handset,
       Breakpoints.Small,
@@ -94,4 +102,5 @@ export class AdminMainComponent implements OnInit{
     alert('Logged Out Sucessfully');
     this.router.navigate(['/login']);
   }
+ 
 }

@@ -11,7 +11,7 @@
           (change)="addProduct(selectedVendor)"
           class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
         <datalist id="selectedVendor">
-          <option *ngFor="let employee of this.service.empData">{{employee.employee_firstname}}</option>
+          <option *ngFor="let employee of this.service.empData"[value]="employee._id">{{employee.employee_firstname}}</option>
         </datalist>
       </div>
 
@@ -21,6 +21,15 @@
           class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Customer
           Name</label>
         <input type="text" id="customerName" name="customerName" [(ngModel)]="customerName"
+          [ngModelOptions]="{standalone: true}"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          required>
+      </div>
+      <div class="relative z-0 w-full mb-6 group">
+        <label for="customerContact"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Customer
+          Customer Contact</label>
+        <input type="number" id="customerContact" name="customerContact" [(ngModel)]="customerContact"
           [ngModelOptions]="{standalone: true}"
           class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
           required>
@@ -44,7 +53,7 @@
           (change)="addProduct(selectedProduct)"
           class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
         <datalist id="items">
-          <option *ngFor="let item of service.prodData" [value]=item.product_name>{{ item.product_name }}</option>
+          <option *ngFor="let item of service.prodData" >{{ item.product_name }}</option>
         </datalist>
       </div>
 

@@ -134,77 +134,339 @@
         <div class="flex justify-between bg-white p-4">
             <span class="text-base tracking-tight font-semibold text-black">Inventory Managment</span>
         </div>
-        <div class="grid grid-cols-12">
-            <div class="py-4 col-span-12 grid grid-cols-12 gap-2">
-                <div class="col-span-12 sm:col-span-4 ">
-                    <input class="py-2 outline-none border px-3 rounded-md w-full " type="text"
-                        placeholder="Search Projects" title="Search employee" [(ngModel)]="searchText"
-                        (input)="searchEmployees()">
-                </div>
-                <div class="col-span-6 sm:col-span-2">
-                    <div class="col-span-6 sm:col-span-2">
-                        <select class="py-2 px-3 border rounded-md focus:outline-none w-full"
-                            (change)="onSelectChange($event)">
-                            <option value="all">All </option>
-                            <option value="active">Active</option>
-                            <option value="inactive">inActive</option>
-                            <option value="out_Of_Stock">Out Of-Stock</option>
-                        </select>
-                    </div>
+        <div>
 
+
+            <div class="grid grid-cols-12">
+                <div class="py-4 col-span-12 grid grid-cols-12 gap-2">
+                    <div class="col-span-12 sm:col-span-4 ">
+                        <input class="py-2 outline-none border px-3 rounded-md w-full " type="text"
+                            placeholder="Search Projects" title="Search employee" [(ngModel)]="searchText"
+                            (input)="searchEmployees()">
+                    </div>
+                    <div class="col-span-6 sm:col-span-2">
+                        <div class="col-span-6 sm:col-span-2">
+                            <select class="py-2 px-3 border rounded-md focus:outline-none w-full"
+                                (change)="onSelectChange($event)">
+                                <option value="all">All </option>
+                                <option value="active">Active</option>
+                                <option value="inactive">inActive</option>
+                                <option value="out_Of_Stock">Out Of-Stock</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class=" col-span-6 sm:col-span-6 flex justify-end">
+                        <button class="text-sm font-sans border py-2 px-4 bg-gray-50 font-semibold "
+                            (click)="add_product()">Add
+                            Products</button>
+                    </div>
                 </div>
-                <div class=" col-span-6 sm:col-span-6 flex justify-end">
-                    <button class="text-sm font-sans border py-2 px-4 bg-gray-50 font-semibold "
-                        (click)="add_product()">Add
-                        Products</button>
-                </div>
+            </div>
+
+            <div class="bg-white mt-5 w-full border min-h-[100px] overflow-x-scroll sm:overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase dark:text-gray-400 sticky top-[-1px] bg-white  ">
+                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                            <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800 sticky left-[-1px]">
+                                ID
+                            </th>
+                            <!-- <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Image</th> -->
+                            <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Name</th>
+                            <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Category</th>
+                            <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Status</th>
+                            <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm text-gray-500 dark:text-gray-400">
+                        <tr class="border-b border-gray-200 dark:border-gray-700"
+                            *ngFor="let employee of (this.employees.length > 0 ? this.employees : this._servicesService.prodData) let i = index">
+                            <td scope="row"
+                                class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 sticky left-[-1px]">
+                                {{i+1}}
+                            </td>
+                            <!-- <td class="px-6 py-4"> <img [src]=employee.product_image class="w-12">
+                            </td> -->
+                            <td scope="row"
+                                class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
+                                {{employee.product_name}}
+                            </td>
+                            <td scope="row"
+                                class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
+                                {{employee.product_category}}
+                            </td>
+                            <td scope="row"
+                                class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
+                                {{employee.stock.available_stock}}
+
+                            </td>
+                            <td scope="row"
+                                class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
+                                <button class="font-medium text-blue-600 dark:text-blue-500 px-2.5 h-5 inline-block"
+                                    (click)="openDetails(employee,i)">View</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <div class="bg-white mt-5 w-full border min-h-[100px] overflow-x-scroll sm:overflow-x-auto">
-            <table class="w-full text-sm text-left text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase dark:text-gray-400 sticky top-[-1px] bg-white  ">
-                    <tr class="border-b border-gray-200 dark:border-gray-700">
-                        <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800 sticky left-[-1px]">
-                            ID
-                        </th>
-                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800"> Product Image</th>
-                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800"> Product Name</th>
-                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Category</th>
-                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Status</th>
-                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Action</th>
-                    </tr>
-                </thead>
-                <tbody class="text-sm text-gray-500 dark:text-gray-400">
-                    <tr class="border-b border-gray-200 dark:border-gray-700"
-                        *ngFor="let employee of (this.employees.length > 0 ? this.employees : this._servicesService.prodData) let i = index">
-                        <td scope="row"
-                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 sticky left-[-1px]">
-                            {{i+1}}
-                        </td>
-                        <td class="px-6 py-4"> <img [src]=employee.product_image class="w-12">
-                        </td>
-                        <td scope="row"
-                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
-                            {{employee.product_name}}
-                        </td>
-                        <td scope="row"
-                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
-                            {{employee.product_category}}
-                        </td>
-                        <td scope="row"
-                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
-                            {{employee.stock.available_stock}}
 
-                        </td>
-                        <td scope="row"
-                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
-                            <button class="font-medium text-blue-600 dark:text-blue-500 px-2.5 h-5 inline-block"
-                                (click)="openDetails(employee,i)">View</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+
+
+        
     </div>
 </div>
+
+
+<!-- Product Pop_up -->
+<!-- 
+<div class="p-7 sm:p-12 bg-white"  *ngIf="showInve">
+    <button mat-dialog-close
+        class="absolute top-2 right-2 bg-gray-100 text-gray-500 hover:text-gray-900 rounded-md hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8"
+        type="button" mat-dialog-close data-dismiss-target="#toast-default" aria-label="Close">
+        <span class="sr-only">Close</span>
+        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+        </svg>
+    </button>
+    <div class="grid grid-cols-12 gap-y-5 overflow-y-scroll sm:overflow-y-auto h-[90vh] sm:h-full mt-5 sm:mt-0 bg-green-200" *ngIf="showTable">
+        <span class="col-span-12 bg-gray-100 px-3 py-1"> Product Detail's</span>
+        <div class="col-span-12 flex px-3 py-1 items-center">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800"> Product Name</span></div>
+            <div class="col-span-10 text-right w-full"><span class="ml-4 text-xs font-normal">
+                    {{data.data.product_name}}</span></div>
+        </div>
+        <div class="col-span-12  flex px-3 py-1 items-center">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800">Category</span></div>
+            <div class="col-span-10  text-right w-full"><span
+                    class="ml-4 text-xs font-normal">{{data.data.product_category}}</span>
+            </div>
+        </div>
+        <div class="col-span-12  flex px-3 py-1 items-center">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800">Sub-Category</span></div>
+            <div class="col-span-10  text-right w-full"><span class="ml-4 text-xs font-normal">
+                    {{data.data.product_subcategory}}</span></div>
+        </div>
+
+
+        <div class="col-span-12 flex px-3 py-1 items-center">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800">Brand Name</span></div>
+            <div class="col-span-10  text-right w-full"><span class="ml-4 text-xs font-normal">
+                    {{data.data.brand_name}}</span></div>
+        </div>
+        <div class="col-span-12  flex px-3 py-1 items-center ">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800">Status</span></div>
+            <div class="col-span-10  text-right w-full"><span class="ml-4 text-xs font-normal"
+                    [innerHTML]="data.data.available_stock?'Active':'InActive'"></span></div>
+        </div>
+
+        <div class="col-span-12 flex px-3 py-1 items-center bg-red-200">
+            <div class="col-span-2 "><span class="text-sm font-medium text-gray-800">Image</span></div>
+            <div class="col-span-10  w-full"> 
+                <img class="w-[50px]" [src]=data.data.product_image alt="image">
+            </div>
+        </div>
+        <div class="col-span-12 flex px-3 py-1 items-center">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800">Brand Name</span></div>
+            <div class="col-span-10  text-right w-full"><span class="ml-4 text-xs font-normal">
+                    {{data.data.brand_name}}</span></div>
+        </div>
+        <div class="col-span-12 flex px-3 py-1 items-center">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800">Price</span></div>
+            <div class="col-span-10  text-right w-full"><span class="ml-4 text-xs font-normal">
+                    {{data.data.price.product_price}}</span></div>
+        </div>
+        <div class="col-span-12 flex px-3 py-1 items-center">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800">Height</span></div>
+            <div class="col-span-10  text-right w-full"><span class="ml-4 text-xs font-normal">
+                    {{data.data.dimension.product_dimensions_height}}</span></div>
+        </div>
+        <div class="col-span-12 flex px-3 py-1 items-center">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800">Weight</span></div>
+            <div class="col-span-10  text-right w-full"><span class="ml-4 text-xs font-normal">
+                    {{data.data.product_weight}}</span></div>
+        </div>
+        <div class="col-span-12 flex px-3 py-1 items-center">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800"> Prodcut Description</span></div>
+            <div class="col-span-10  text-right w-full"><span class="ml-4 text-xs font-normal">
+                    {{data.data.product_description}}</span></div>
+        </div>
+        <div class="col-span-12 flex px-3 py-1 items-center">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800">Length</span></div>
+            <div class="col-span-10  text-right w-full"><span class="ml-4 text-xs font-normal">
+                    {{data.data.dimension.product_dimensions_length}}</span></div>
+        </div>
+
+        <div class="col-span-12 flex px-3 py-1 items-center">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800">Min Required</span></div>
+            <div class="col-span-10  text-right w-full"><span class="ml-4 text-xs font-normal">
+                    {{data.data.stock.min_required_stock}}</span></div>
+        </div>
+        <div class="col-span-12 flex px-3 py-1 items-center">
+            <div class="col-span-2"><span class="text-sm font-medium text-gray-800">Manfacture Details</span></div>
+            <div class="col-span-10  text-right w-full"><span class="ml-4 text-xs font-normal">
+                    {{data.data.manufacturer_details}}</span></div>
+        </div>
+        <div class class="grid grid-cols-12 gap-x-4 mt-8 mx-2 grid-flow-row">
+            <button
+                class="col-span-6 bg-[#6F4EF6] hover:bg-[#41b78e] focus:outline-none font-normal text-sm w-full sm:w-auto px-5 py-2 text-cente"
+                (click)="editDetails()">Edit</button>
+            <button
+                class="col-span-6 text-red-700 border bg-red-300  focus:outline-none font-normal  text-sm w-full sm:w-auto px-5 py-2 text-cente"
+                (click)="deleteDetails()">Delete</button>
+        </div>
+    </div>
+
+</div>
+
+<div *ngIf="!showTable" class="overflow-y-scroll sm:overflow-y-auto h-[90vh] sm:h-full mt-5 sm:mt-0">
+    <form #editForm="ngForm" (ngSubmit)="saveDetails()" novalidate>
+        <div
+            class="grid grid-cols-12 py-2 gap-5   ">
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75" for="email">Product Name</label>
+                <input [ngModelOptions]="{standalone: true}"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    type="text" name="project_name" #product_nameField="ngModel" [(ngModel)]="product_name" required />
+                <div *ngIf="product_nameField.invalid && (product_nameField.dirty || product_nameField.touched)">
+                    <span class="text-red-200">*Product Name is required .</span>
+                </div>
+            </div>
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75">Description</label>
+                <textarea [ngModelOptions]="{standalone: true}"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    [(ngModel)]="product_description" required type="text"
+                    #product_descriptionField="ngModel"></textarea>
+                <div
+                    *ngIf="product_descriptionField.invalid && (product_descriptionField.dirty || product_descriptionField.touched)">
+                    <span class="text-red-200">*Product Description is required.</span>
+                </div>
+            </div>
+
+
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75" for="">Categories</label>
+                <select [(ngModel)]="subcategory" [ngModelOptions]="{standalone: true}"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-0 hover-bg-gray-100"
+                    type="text" name="" value="" required>
+                    <optgroup *ngFor="let category of  this._servicesService.categoryData"
+                        [label]="category.product_category">
+                        <option *ngFor="let ele of category.subcategories" [value]="ele._id">
+                            {{ele.product_subcategory}}
+                        </option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75">Manufacture Details</label>
+                <textarea [(ngModel)]="manufacturer_details" required [ngModelOptions]="{standalone: true}"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    type="text" #manufacturer_detailsField="ngModel"></textarea>
+                <div
+                    *ngIf="manufacturer_detailsField.invalid && (manufacturer_detailsField.dirty || manufacturer_detailsField.touched)">
+                    <span class="text-red-200">*Manufacture Details is required.</span>
+                </div>
+            </div>
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75">Brand</label>
+                <input [(ngModel)]="brand" required [ngModelOptions]="{standalone: true}"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    type="text" #brandField="ngModel" />
+                <div *ngIf="brandField.invalid && (brandField.dirty || brandField.touched)">
+                    <span class="text-red-200">*Brand Nameis required.</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col col-span-6 mt-2 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75">Image</label>
+                <input (change)="loadImage($event)" alt="product image"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    type="file" />
+            </div>
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75">Price</label>
+                <input [(ngModel)]="product_price" required [ngModelOptions]="{standalone: true}"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    type="number" #product_priceField="ngModel" />
+                <div *ngIf="product_priceField.invalid && (product_priceField.dirty || product_priceField.touched)">
+                    <span class="text-red-200">*Price is required.</span>
+                </div>
+            </div>
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75">Length</label>
+                <input [(ngModel)]="product_dimensions_length" required [ngModelOptions]="{standalone: true}"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    type="number" #product_dimensions_lengthField="ngModel" />
+                <div
+                    *ngIf="product_dimensions_lengthField.invalid && (product_dimensions_lengthField.dirty || product_dimensions_lengthField.touched)">
+                    <span class="text-red-200">*Length is required.</span>
+                </div>
+            </div>
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75">Weight</label>
+                <input [(ngModel)]="product_weight" required [ngModelOptions]="{standalone: true}"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    type="number" #product_weightField="ngModel" />
+                <div *ngIf="product_weightField.invalid && (product_weightField.dirty || product_weightField.touched)">
+                    <span class="text-red-200">*Weight is required.</span>
+                </div>
+            </div>
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75">Available-Stock</label>
+                <input [(ngModel)]="available_stock" required [ngModelOptions]="{standalone: true}"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    type="text" #available_stockField="ngModel" />
+                <div *ngIf="available_stockField.invalid && (available_stockField.dirty || available_stockField.touched)">
+                    <span class="text-red-200">*Available-Stock is required.</span>
+                </div>
+            </div>
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75">Height</label>
+                <input [(ngModel)]="product_dimensions_height" required [ngModelOptions]="{standalone: true}"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    type="number" #product_dimensions_heightField="ngModel" />
+                <div *ngIf="product_dimensions_heightField.invalid && (product_dimensions_heightField.dirty || product_dimensions_heightField.touched)">
+                    <span class="text-red-200">*Height is required.</span>
+                </div>
+            </div>
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75">Currency</label>
+                <input [(ngModel)]="currency" required [ngModelOptions]="{standalone: true}"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    type="text" #currencyField="ngModel" />
+                <div *ngIf="currencyField.invalid && (currencyField.dirty || currencyField.touched)">
+                    <span class="text-red-200">*Currency is required.</span>
+                </div>
+            </div>
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75">Width</label>
+                <input [(ngModel)]="product_dimensions_width" required [ngModelOptions]="{standalone: true}"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    type="number" #product_dimensions_widthField="ngModel" />
+                <div *ngIf="product_dimensions_widthField.invalid && (product_dimensions_widthField.dirty || product_dimensions_widthField.touched)">
+                    <span class="text-red-200">*Width  is required.</span>
+                </div>
+            </div>
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75">Min_Required-Stock</label>
+                <input [(ngModel)]="min_required_stock" required [ngModelOptions]="{standalone: true}"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    type="number" #min_required_stockField="ngModel" />
+                <div *ngIf="min_required_stockField.invalid && (min_required_stockField.dirty || min_required_stockField.touched)">
+                    <span class="text-red-200">*Min_Required-Stock is required.</span>
+                </div>
+            </div>
+        </div>
+        <div class="py-1 flex gap-x-4 mt-4 mx-2">
+            <button type="submit" [disabled]="editForm.invalid "
+                class="bg-[#6F4EF6] hover:bg-[#41b78e] mt-5 shadow-md shadow-gray-400 text-base text-white font-normal py-[10px] px-8 tracking-wide">Save</button>
+            <button type="button" (click)="cancelEdit()"
+                class="text-red-700 border bg-red-300 mt-5 shadow-md shadow-gray-400 text-base font-normal py-[10px] px-8 tracking-wide">Cancel</button>
+        </div>
+    </form>
+
+</div> -->

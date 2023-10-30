@@ -72,35 +72,35 @@ export class AddproductComponent implements OnInit {
     this.imageGroup = this._fb.group({
       subcategory: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z]+$')],
+        [Validators.required],
       ],
-      category: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
+      // category: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
       product_name: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z]+$')],
+        [Validators.required, Validators.pattern('^[a-zA-Z ]+$')],
       ],
       product_description: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z]+$')],
+        [Validators.required, Validators.pattern('^[a-zA-Z ]+$')],
       ],
       brand_name: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z]+$')],
+        [Validators.required, Validators.pattern('^[a-zA-Z ]+$')],
       ],
       manufacturer_details: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z]+$')],
+        [Validators.required, Validators.pattern('^[a-zA-Z ]+$')],
       ],
-      product_price: ['', [Validators.required]],
+      product_price: [ [Validators.required]],
       currency: ['', [Validators.required]],
-      product_dimensions_width: ['', [Validators.required]],
-      product_dimensions_length: ['', [Validators.required]],
-      product_dimensions_height: ['', [Validators.required]],
-      product_weight: ['', [Validators.required]],
-      available_stock: ['', [Validators.required]],
-      min_required_stock: ['', [Validators.required]],
-      tempArr1: ['', [Validators.required]],
-      temp2: ['', [Validators.required]],
+      product_dimensions_width: [ [Validators.required]],
+      product_dimensions_length: [ [Validators.required]],
+      product_dimensions_height: [[Validators.required]],
+      product_weight: [[Validators.required]],
+      available_stock: [ [Validators.required]],
+      min_required_stock: [ [Validators.required]],
+      // tempArr1: ['', [Validators.required]],
+      // temp2: ['', [Validators.required]],
     });
   }
   fetchData() {
@@ -125,17 +125,21 @@ export class AddproductComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.selectImageFile) {
+
+
+    console.log(this.imageGroup.value);
+    if (this.imageGroup.valid) {
       console.log('THIS IS PRODUCT DATA');
-      alert('submit btn is clicked');
-      const formData = new FormData();
-      Object.keys(this.imageGroup.value).forEach((key) => {
-        formData.append(key, this.imageGroup.value[key]);
-      });
-      formData.append('image', this.selectImageFile);
+      
+      // const formData = new FormData();
+      // Object.keys(this.imageGroup.value).forEach((key) => {
+      //   formData.append(key, this.imageGroup.value[key]);
+        
+      // });
+      // formData.append('image', this.selectImageFile);
       // formData.append('gif', this.selectGifFile);
-      console.log(formData);
-      this._servicesService.uploadImages(formData).subscribe((res) => {
+      console.log(this.imageGroup.value);
+      this._servicesService.uploadImages(this.imageGroup.value).subscribe((res) => {
         alert(res.message);
         this.fetchData();
       });
@@ -144,9 +148,9 @@ export class AddproductComponent implements OnInit {
     }
   }
 
-  loadImage(event: any) {
-    this.selectImageFile = event.target.files[0];
-  }
+  // loadImage(event: any) {
+  //   this.selectImageFile = event.target.files[0];
+  // }
 
   loadGif(event: any) {
     this.selectGifFile = event.target.files[0];
