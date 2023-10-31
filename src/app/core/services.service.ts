@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import * as XLSX from 'xlsx';
 @Injectable({
   providedIn: 'root',
 })
@@ -77,6 +77,19 @@ export class ServicesService {
   
   getDashboard():Observable<any>{
     return this._http.get<any>(`${this._url}/dashboard`);
+  }
+
+
+  jsonToExcel(data: any[], sheetName: string): Blob {
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(data);
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, sheetName);
+    const excelBuffer: any = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+    return new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  }
+  jsonToCsv(data: any[]) {
+    // const options = { fields: Object.keys(data[0]) };
+    // return json2csv.parse(data, options);
   }
 
 

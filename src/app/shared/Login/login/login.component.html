@@ -1,8 +1,9 @@
 <div class=" h-screen w-screen flex justify-center items-center">
     <div class="border p-10 w-[420px]" *ngIf="!showtable">
-        <form class="w-full" (ngSubmit)="onSubmit() ">
+        <form class="w-full">
             <div class="relative z-0 w-full mb-6 group">
-                <input type="text" [(ngModel)]="userlogin" [ngModelOptions]="{standalone: true}" (input)="loginValidation()"
+                <input type="text" [(ngModel)]="userlogin" [ngModelOptions]="{standalone: true}"
+                    (input)="loginValidation()"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" " required />
                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -12,37 +13,37 @@
                 </div>
                 <label
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Username</label>
-                    <div *ngIf="log">
-                        <p class="text-red-200 mt-1 mb-">*First Name Should be Of atleast 4 Characters</p>
-                    </div>
+                <div *ngIf="log">
+                    <p class="text-red-200 mt-1 mb-">*First Name Should be Of atleast 4 Characters</p>
+                </div>
             </div>
-           
+
 
             <div class="relative z-0 w-full mb-6 group">
-                <input [type]="hidePassword? 'password':'text'" [(ngModel)]="passlogin" (input)="passvalidation()"
-                    [ngModelOptions]="{standalone: true}"
+                <input type="{{ showPassword ? 'text' : 'password' }}" placeholder="Password" [(ngModel)]="passlogin"
+                    (input)="passvalidation()" [ngModelOptions]="{standalone: true}"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" " required />
-                    <div class="absolute inset-y-0 right-0 flex justify-center items-center pr-0.5  bg-gray-300">
-                        <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" class="opacity-50">
-                            <span class="material-symbols-outlined" *ngIf="!showlogo">
-                                visibility_off
-                                </span>
-                                <span class="material-symbols-outlined"*ngIf="showlogo">
-                                    visibility
-                                    </span>
-                        </button>
-                    </div>
+                <div class="absolute inset-y-0 right-0 flex justify-center items-center pr-0.5  bg-gray-300">
+                    <button mat-icon-button matSuffix (click)="togglePasswordVisibility()" class="opacity-50">
+                        <span class="material-symbols-outlined" *ngIf="!showlogo">
+                            visibility_off
+                        </span>
+                        <span class="material-symbols-outlined" *ngIf="showlogo">
+                            visibility
+                        </span>
+                    </button>
+                </div>
                 <label
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
-                    <div *ngIf ="pas">
-                        <p class="text-red-200 mt-1 mb-5">*Password Should be must 8 Character long </p>
-        
-                    </div>
-            </div>
-           
+                <div *ngIf="pas">
+                    <p class="text-red-200 mt-1 mb-5">*Password Should be must 8 Character long </p>
 
-            <button [disabled]="DisableButton"
+                </div>
+            </div>
+
+
+            <button [disabled]="DisableButton" (click)="onSubmit()"
                 class="w-full text-white bg-blue-700 hover:bg-green-400  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Login
             </button>
@@ -149,11 +150,11 @@
                 </div>
                 <label
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email</label>
-                    <span *ngIf="em==true">
-                        <p class="text-red-200 mt-1"> Please enter Valid format</p>
-                    </span>
+                <span *ngIf="em==true">
+                    <p class="text-red-200 mt-1"> Please enter Valid format</p>
+                </span>
             </div>
-           
+
 
             <div class="relative z-0 w-full mb-6 group">
                 <input type="number" [(ngModel)]="contact_number" [ngModelOptions]="{standalone: true}"
@@ -168,11 +169,11 @@
                 <label
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Contact
                     Number</label>
-                    <div *ngIf="numLen==true">
-                        <p class="text-red-200 mt-1 ">Please enter valid contact number </p>
-                    </div>
+                <div *ngIf="numLen==true">
+                    <p class="text-red-200 mt-1 ">Please enter valid contact number </p>
+                </div>
             </div>
-           
+
             <div class="relative z-0 w-full mb-6 group">
                 <select required [(ngModel)]="role" [ngModelOptions]="{standalone: true}"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">

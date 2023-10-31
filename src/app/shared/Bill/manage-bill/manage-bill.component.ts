@@ -185,4 +185,27 @@ export class ManageBillComponent {
       this.updateEmployees();
     }
   }
+  selectedFormat = 'csv';
+  downloadLink: string | undefined;
+  downloadFileName: string | undefined;
+
+  convertData() {
+    // Assuming you have your JSON data in this variable
+    const jsonData = this._servicesService.billData;
+
+    if (this.selectedFormat === 'csv') {
+      // const csvData = this._servicesService.jsonToCsv(jsonData);
+      // this.downloadLink = this.createDownloadLink(csvData, 'data.csv');
+    } else if (this.selectedFormat === 'excel') {
+      const excelBlob = this._servicesService.jsonToExcel(jsonData, 'Sheet1');
+      this.downloadLink = this.createDownloadLink(excelBlob, 'data.xlsx');
+    }
+  }
+
+  createDownloadLink(data: Blob | string, fileName: string) {
+    const blob = typeof data === 'string' ? new Blob([data], { type: 'text/csv' }) : data;
+    const url = window.URL.createObjectURL(blob);
+    this.downloadFileName = fileName;
+    return url;
+  }
 }
