@@ -98,9 +98,10 @@ export class AdminMainComponent implements OnInit{
     return components.some((comp) => this.currentUrl.includes(comp));
   }
   logOut() {
-    localStorage.clear();
+    sessionStorage.clear();
     alert('Logged Out Sucessfully');
     this.router.navigate(['/login']);
+
   }
  
 }

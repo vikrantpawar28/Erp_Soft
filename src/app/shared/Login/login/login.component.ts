@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   hidePasswordc1 = true;
   hidePasswordc2 = true;
   showtable: boolean = false;
+  showlogo:boolean=false;
   constructor(
     private _dialog: MatDialog,
     private _fb: FormBuilder,
@@ -58,19 +59,21 @@ export class LoginComponent implements OnInit {
   first_name: any;
   last_name: any;
   username: any;
-  password: any;
+  password: any= { type: 'password' };
   email: any;
   contact_number: any;
   role: any;
   togglePasswordVisibility() {
-    // this.hidePassword = !this.hidePassword;
-    if(this.password.type==="password"){
-      this.password.type="text";
+    if (this.password.type==="password"&&this.showlogo==true) {
+      this.password.type = "text";
+      this.showlogo=false;
+    } else {
+      this.password.type = "password";
+      this.showlogo=true; // Set it back to "password" to hide the password.
     }
-    else{
-      this.password.type
-    }
+   
   }
+  
   togglePasswordVisibility1() {
     this.hidePasswordc1 = !this.hidePasswordc1;
   }
