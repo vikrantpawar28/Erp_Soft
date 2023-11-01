@@ -92,9 +92,8 @@ export class LoginComponent implements OnInit {
       username: this.userlogin,
       password: this.passlogin,
     };
-    console.log(obj);
     this.DisableButton = true;
-    // console.log(data);
+    
 
     this.showtable = false;
 
@@ -139,8 +138,6 @@ export class LoginComponent implements OnInit {
       contact_number: this.contact_number,
       role: this.role,
     };
-    console.log(obj);
-
     let data = obj;
     this._servicesService.register(data).subscribe((res) => {
       alert(res.message);

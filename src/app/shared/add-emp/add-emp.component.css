@@ -14,3 +14,10 @@
     cursor: pointer;
     transition: background-color 0.2s;
 }
+.valid-input {
+    border: 1px solid green;
+  }
+  
+  .invalid-input {
+    border: 1px solid red;
+  }

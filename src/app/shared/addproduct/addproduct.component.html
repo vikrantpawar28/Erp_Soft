@@ -211,22 +211,29 @@
 
             <!-- <div class="py-2 gap-5 mt-4"> -->
             <form [formGroup]="imageGroup" (ngSubmit)="onSubmit()" class="col-span-12 grid grid-cols-12 gap-4 sm:mt-0 ">
-                <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4 ">
-                    <label class="text-sm font-semibold opacity-75" for="">Categories</label>
-                    <select formControlName="subcategory"
-                        class=" border bg-[#FCFCFC] text-sm font-normal  py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100 w-full"
-                        [ngClass]="{'validation': imageGroup.get('subcategory')?.touched &&   imageGroup.get('subcategory')?.hasError('required')}"
-                        type="text" name="" value="" required>
-                        <optgroup *ngFor="let category of categorydata" [label]="category.product_category">
-                            <option *ngFor="let ele of category.subcategories" [value]="ele._id">
-                                {{ele.product_subcategory}}
-                            </option>
-                        </optgroup>
-                    </select>
+                <div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-6 ">
+                    
+                        <label class="text-sm font-semibold opacity-75" for="">Categories</label>
+                        <select formControlName="subcategory"
+                            class=" border bg-[#FCFCFC] text-sm font-normal  py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100 w-full"
+                            [ngClass]="{'validation': imageGroup.get('subcategory')?.touched &&   imageGroup.get('subcategory')?.hasError('required')}"
+                            type="text" name="" value="" required>
+                            <optgroup *ngFor="let category of categorydata" [label]="category.product_category">
+                                <option *ngFor="let ele of category.subcategories" [value]="ele._id">
+                                    {{ele.product_subcategory}}
+                                </option>
+                            </optgroup>
+                        </select>
+                    
                     <div
                         *ngIf="imageGroup.get('subcategory')?.touched && imageGroup.get('subcategory')?.hasError('required')">
                         <span class="text-red-200">*Sub-Category is required</span>
                     </div>
+                   
+                </div>
+                <div class="col-span-12 md:col-span-6 lg:col-span-6 ">
+                    <button (click)="onShowCategoryForm()"
+                        class="bg-[#6F4EF6] hover:bg-[#41b78e] md:mt-8 text-base  text-white font-semibold py-[6px] px-8 tracking-wide ">Add Category</button>
                 </div>
 
                 <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
@@ -375,17 +382,14 @@
                         <span class="text-red-200">*Product Description is required</span>
                     </div>
                 </div>
-                <div class="py-col-span-12">
-                    <button  [disabled]="imageGroup.invalid"
-                        class="bg-[#6F4EF6] hover:bg-[#41b78e] mt-5 text-base  text-white font-semibold py-[6px] px-8 tracking-wide">Submit</button>
+                <div class="col-span-12">
+                    <button [disabled]="imageGroup.invalid"
+                      
+                        class="bg-[#6F4EF6] hover:bg-[#41b78e]  text-base  text-white font-semibold py-[6px] px-8 tracking-wide">Submit</button>
                 </div>
             </form>
         </div>
-        <div class="py-col-span-12">
-            <button (click)="onShowCategoryForm()"
-                class="bg-[#6F4EF6] hover:bg-[#41b78e] mt-5 text-base  text-white font-semibold py-[6px] px-8 tracking-wide">Add
-                Category</button>
-        </div>
+
     </ng-template>
 </div>
 

@@ -17,62 +17,98 @@
                 <label class="text-sm font-semibold opacity-75" for="">First Name</label>
                 <input
                     class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                    formControlName="employee_firstname"
-                    [ngClass]="{'validation': emp_Form.get('employee_firstname')?.touched &&   emp_Form.get('employee_firstname')?.hasError('required')}"
-                    type="text" name="" value="" required />
-                    <div *ngIf="emp_Form.get('employee_firstname')?.touched && emp_Form.get('employee_firstname')?.hasError('required')">
-                        <span class="text-red-200">* First Name is required</span>
-                      </div>
+                    formControlName="employee_firstname" [ngClass]="{ 'valid-input': emp_Form.get('employee_firstname')?.valid,
+                    'invalid-input': emp_Form.get('employee_firstname')?.invalid}" type="text" required />
+                <span
+                    *ngIf="emp_Form.get('employee_firstname')?.touched && emp_Form.get('employee_firstname')?.hasError('required')"
+                    class="text-red-300 font-extralight text-xs">
+                    *First Name is required
+                </span>
+                <span *ngIf="emp_Form.get('employee_firstname')?.hasError('minlength')"
+                    class="text-red-300 font-extralight text-xs">
+                    *Minimum 4 char are required
+                </span>
+                <span *ngIf="emp_Form.get('employee_firstname')?.hasError('pattern')"
+                    class="text-red-300 font-extralight text-xs">
+                    *It should only contain alphabetic char.
+                </span>
+
             </div>
 
             <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
                 <label class="text-sm font-semibold opacity-75" for="">Last Name</label>
                 <input
-                  class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                  formControlName="employee_lastname"
-                  [ngClass]="{'validation': emp_Form.get('employee_lastname')?.touched && emp_Form.get('employee_lastname')?.hasError('required')}"
-                  type="text"
-                  required
-                />
-                <div *ngIf="emp_Form.get('employee_lastname')?.touched && emp_Form.get('employee_lastname')?.hasError('required')">
-                  <span class="text-red-200">*Last Name is required</span>
-                </div>
-              </div>
-              
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    formControlName="employee_lastname" [ngClass]="{ 'valid-input': emp_Form.get('employee_lastname')?.valid,
+                  'invalid-input': emp_Form.get('employee_lastname')?.invalid}" type="text" required />
+                <span
+                    *ngIf="emp_Form.get('employee_lastname')?.touched && emp_Form.get('employee_lastname')?.hasError('required')"
+                    class="text-red-300 font-extralight text-xs">
+                    *Last Name is required
+                </span>
+                <span *ngIf="emp_Form.get('employee_lastname')?.hasError('minlength')"
+                    class="text-red-300 font-extralight text-xs">
+                    *Minimum 4 char are required
+                </span>
+                <span *ngIf="emp_Form.get('employee_lastname')?.hasError('pattern')"
+                    class="text-red-300 font-extralight text-xs">
+                    *It should only contain alphabetic char.
+                </span>
+            </div>
+
 
             <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
                 <label class="text-sm font-semibold opacity-75" for="">Contact Number</label>
                 <input formControlName="contact_number"
-                    [ngClass]="{'validation': emp_Form.get('contact_number')?.touched &&   emp_Form.get('contact_number')?.hasError('required')}"
+                [ngClass]="{ 'valid-input': emp_Form.get('contact_number')?.valid,
+                'invalid-input': emp_Form.get('contact_number')?.invalid}"
                     class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
                     type="number" name="" value="" required />
-                    <div *ngIf="emp_Form.get('contact_number')?.touched && emp_Form.get('contact_number')?.hasError('required')">
-                        <span class="text-red-200">*Contact Number is required</span>
-                      </div>
+                <span
+                    *ngIf="emp_Form.get('contact_number')?.touched && emp_Form.get('contact_number')?.hasError('required')">
+                    <span  class="text-red-300 font-extralight text-xs">*Contact Number is required</span>
+                </span>
+                
+                <span *ngIf="emp_Form.get('contact_number')?.hasError('pattern')"
+                    class="text-red-300 font-extralight text-xs">
+                    *It should  contain 10 digit.
+                </span>
             </div>
 
             <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
                 <label class="text-sm font-semibold opacity-75" for="">Email</label>
                 <input formControlName="email_id"
-                    [ngClass]="{'validation': emp_Form.get('email_id')?.touched &&   emp_Form.get('email_id')?.hasError('required')}"
+                [ngClass]="{ 'valid-input': emp_Form.get('email_id')?.valid,
+                'invalid-input': emp_Form.get('email_id')?.invalid}"
                     class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
                     type="email" name="" value="" required />
-                    <div *ngIf="emp_Form.get('email_id')?.touched && emp_Form.get('email_id')?.hasError('required')">
-                        <span class="text-red-200">*Email-Id is required</span>
-                      </div>
+                <span *ngIf="emp_Form.get('email_id')?.touched && emp_Form.get('email_id')?.hasError('required')" class="text-red-300 font-extralight text-xs">
+                    *Email-Id is required
+                </span>
+                <span *ngIf="emp_Form.get('email_id')?.hasError('email')"
+                    class="text-red-300 font-extralight text-xs">
+                    *Enter in valid format.
+                </span>
             </div>
             <div class="flex flex-col col-span-12 mt-2 sm:col-span-12 md:col-span-6 lg:col-span-4">
                 <label class="text-sm font-semibold opacity-75" for="">Status</label>
                 <select formControlName="employment_status"
+                [ngClass]="{ 'valid-input': emp_Form.get('employment_status')?.valid,
+                'invalid-input': emp_Form.get('employment_status')?.invalid}"
                     class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-0 hover:bg-gray-100">
                     <option value="" disabled selected>Select an option</option>
                     <option value="true">True</option>
                     <option value="false">False</option>
                 </select>
+                <span *ngIf="emp_Form.get('employment_status')?.touched && emp_Form.get('employment_status')?.hasError('required')" class="text-red-300 font-extralight text-xs">
+                    *Status is required
+                </span>
             </div>
             <div class="flex flex-col col-span-12 mt-2 sm:col-span-12 md:col-span-6 lg:col-span-4">
                 <label class="text-sm font-semibold opacity-75" for="">Department</label>
-                <select formControlName="employee_department" class="bg-[#FCFCFC] hover:bg-gray-100 border"
+                <select formControlName="employee_department"
+                [ngClass]="{ 'valid-input': emp_Form.get('employee_department')?.valid,
+                'invalid-input': emp_Form.get('employee_department')?.invalid}" class="bg-[#FCFCFC] hover:bg-gray-100 border"
                     class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-0 hover:bg-gray-100">
                     <option value="" disabled selected>Select an option</option>
                     <option class="text-center" value="IT">IT</option>
@@ -81,16 +117,21 @@
                     <option class=" text-center" value="Sales">Sales</option>
                     <option class=" text-center" value="HR">HR</option>
                 </select>
+                <span *ngIf="emp_Form.get('employee_department')?.touched && emp_Form.get('employee_department')?.hasError('required')" class="text-red-300 font-extralight text-xs">
+                    *Department is required
+                </span>
             </div>
             <div class="flex flex-col col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
                 <label class="text-sm font-semibold opacity-75" for="">Hire-Date</label>
                 <input formControlName="hire_date"
-                    [ngClass]="{'validation': emp_Form.get('hire_date')?.touched &&   emp_Form.get('hire_date')?.hasError('required')}"
+                [ngClass]="{ 'valid-input': emp_Form.get('hire_date')?.valid,
+                'invalid-input': emp_Form.get('hire_date')?.invalid}"
                     class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
                     type="date" name="" value="" required />
-                    <div *ngIf="emp_Form.get('hire_date')?.touched && emp_Form.get('hire_date')?.hasError('required')">
-                        <span class="text-red-200">*Hire Date is required</span>
-                      </div>
+                <span *ngIf="emp_Form.get('hire_date')?.touched && emp_Form.get('hire_date')?.hasError('required')" class="text-red-300 font-extralight text-xs">
+                    *Hire Date is required
+                </span>
+                
             </div>
 
         </div>

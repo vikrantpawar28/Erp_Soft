@@ -19,6 +19,7 @@ import { ServicesService } from 'src/app/core/services.service';
 export class AddEmpComponent implements OnInit {
   emp_Form!: FormGroup;
   usersData: [] = [];
+  submitted = false;
 
   constructor( private _dialog: MatDialog,
     private _servicesService: ServicesService,
@@ -28,16 +29,21 @@ export class AddEmpComponent implements OnInit {
   ngOnInit() {
     this.fetchData();
     this.emp_Form = this._fb.group({
-      employee_firstname: ['', [Validators.required]],
-      employee_lastname: ['', Validators.required],
-      employee_department: ['', [Validators.required]],
-      contact_number: ['', [Validators.required]],
+      employee_firstname: ['', [Validators.required,Validators.pattern(/^[A-Za-z]+$/),Validators.minLength(4)]],
+      employee_lastname: ['', [Validators.required,Validators.pattern(/^[A-Za-z]+$/),Validators.minLength(4)]],
+      employee_department: ['', [Validators.required,Validators.pattern(/^[A-Za-z]+$/),Validators.minLength(2)]],
+      contact_number: ['', [Validators.required,Validators.pattern(/^\d{10}$/)]],
       email_id:['',[Validators.required,Validators.email]],
-      employment_status: [false, [Validators.required]],
+      employment_status: [, [Validators.required]],
       hire_date: ['', [Validators.required]],
     });
   }
 
+  // isDataValid(field: string): boolean {
+  //   // const validFormat = /^[A-Za-z]+$/;
+  //   // return validFormat.test(this.emp_Form.value.employee_firstname);
+  //   return 
+  // }
   fetchData() {
     this._servicesService.getEmployees().subscribe((data) => {
      
@@ -48,7 +54,7 @@ export class AddEmpComponent implements OnInit {
   }
   onSubmit() { 
     // console.log("data from service on submit",this._servicesService.empData);
-
+this.submitted=true;
     if (this.emp_Form.valid) {
       console.log(this.emp_Form.value);
       this._servicesService
