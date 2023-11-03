@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
-
 import {
   FormControl,
   FormGroup,
@@ -21,19 +20,45 @@ export class AddEmpComponent implements OnInit {
   usersData: [] = [];
   submitted = false;
 
-  constructor( private _dialog: MatDialog,
+  constructor(
+    private _dialog: MatDialog,
     private _servicesService: ServicesService,
-    private _fb: FormBuilder,private router:Router
+    private _fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.fetchData();
     this.emp_Form = this._fb.group({
-      employee_firstname: ['', [Validators.required,Validators.pattern(/^[A-Za-z]+$/),Validators.minLength(4)]],
-      employee_lastname: ['', [Validators.required,Validators.pattern(/^[A-Za-z]+$/),Validators.minLength(4)]],
-      employee_department: ['', [Validators.required,Validators.pattern(/^[A-Za-z]+$/),Validators.minLength(2)]],
-      contact_number: ['', [Validators.required,Validators.pattern(/^\d{10}$/)]],
-      email_id:['',[Validators.required,Validators.email]],
+      employee_firstname: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^[A-Za-z]+$/),
+          Validators.minLength(4),
+        ],
+      ],
+      employee_lastname: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^[A-Za-z]+$/),
+          Validators.minLength(4),
+        ],
+      ],
+      employee_department: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^[A-Za-z]+$/),
+          Validators.minLength(2),
+        ],
+      ],
+      contact_number: [
+        '',
+        [Validators.required, Validators.pattern(/^\d{10}$/)],
+      ],
+      email_id: ['', [Validators.required, Validators.email]],
       employment_status: [, [Validators.required]],
       hire_date: ['', [Validators.required]],
     });
@@ -42,33 +67,34 @@ export class AddEmpComponent implements OnInit {
   // isDataValid(field: string): boolean {
   //   // const validFormat = /^[A-Za-z]+$/;
   //   // return validFormat.test(this.emp_Form.value.employee_firstname);
-  //   return 
+  //   return
   // }
   fetchData() {
     this._servicesService.getEmployees().subscribe((data) => {
-     
-      this._servicesService.empData=data;
+      this._servicesService.empData = data;
       console.log(data);
     });
-   
   }
-  onSubmit() { 
+  loading = false;
+  onSubmit() {
     // console.log("data from service on submit",this._servicesService.empData);
-this.submitted=true;
+    this.submitted = true;
+    this.loading = true;
     if (this.emp_Form.valid) {
       console.log(this.emp_Form.value);
       this._servicesService
         .postEmployees(this.emp_Form.value)
         .subscribe((Response) => {
-          alert('Data Submitted');
+          // alert('Data Submitted');
+          console.log("ERR",Response.error)
           this.fetchData();
-          console.log(Response);
-          this._dialog.closeAll();
-         
+          this.loading = false;
+          // console.log("data submitted",Response);
+          // this._dialog.closeAll();
         });
       (error: any) => {
         console.error('Error adding data:', error);
-        alert(error)
+        alert(error);
       };
     }
   }
@@ -83,7 +109,4 @@ this.submitted=true;
     this.selectedValue = value;
     this.isDropdownOpen = false;
   }
-
 }
-
- 

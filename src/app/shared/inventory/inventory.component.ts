@@ -13,6 +13,7 @@ export class InventoryComponent {
 
   employees:any[]=this._servicesService.prodData;
   modalService: any;
+  loading = true;
   @Output() fetchDataEvent = new EventEmitter<void>();
   constructor(
     private _dialog: MatDialog,
@@ -30,6 +31,7 @@ export class InventoryComponent {
   fetchData() {
     this._servicesService.getProducts().subscribe((data) => {
       this._servicesService.prodData=data
+      this.loading=false;
       console.log("this is product data",this._servicesService.prodData);
       // this.isLoading = false;
     });

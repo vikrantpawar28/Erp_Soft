@@ -30,58 +30,64 @@ export class AddprojectComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    
-    
-
     this.projectGroup = this._fb.group({
       project_name: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z ]+$')],
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z\s]+$/),
+          Validators.maxLength(20),
+        ],
       ],
       project_details: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z ]+$')],
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z0-9 ]+$/),
+          Validators.minLength(20),
+        ],
       ],
-      project_start_date: [
-        '',
-        [Validators.required],
-      ],
-      project_due_date: [
-        '',
-        [Validators.required],
-      ],
+      project_start_date: ['', [Validators.required]],
+      project_due_date: ['', [Validators.required]],
       project_workers: [
         ,
-        [Validators.required, Validators.pattern('^[0-9]+$')],
+        [Validators.required, Validators.pattern(/^[0-9]+$/)],
       ],
       project_status: ['', [Validators.required]],
     });
-  }    
+  }
   fetchData() {
     this._servicesService.getProjects().subscribe((data) => {
-      this._servicesService.projData=data;
-      this._servicesService.projectData=data
-      console.log("this is product data",this._servicesService.projectData);
+      this._servicesService.projData = data;
+      this._servicesService.projectData = data;
+      console.log('this is product data', this._servicesService.projectData);
     });
   }
+  isSubmitting: boolean = false;
+  loading = false;
 
   onSubmit() {
-    console.log("proj", this.projectGroup.value)
-  if(this.projectGroup.valid){
+    this.loading = true;
+    console.log('proj', this.projectGroup.value);
+    if (this.projectGroup.valid && !this.isSubmitting) {
+      this.isSubmitting = true;
+
       console.log(this.projectGroup.value);
       this._servicesService
         .postProjects(this.projectGroup.value)
         .subscribe((res) => {
           alert(res.message);
+          this.loading = false;
           this.fetchData();
           console.log(res);
           this.dialogRef.close();
-          
         });
       (error: any) => {
         console.error('Error adding data:', error);
         alert(error);
+        this.isSubmitting = false;
+        this.loading = false;
       };
-  }
+    }
   }
 }

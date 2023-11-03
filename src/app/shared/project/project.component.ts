@@ -13,6 +13,7 @@ import { ProjectPopUpComponent } from '../project-pop-up/project-pop-up.componen
 export class ProjectComponent implements OnInit{
   employees:any[]=this._servicesService.projectData;
   modalService: any;
+  loading = true;
    
   @Output() fetchDataEvent = new EventEmitter<void>();
   constructor(
@@ -22,6 +23,10 @@ export class ProjectComponent implements OnInit{
 
   ngOnInit(): void {
     this.fetchData();
+    // this.loading = true;
+    // setTimeout(() => {
+    //     this.loading = false; // Set loading to false after a delay or when the response is received
+    // }, 1000);
 
 
   }
@@ -33,6 +38,7 @@ export class ProjectComponent implements OnInit{
     this._servicesService.getProjects().subscribe((data) => {
       this._servicesService.projData=data;
       this._servicesService.projectData=data
+      this.loading = false;
       console.log("this is product data",this._servicesService.projectData);
       
     });

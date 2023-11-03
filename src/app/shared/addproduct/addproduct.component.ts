@@ -72,33 +72,64 @@ export class AddproductComponent implements OnInit {
     this.imageGroup = this._fb.group({
       subcategory: [
         '',
-        [Validators.required],
+        [Validators.required, Validators.pattern(/^[A-Za-z0-9]{24}$/)],
       ],
       // category: ['', [Validators.required, Validators.pattern('^[a-zA-Z]+$')]],
       product_name: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z ]+$')],
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z\s]+$/),
+          Validators.minLength(4),
+        ],
       ],
       product_description: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z ]+$')],
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z0-9\s]+$/),
+          Validators.minLength(20),
+        ],
       ],
       brand_name: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z ]+$')],
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z\s]+$/),
+          Validators.minLength(3),
+        ],
       ],
       manufacturer_details: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z ]+$')],
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z0-9\s]+$/),
+          Validators.minLength(20),
+        ],
       ],
-      product_price: [ [Validators.required]],
-      currency: ['', [Validators.required]],
-      product_dimensions_width: [ [Validators.required]],
-      product_dimensions_length: [ [Validators.required]],
-      product_dimensions_height: [[Validators.required]],
-      product_weight: [[Validators.required]],
-      available_stock: [ [Validators.required]],
-      min_required_stock: [ [Validators.required]],
+      product_price: ['', [Validators.required, Validators.pattern(/^[\d]$/)]],
+      currency: ['', [Validators.required, Validators.pattern(/^[A-Z]{4}$/)]],
+      product_dimensions_width: [
+        '',
+        [Validators.required, Validators.pattern(/^[\d]$/)],
+      ],
+      product_dimensions_length: [
+        '',
+        [Validators.required, Validators.pattern(/^[\d]$/)],
+      ],
+      product_dimensions_height: [
+        '',
+        [Validators.required, Validators.pattern(/^[\d]$/)],
+      ],
+      product_weight: ['', [Validators.required, Validators.pattern(/^[\d]$/)]],
+      available_stock: [
+        '',
+        [Validators.required, Validators.pattern(/^[\d]$/)],
+      ],
+      min_required_stock: [
+        '',
+        [Validators.required, Validators.pattern(/^[\d]$/)],
+      ],
       // tempArr1: ['', [Validators.required]],
       // temp2: ['', [Validators.required]],
     });
@@ -123,26 +154,28 @@ export class AddproductComponent implements OnInit {
   abc(subcategory: any) {
     console.log(subcategory);
   }
-
+  loading = false;
   onSubmit() {
-
-
+    this.loading = true;
     console.log(this.imageGroup.value);
     if (this.imageGroup.valid) {
       console.log('THIS IS PRODUCT DATA');
-      
+
       // const formData = new FormData();
       // Object.keys(this.imageGroup.value).forEach((key) => {
       //   formData.append(key, this.imageGroup.value[key]);
-        
+
       // });
       // formData.append('image', this.selectImageFile);
       // formData.append('gif', this.selectGifFile);
       console.log(this.imageGroup.value);
-      this._servicesService.uploadImages(this.imageGroup.value).subscribe((res) => {
-        alert(res.message);
-        this.fetchData();
-      });
+      this._servicesService
+        .uploadImages(this.imageGroup.value)
+        .subscribe((res) => {
+          alert(res.message);
+          this.loading = false;
+          this.fetchData();
+        });
       this.dialogRef.close();
       //
     }

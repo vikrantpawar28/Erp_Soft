@@ -88,6 +88,7 @@
                     </tr>
                 </thead>
                 <tbody class="text-sm text-gray-500 dark:text-gray-400">
+                    <ng-template #dataRows>
                     <tr class="border-b border-gray-200 dark:border-gray-700"
                         *ngFor="let employee of (this.employees.length > 0 ? this.employees : this._servicesService.projData) let i = index">
                         <td scope="row"
@@ -110,6 +111,14 @@
                                 (click)="openDetails(employee,i)">View</button>
                         </td>
                     </tr>
+                    </ng-template>
+                        <tr *ngIf="loading; else dataRows">
+                            <td colspan="5" class="px-6 py-4 text-center">
+                                <!-- Add your spinner element here -->
+                                <div class="spinner"></div>
+                            </td>
+                        </tr>
+                  
                 </tbody>
             </table>
         </div>

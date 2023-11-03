@@ -121,80 +121,238 @@
 
 <div class="gird grid-cols-12">
     <div class="p-6 col-span-12 lg:col-span-6 lg:block bg-[#eef0f8] ">
-        <div class="flex justify-between bg-white p-4">
-            <span class="text-base tracking-tight font-semibold text-black">Manage Bill</span>
-        </div>
-        <div class="grid grid-cols-12">
-            <div class="py-4 col-span-12 grid grid-cols-12 gap-2">
-                <div class="col-span-12 sm:col-span-4 ">
-                    <input class="py-2 outline-none border px-3 rounded-md w-full " type="text"
-                        placeholder="Search Bill" title="Search employee" [(ngModel)]="searchText"
-                        (input)="searchProjects()">
-                </div>
-                <div class="col-span-6 sm:col-span-2 flex">
-                    <label>Choose a format:</label>
-                    <select [(ngModel)]="selectedFormat">
-                        <option value="csv">CSV</option>
-                        <option value="excel">Excel</option>
-                    </select>
-                    <div class="col-span-6 sm:col-span-2 flex">
-                        <button class="text-sm font-sans border py-2 px-4 bg-gray-50 font-semibold "
-                            (click)="convertData()">Convert to Excel
-                        </button>
-                        <a [href]="downloadLink" [download]="downloadFileName" *ngIf="downloadLink">Download</a>
+        <div>
+            <div class="flex justify-between bg-white p-4">
+                <span class="text-base tracking-tight font-semibold text-black">Manage Bill</span>
+            </div>
+            <div class="grid grid-cols-12">
+                <div class="py-4 col-span-12 grid grid-cols-12 gap-2">
+                    <div class="col-span-12 sm:col-span-4 ">
+                        <input class="py-2 outline-none border px-3 rounded-md w-full " type="text"
+                            placeholder="Search Bill" title="Search employee" [(ngModel)]="searchText"
+                            (input)="searchProjects()">
                     </div>
+                    <div class="col-span-6 sm:col-span-2 flex">
+                        <label>Choose a format:</label>
+                        <select [(ngModel)]="selectedFormat">
+                            <option value="csv">CSV</option>
+                            <option value="excel">Excel</option>
+                        </select>
+                        <div class="col-span-6 sm:col-span-2 flex">
+                            <button class="text-sm font-sans border py-2 px-4 bg-gray-50 font-semibold "
+                                (click)="convertData()">Convert to Excel
+                            </button>
+                            <a [href]="downloadLink" [download]="downloadFileName" *ngIf="downloadLink">Download</a>
+                        </div>
 
-                </div>
-                <div class=" col-span-6 sm:col-span-6 flex justify-end">
-                    <button class="text-sm font-sans border py-2 px-4 bg-gray-50 font-semibold " (click)="addbill()">Add
-                        Bill</button>
+                    </div>
+                    <div class=" col-span-6 sm:col-span-6 flex justify-end">
+                        <button class="text-sm font-sans border py-2 px-4 bg-gray-50 font-semibold "
+                            (click)="addbill()">Add
+                            Bill</button>
+                    </div>
                 </div>
             </div>
         </div>
+        <div>
+            <div class="bg-white mt-5 w-full border min-h-[100px] overflow-x-scroll sm:overflow-x-auto"
+                *ngIf="!showView">
+                <table class="w-full text-sm text-left text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase dark:text-gray-400 sticky top-[-1px] bg-white  ">
+                        <tr class="border-b border-gray-200 dark:border-gray-700">
+                            <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800 sticky left-[-1px]">
+                                ID
+                            </th>
+                            <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Customer Name</th>
+                            <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Bill Date</th>
+                            <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Order Number</th>
+                            <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm text-gray-500 dark:text-gray-400">
+                        <ng-template #dataRows>
+                            <tr class="border-b border-gray-200 dark:border-gray-700"
+                                *ngFor="let employee of( this._servicesService.billData)let i = index">
+                                <td scope="row"
+                                    class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 sticky left-[-1px]">
+                                    {{i+1}}
+                                </td>
+                                <td class="px-6 py-4"> {{employee.customerName}}
+                                </td>
+                                <td scope="row"
+                                    class="px-6 py-4 font-medium whitespace-nowrap dark:text-white dark:bg-gray-800 ">
+                                    {{employee.billDate|date:'dd/MM/YYYY'}}
+                                </td>
+                                <td scope="row"
+                                    class="px-6 py-4 font-medium whitespace-nowrap  dark:text-white dark:bg-gray-800 ">
+                                    {{employee._id}}
+                                </td>
+                                <td scope="row"
+                                    class="px-6 py-4 font-medium whitespace-nowrap  dark:text-white dark:bg-gray-800 ">
+                                    <select class="py-2 px-3 w-[120px] border rounded-md focus:outline-none ml-2"
+                                        (change)="onSelectChange1($event,employee)" [(ngModel)]="selectedValue">
+                                        <!-- (change)="viewbill_popup(selectedValue,employee)" -->
+                                        <option value="all" selected>Action </option>
+                                        <option value="viewBill">View Bill </option>
+                                        <option value="editBill">Edit Bill</option>
+                                        <option value="deleteBill">Delete Bill</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <tr *ngIf="loading; else dataRows">
+                            <td colspan="5" class="px-6 py-4 text-center">
 
-        <div class="bg-white mt-5 w-full border min-h-[100px] overflow-x-scroll sm:overflow-x-auto">
-            <table class="w-full text-sm text-left text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase dark:text-gray-400 sticky top-[-1px] bg-white  ">
-                    <tr class="border-b border-gray-200 dark:border-gray-700">
-                        <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800 sticky left-[-1px]">
-                            ID
-                        </th>
-                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Customer Name</th>
-                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Bill Date</th>
-                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Order Number</th>
-                        <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Action</th>
-                    </tr>
-                </thead>
-                <tbody class="text-sm text-gray-500 dark:text-gray-400">
-                    <tr class="border-b border-gray-200 dark:border-gray-700"
-                        *ngFor="let employee of( this._servicesService.billData)let i = index">
-                        <td scope="row"
-                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 sticky left-[-1px]">
-                            {{i+1}}
-                        </td>
-                        <td class="px-6 py-4"> {{employee.customerName}}
-                        </td>
-                        <td scope="row"
-                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
-                            {{employee.billDate|date:'dd/MM/YYYY'}}
-                        </td>
-                        <td scope="row"
-                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
-                            {{employee._id}}
-                        </td>
-                        <td scope="row"
-                            class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 ">
-                            <select class="py-2 px-3 w-[120px] border rounded-md focus:outline-none ml-2"
-                                (change)="viewbill_popup(selectedValue,employee)" [(ngModel)]="selectedValue">
-                                <option value="all" selected>Action </option>
-                                <option value="viewBill">View Bill </option>
-                                <option value="editBill">Edit Bill</option>
-                                <option value="deleteBill">Delete Bill</option>
-                            </select>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                                <div class="spinner"></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+            <div *ngIf="showView" class="bg-white">
+                <div class="flex flex-nowrap justify-between w-full py-4">
+                    <h1 class="font-bold text-lg">View Details</h1>
+                    <button type="button" (click)="closeViewDetails()"
+                        class=" top-[-50px] right-[-50px] float-right ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+                        data-dismiss-target="#toast-default" aria-label="Close">
+                        <span class="sr-only">Close</span>
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="grid grid-cols-12 p-10 ">
+                    <div class="col-span-4 border p-8">
+                        <span class="font-semibold text-xs">Billed to</span>
+                        <p class="mt-4" *ngFor="let employee of( this._servicesService.singleBillData)let i = index">
+                            Name: {{employee.customerName}}
+                            Phone: {{employee.customerContact}}
+                        </p>
+                    </div>
+                    <div class="col-span-4 border font-semibold text-xs p-8"> Shipped to
+                        <p *ngFor="let employee of( this._servicesService.singleBillData)let i = index">
+                            {{employee.shippingDetails}}
+                        </p>
+                    </div>
+                    <div class="col-span-4 border flex flex-col p-8">
+                        <div>
+                            <span class="text-xs font-semibold">Issue Date:</span>
+                            <p *ngFor="let employee of( this._servicesService.singleBillData)let i = index">
+                                {{employee.billDate}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700  bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    SL
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Products
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Price
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Qty
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Tax
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Discount
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Total
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
+                                *ngFor="let employee of( this._servicesService.singleBillData)let i = index">
+                                <td class=" px-6 py-4">{{i+1}}</td>
+                                <td class=" px-6 py-4">{{employee.products}}</td>
+                                <td class=" px-6 py-4">{{employee.price}}</td>
+                                <td class=" px-6 py-4">{{employee.quantity}}</td>
+                                <td class=" px-6 py-4">{{employee.taxGST}}</td>
+                                <td class=" px-6 py-4">{{employee.discount}}</td>
+                                <td class=" px-6 py-4">{{employee.total}}</td>
+                            </tr>
+                            <tr class=" border-b">
+                                <td colspan="4" class=" px-6 py-4 font-bold ">Total =</td>
+                                <td class="px-6 py-4 font-bold ">2</td>
+                                <td class="px-6 py-4 font-bold ">3</td>
+                                <td class="px-6 py-4 font-bold ">4</td>
+                            </tr>
+                            <tr class=" border-b">
+                                <td colspan="5" class="px-6 py-4">Order Discount:</td>
+                                <td class="px-6 py-4">2</td>
+                                <td class="px-6 py-4">3</td>
+                            </tr>
+                            <tr class=" border-b">
+                                <td colspan="5" class="px-6 py-4">Order Tax:</td>
+                                <td class="px-6 py-4">2</td>
+                                <td class="px-6 py-4">3</td>
+                            </tr>
+                            <tr
+                                class="text-xs text-gray-700  bg-gray-100 dark:bg-gray-700 dark:text-gray-400  border-b">
+                                <td colspan="6" class="px-6 py-4  font-bold ">Grand Total:</td>
+                                <td class="px-6 py-4 font-bold  ">3</td>
+                            </tr>
+                            <tr class=" border-b">
+                                <td colspan="6" class="px-6 py-4 font-bold ">Paid Amount:</td>
+                                <td class="px-6 py-4">3</td>
+                            </tr>
+                            <tr
+                                class="text-xs text-gray-700  bg-gray-100 dark:bg-gray-700 dark:text-gray-400  border-b">
+                                <td colspan="6" class="px-6 py-4  font-bold">Due Amount:</td>
+                                <td class="px-6 py-4">3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <span class="flex py-5 font-semibold text-sm">Note: &nbsp;
+                        <p>N/A</p>
+                    </span>
+                </div>
+                <div>
+                    <span class="font-semibold text-sm">Order Number:
+                        <p></p>
+                    </span>
+                </div>
+
+                <div class="flex  items-center mt-8">
+                    <div>
+                        <button
+                            class="text-white border bg-[#6F4EF6] hover:bg-green-400 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-center"
+                            (click)="showOptions = !showOptions">
+                            Send Bill
+                        </button>
+                        <div *ngIf="showOptions">
+                            <button (click)="sendViaEmail()">Send via Email</button>
+                            <button (click)="sendViaWhatsApp()">Send via WhatsApp</button>
+                        </div>
+                    </div>
+                    <button type="button"
+                        class="text-white border bg-[#DF7272]   hover:bg-green-300 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-cente">
+                        Update Bill
+                    </button>
+                    <button type="button" (click)="printBill()"
+                    class="text-white border bg-[#DF7272]   hover:bg-green-300 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-cente">
+                   Print Bill
+                </button>
+                </div>
+            </div>
         </div>
     </div>
+
 </div>

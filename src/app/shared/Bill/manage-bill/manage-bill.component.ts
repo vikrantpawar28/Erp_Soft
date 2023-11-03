@@ -20,18 +20,40 @@ import { Router } from '@angular/router';
 export class ManageBillComponent {
   employees: any[] = this._servicesService.projectData;
   modalService: any;
+  loading=true;
+  showView=false;
+  showOptions: boolean = false;
 
   @Output() fetchDataEvent = new EventEmitter<void>();
   dialogRef: any;
   constructor(
     private _dialog: MatDialog,
     public _servicesService: ServicesService,
-    private router: Router
-  ) {}
+    private router: Router,
+    
+  ) { this._servicesService.prodData;}
 
   ngOnInit(): void {
     this.fetchData();
   }
+  onSelectChange1(event:Event,employee:any) {
+    this._servicesService.singleBillData[0]=employee;
+    console.log("service data",this._servicesService.singleBillData)
+    const selectedValue = (event.target as HTMLSelectElement).value;
+    if (selectedValue === 'viewBill') {
+      this.showView = true;
+    } else {
+      this.showView = false;
+    }
+  }
+  closeViewDetails() {
+    this.showView = false;
+  }
+  printBill(){
+    window.print();
+    
+  }
+  
 
   addbill() {
     this.router.navigate(['/admin-main/addbill']);
@@ -39,7 +61,12 @@ export class ManageBillComponent {
   fetchData() {
     this._servicesService.getBill().subscribe((data) => {
       this._servicesService.billData = data;
+      this.loading=false;
       console.log('Bill', this._servicesService.billData);
+    });
+    this._servicesService.getProducts().subscribe((data) => {
+      this._servicesService.prodData = data;
+      console.log('this is product data', this._servicesService.prodData);
     });
   }
   selectedValue: any = 'all';
@@ -88,26 +115,26 @@ export class ManageBillComponent {
     console.log('changed :    ', this.employees);
   }
 
-  viewbill_popup(selectedValue: any, data: any) {
-    this._servicesService.singleBillData[0]=data;
-    console.log(' from service', this._servicesService.singleBillData);
-    if (selectedValue === 'viewBill') {
-      this._dialog.open(ViewbillPopupComponent, {
-        data: selectedValue, // Pass the selectedValue as data
-      });
-    }
-    if (selectedValue === 'editBill') {
-      this._dialog.open(EditbillPopupComponent, {
-        data: selectedValue, // Pass the selectedValue as data
-      });
-    }
-    if (selectedValue === 'deleteBill') {
-      // this._servicesService.projectData.splice(this.data.i, 1);
-      // alert('deleted');
-      // // this.reset();
-      // this.dialogRef.close();
-    }
-  }
+  // viewbill_popup(selectedValue: any, data: any) {
+  //   this._servicesService.singleBillData[0]=data;
+  //   console.log(' from service', this._servicesService.singleBillData);
+  //   if (selectedValue === 'viewBill') {
+  //     this._dialog.open(ViewbillPopupComponent, {
+  //       data: selectedValue, // Pass the selectedValue as data
+  //     });
+  //   }
+  //   if (selectedValue === 'editBill') {
+  //     this._dialog.open(EditbillPopupComponent, {
+  //       data: selectedValue, // Pass the selectedValue as data
+  //     });
+  //   }
+  //   if (selectedValue === 'deleteBill') {
+  //     // this._servicesService.projectData.splice(this.data.i, 1);
+  //     // alert('deleted');
+  //     // // this.reset();
+  //     // this.dialogRef.close();
+  //   }
+  // }
 
   status: boolean = false;
   fetchAsStatus() {
@@ -208,4 +235,13 @@ export class ManageBillComponent {
     this.downloadFileName = fileName;
     return url;
   }
+
+  sendViaEmail(){
+    this.showOptions=false;
+  }
+  sendViaWhatsApp(){
+    this.showOptions=false;
+  }
+
+  
 }

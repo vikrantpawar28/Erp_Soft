@@ -1,4 +1,4 @@
-    <!-- <div class="grid col-span-12  p-8">
+<!-- <div class="grid col-span-12  p-8">
         <button type="button" mat-dialog-close
             class="float-right ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
             data-dismiss-target="#toast-default" aria-label="Close">
@@ -75,95 +75,137 @@
 
 
 
-        <button
-        class="absolute top-2 right-2 bg-gray-100 text-gray-500 hover:text-gray-900 rounded-md hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8"
-        type="button" mat-dialog-close data-dismiss-target="#toast-default" aria-label="Close">
-        <span class="sr-only">Close</span>
-        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-        </svg>
-    </button>
-    <div class="bg-white p-6 rounded-lg flex flex-col">
-        <div class="flex pb-2">
-            <span class="text-lg font-semibold">Upload Project</span>
-        </div>
-        <form [formGroup]="projectGroup" (ngSubmit)="onSubmit()">
-            <div class="grid grid-cols-12 py-2 gap-5 mt-4">
-                <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
-                    <label class="text-sm font-semibold opacity-75" for="">Project Name</label>
-                    <input
-                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                        formControlName="project_name"
-                        [ngClass]="{'validation': projectGroup.get('project_name')?.touched &&   projectGroup.get('project_name')?.hasError('required')}"
-                        type="text" name="" value="" required />
-                        <div *ngIf="projectGroup.get('project_name')?.touched && projectGroup.get('project_name')?.hasError('required')">
-                            <span class="text-red-200">* Project Name is required</span>
-                        </div>
-                </div>
+<button
+    class="absolute top-2 right-2 bg-gray-100 text-gray-500 hover:text-gray-900 rounded-md hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8"
+    type="button" mat-dialog-close data-dismiss-target="#toast-default" aria-label="Close">
+    <span class="sr-only">Close</span>
+    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+    </svg>
+</button>
+<div class="bg-white p-6 rounded-lg flex flex-col">
+    <div class="flex pb-2">
+        <span class="text-lg font-semibold">Upload Project</span>
+    </div>
+    <form [formGroup]="projectGroup" (ngSubmit)="onSubmit()">
+        <div class="grid grid-cols-12 py-2 gap-5 mt-4">
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75" for="project_name">Project Name</label>
+                <input
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    formControlName="project_name"
+                    [ngClass]="{ 'valid-input': projectGroup.get('project_name')?.valid, 'invalid-input': projectGroup.get('project_name')?.invalid }"
+                    type="text" required />
+                <span
+                    *ngIf="projectGroup.get('project_name')?.touched && projectGroup.get('project_name')?.hasError('required')"
+                    class="text-red-300 font-extralight text-xs">
+                    *Project Name is required
+                </span>
+                <span *ngIf="projectGroup.get('project_name')?.hasError('pattern')"
+                    class="text-red-300 font-extralight text-xs">
+                    *It should only contain alphabetic characters.
+                </span>
+                <span *ngIf="projectGroup.get('project_name')?.hasError('maxlength')"
+                    class="text-red-300 font-extralight text-xs">
+                    *maxlength is 20 char.
+                </span>
 
-                <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
-                    <label class="text-sm font-semibold opacity-75" for="">Project Details</label>
-                    <textarea
+            </div>
+
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75" for="">Project Details</label>
+                <textarea
                     class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
                     formControlName="project_details"
-                    [ngClass]="{'validation': projectGroup.get('project_details')?.touched && projectGroup.get('project_details')?.hasError('required')}"
-                    type="text"
-                    required
-                    ></textarea>
-                    <div *ngIf="projectGroup.get('project_details')?.touched && projectGroup.get('project_details')?.hasError('required')">
-                    <span class="text-red-200">*Project Details is required</span>
-                    </div>
-                </div>
-                
-                <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
-                    <label class="text-sm font-semibold opacity-75" for="">Start-Date</label>
-                    <input formControlName="project_start_date"
-                        [ngClass]="{'validation': projectGroup.get('project_start_date')?.touched &&   projectGroup.get('project_start_date')?.hasError('required')}"
-                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                        type="date" name="" value="" required />
-                        <div *ngIf="projectGroup.get('project_start_date')?.touched && projectGroup.get('project_start_date')?.hasError('required')">
-                            <span class="text-red-200">*Hire Date is required</span>
-                        </div>
-                </div>
-                <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
-                    <label class="text-sm font-semibold opacity-75" for="">Due-Date</label>
-                    <input formControlName="project_due_date"
-                        [ngClass]="{'validation': projectGroup.get('project_due_date')?.touched &&   projectGroup.get('project_due_date')?.hasError('required')}"
-                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                        type="date" name="" value="" required />
-                        <div *ngIf="projectGroup.get('project_due_date')?.touched && projectGroup.get('project_due_date')?.hasError('required')">
-                            <span class="text-red-200">*Due Date is required</span>
-                        </div>
-                </div>
-
-                <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
-                    <label class="text-sm font-semibold opacity-75" for="">Project Workers</label>
-                    <input formControlName="project_workers"
-                        [ngClass]="{'validation': projectGroup.get('project_workers')?.touched &&   projectGroup.get('project_workers')?.hasError('required')}"
-                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                        type="number" name="" value="" required />
-                        <div *ngIf="projectGroup.get('project_workers')?.touched && projectGroup.get('project_workers')?.hasError('required')">
-                            <span class="text-red-200">*Project Workers is required</span>
-                        </div>
-                </div>
-            
-                <div class="flex flex-col col-span-6 mt-2 sm:col-span-12 md:col-span-6 lg:col-span-4">
-                    <label class="text-sm font-semibold opacity-75" for="">Status</label>
-                    <select formControlName="project_status" class="bg-[#FCFCFC] hover:bg-gray-100 border"
-                        class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-0 hover:bg-gray-100">
-                        <option value="" disabled selected>Status</option>
-                            <option value="complete">Complete</option>
-                            <option value="incomplete">Incomplete</option>
-                            <option value="pending">Pending</option>
-                    </select>
-                </div>
-            
-
+                    [ngClass]="{ 'valid-input': projectGroup.get('project_details')?.valid, 'invalid-input': projectGroup.get('project_details')?.invalid }"
+                    required></textarea>
+                <span
+                    *ngIf="projectGroup.get('project_details')?.touched && projectGroup.get('project_details')?.hasError('required')"
+                    class="text-red-300 font-extralight text-xs">
+                    *Project description is required
+                </span>
+                <span *ngIf="projectGroup.get('project_details')?.hasError('pattern')"
+                    class="text-red-300 font-extralight text-xs">
+                    *It should only contain alphabetic characters.
+                </span>
+                <span *ngIf="projectGroup.get('project_details')?.hasError('maxlength')"
+                    class="text-red-300 font-extralight text-xs">
+                    *maxlength is 20 char.
+                </span>
             </div>
-            <div class="py-2">
-                <button [disabled]='projectGroup.invalid'
-                    class="bg-[#6F4EF6] hover:bg-[#41b78e] mt-5 shadow-md shadow-gray-400 text-base rounded-lg text-white font-semibold py-[10px] px-8 tracking-wide">Submit</button>
+
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75" for="">Start-Date</label>
+                <input formControlName="project_start_date"
+                    [ngClass]="{ 'valid-input': projectGroup.get('project_start_date')?.valid, 'invalid-input': projectGroup.get('project_start_date')?.invalid }"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    type="date" name="" value="" required />
+                <span
+                    *ngIf="projectGroup.get('project_start_date')?.touched && projectGroup.get('project_start_date')?.hasError('required')"
+                    class="text-red-300 font-extralight text-xs">
+                    *Hire-date is required
+                </span>
             </div>
-        </form>
-    </div>
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75" for="">Due-Date</label>
+                <input formControlName="project_due_date"
+                    [ngClass]="{ 'valid-input': projectGroup.get('project_due_date')?.valid, 'invalid-input': projectGroup.get('project_due_date')?.invalid }"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    type="date" name="" value="" required />
+                <span
+                    *ngIf="projectGroup.get('project_due_date')?.touched && projectGroup.get('project_due_date')?.hasError('required')"
+                    class="text-red-300 font-extralight text-xs">
+                    *Due-date is required
+                </span>
+            </div>
+
+            <div class="flex flex-col col-span-6 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75" for="">Project Workers</label>
+                <input formControlName="project_workers"
+                    [ngClass]="{ 'valid-input': projectGroup.get('project_workers')?.valid, 'invalid-input': projectGroup.get('project_workers')?.invalid }"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                    type="number" name="" value="" required />
+                <span
+                    *ngIf="projectGroup.get('project_workers')?.touched && projectGroup.get('project_workers')?.hasError('required')"
+                    class="text-red-300 font-extralight text-xs">
+                    *Project-workers is required
+                </span>
+            </div>
+
+            <div class="flex flex-col col-span-6 mt-2 sm:col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-semibold opacity-75" for="">Status</label>
+                <select formControlName="project_status" class="bg-[#FCFCFC] hover:bg-gray-100 border"
+                    [ngClass]="{ 'valid-input': projectGroup.get('project_status')?.valid, 'invalid-input': projectGroup.get('project_status')?.invalid }"
+                    class="border bg-[#FCFCFC] text-sm font-normal py-[6px] px-2 sm:py-[10px] sm:px-4 tracking-wide outline-none mt-0 hover:bg-gray-100">
+                    <option value="" disabled selected>Status</option>
+                    <option value="complete">Complete</option>
+                    <option value="incomplete">Incomplete</option>
+                    <option value="pending">Pending</option>
+                </select>
+                <span
+                    *ngIf="projectGroup.get('project_status')?.touched && projectGroup.get('project_status')?.hasError('required')"
+                    class="text-red-300 font-extralight text-xs">
+                    *Status is required
+                </span>
+            </div>
+
+
+        </div>
+        <div class="py-2">
+            <button [disabled]='projectGroup.invalid' [ngStyle]="{'opacity': projectGroup.invalid ? 0.5 : 1 }"
+                class="bg-[#6F4EF6] hover:bg-[#41b78e] mt-5 shadow-md shadow-gray-400 text-base rounded-lg text-white font-semibold py-[10px] px-8 tracking-wide">
+                <span *ngIf="loading" class="spinner"></span>
+                <ng-container *ngIf="!loading; else buttonContent">
+                    Submit
+                </ng-container>
+            </button>
+            <ng-template #buttonContent>
+                Submit
+            </ng-template>
+
+        </div>
+
+
+    </form>
+</div>

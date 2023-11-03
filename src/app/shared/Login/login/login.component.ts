@@ -87,7 +87,11 @@ export class LoginComponent implements OnInit {
   passlogin: any;
   userlogin: any;
   DisableButton: any = false;
+  loading = false;
+  errMsg1:any="";
+  errMsg2:any="";
   onSubmit() {
+    this.loading = true;
     const obj = {
       username: this.userlogin,
       password: this.passlogin,
@@ -98,10 +102,11 @@ export class LoginComponent implements OnInit {
     this.showtable = false;
 
     let data = obj;
+    
     this._servicesService.logIn(data).subscribe(
       (res) => {
-        alert(res.message);
         this.DisableButton = false;
+        this.loading = false;
         if (res.token) {
           // Split the token header, payload, and signature
           const tokenParts = res.token.split('.');
@@ -121,9 +126,12 @@ export class LoginComponent implements OnInit {
         }
       },
       (error: any) => {
-        console.error('Error adding data:', error.error.message);
-        alert(error.error.message);
+        console.error('Error adding data:', error);
+        this.errMsg1=error.error.message[0].error;
+        this.errMsg2=error.error.message[1].error;
+        // alert(error.error.message[0].error);
         this.DisableButton = false;
+        this.loading = false;
         this._servicesService.IsLoggedIn = false;
       }
     );
@@ -144,6 +152,7 @@ export class LoginComponent implements OnInit {
     });
     (error: any) => {
       console.error('Error adding data:', error);
+      this.errMsg1=error.error.message[0].error;
       alert(error);
     };
   }

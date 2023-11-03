@@ -22,121 +22,117 @@
             </p>
         </div>
         <div class="col-span-4 border font-semibold text-xs p-8"> Shipped to
-           <p *ngFor="let employee of( this._servicesService.singleBillData)let i = index">{{employee.shippingDetails}}</p>
+            <p *ngFor="let employee of( this._servicesService.singleBillData)let i = index">{{employee.shippingDetails}}
+            </p>
         </div>
         <div class="col-span-4 border flex flex-col p-8">
             <div>
                 <span class="text-xs font-semibold">Issue Date:</span>
-                <p *ngFor="let employee of( this._servicesService.singleBillData)let i = index">{{employee.billDate}}</p>
+                <p *ngFor="let employee of( this._servicesService.singleBillData)let i = index">{{employee.billDate}}
+                </p>
             </div>
         </div>
     </div>
 
-    <div class="">
+    <div class="relative overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700  bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        SL
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Products
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Price
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Qty
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Tax
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Discount
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Total
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
+                    *ngFor="let employee of( this._servicesService.singleBillData)let i = index">
+                    <td class=" px-6 py-4">{{i+1}}</td>
+                    <td class=" px-6 py-4">{{employee.products}}</td>
+                    <td class=" px-6 py-4">{{employee.price}}</td>
+                    <td class=" px-6 py-4">{{employee.quantity}}</td>
+                    <td class=" px-6 py-4">{{employee.taxGST}}</td>
+                    <td class=" px-6 py-4">{{employee.discount}}</td>
+                    <td class=" px-6 py-4">{{employee.total}}</td>
+                </tr>
+                <tr class=" border-b">
+                    <td colspan="4" class=" px-6 py-4 font-bold ">Total =</td>
+                    <td class="px-6 py-4 font-bold ">2</td>
+                    <td class="px-6 py-4 font-bold ">3</td>
+                    <td class="px-6 py-4 font-bold ">4</td>
+                </tr>
+                <tr class=" border-b">
+                    <td colspan="5" class="px-6 py-4">Order Discount:</td>
+                    <td class="px-6 py-4">2</td>
+                    <td class="px-6 py-4">3</td>
+                </tr>
+                <tr class=" border-b">
+                    <td colspan="5" class="px-6 py-4">Order Tax:</td>
+                    <td class="px-6 py-4">2</td>
+                    <td class="px-6 py-4">3</td>
+                </tr>
+                <tr class="text-xs text-gray-700  bg-gray-100 dark:bg-gray-700 dark:text-gray-400  border-b">
+                    <td colspan="6" class="px-6 py-4  font-bold ">Grand Total:</td>
+                    <td class="px-6 py-4 font-bold  ">3</td>
+                </tr>
+                <tr class=" border-b">
+                    <td colspan="6" class="px-6 py-4 font-bold ">Paid Amount:</td>
+                    <td class="px-6 py-4">3</td>
+                </tr>
+                <tr class="text-xs text-gray-700  bg-gray-100 dark:bg-gray-700 dark:text-gray-400  border-b">
+                    <td colspan="6" class="px-6 py-4  font-bold">Due Amount:</td>
+                    <td class="px-6 py-4">3</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
+    <div>
+        <span class="flex py-5 font-semibold text-sm">Note: &nbsp;
+            <p>N/A</p>
+        </span>
+    </div>
+    <div>
+        <span class="font-semibold text-sm">Order Number:
+            <p></p>
+        </span>
+    </div>
 
-        <div class="relative overflow-x-auto">
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700  bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            SL
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Products
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Price
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Qty
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Tax
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Discount
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Total
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700" *ngFor="let employee of( this._servicesService.singleBillData)let i = index">
-                        <td class=" px-6 py-4">{{i+1}}</td>
-                        <td class=" px-6 py-4">{{employee.products}}</td>
-                        <td class=" px-6 py-4">{{employee.price}}</td>
-                        <td class=" px-6 py-4">{{employee.quantity}}</td>
-                        <td class=" px-6 py-4">{{employee.taxGST}}</td>
-                        <td class=" px-6 py-4">{{employee.discount}}</td>
-                        <td class=" px-6 py-4">{{employee.total}}</td>
-                    </tr>
-                    <tr class=" border-b">
-                        <td colspan="4" class=" px-6 py-4 font-bold ">Total =</td>
-                        <td class="px-6 py-4 font-bold ">2</td>
-                        <td class="px-6 py-4 font-bold ">3</td>
-                        <td class="px-6 py-4 font-bold ">4</td>
-                    </tr>
-
-                    <tr class=" border-b">
-                        <td colspan="5" class="px-6 py-4">Order Discount:</td>
-                        <td class="px-6 py-4">2</td>
-                        <td class="px-6 py-4">3</td>
-                    </tr>
-                    <tr class=" border-b">
-                        <td colspan="5" class="px-6 py-4">Order Tax:</td>
-                        <td class="px-6 py-4">2</td>
-                        <td class="px-6 py-4">3</td>
-                    </tr>
-                    <tr class="text-xs text-gray-700  bg-gray-100 dark:bg-gray-700 dark:text-gray-400  border-b">
-                        <td colspan="6" class="px-6 py-4  font-bold ">Grand Total:</td>
-                        <td class="px-6 py-4 font-bold  ">3</td>
-                    </tr>
-                    <tr class=" border-b">
-                        <td colspan="6" class="px-6 py-4 font-bold ">Paid Amount:</td>
-                        <td class="px-6 py-4">3</td>
-                    </tr>
-                    <tr class="text-xs text-gray-700  bg-gray-100 dark:bg-gray-700 dark:text-gray-400  border-b">
-                        <td colspan="6" class="px-6 py-4  font-bold">Due Amount:</td>
-                        <td class="px-6 py-4">3</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
+    <div class="flex  items-center mt-8">
         <div>
-            <span class="flex py-5 font-semibold text-sm">Note: &nbsp;
-                <p>N/A</p>
-            </span>
-        </div>
-        <div>
-            <span class="font-semibold text-sm">Order Number:
-                <p></p>
-            </span>
-        </div>
-
-        <div class="flex  items-center mt-8">
-            <div>
-                <button
-                    class="text-white border bg-[#6F4EF6] hover:bg-green-400 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-center"
-                    (click)="showOptions = !showOptions">
-                    Send Bill
-                </button>
-
-                <!-- Display options when the button is clicked -->
-                <div *ngIf="showOptions">
-                    <button (click)="sendViaEmail()">Send via Email</button>
-                    <button (click)="sendViaWhatsApp()">Send via WhatsApp</button>
-                </div>
-            </div>
-
-            <button type="button"
-                class="text-white border bg-[#DF7272]   hover:bg-green-300 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-cente">
-                Update Bill
+            <button
+                class="text-white border bg-[#6F4EF6] hover:bg-green-400 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-center"
+                (click)="showOptions = !showOptions">
+                Send Bill
             </button>
+            <div *ngIf="showOptions">
+                <button (click)="sendViaEmail()">Send via Email</button>
+                <button (click)="sendViaWhatsApp()">Send via WhatsApp</button>
+            </div>
         </div>
+        <button type="button"
+            class="text-white border bg-[#DF7272]   hover:bg-green-300 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-cente">
+            Update Bill
+        </button>
     </div>
+</div>
 
 
 
@@ -171,10 +167,7 @@
 
 
 
-
-
-
-    <!-- <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 p" *ngIf="showTable">
+<!-- <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 p" *ngIf="showTable">
         <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3 rounded-lg" colspan="2">
@@ -327,4 +320,4 @@
 </div>-->
 
 
-    <!-- <h1>hii</h1> -->
+<!-- <h1>hii</h1> -->

@@ -18,6 +18,7 @@ import { EmpPopDetailsComponent } from '../emp-pop-details/emp-pop-details.compo
 export class EmployeeDbComponent implements OnInit {
   employees: any[] = [];
   modalService: any;
+  loading=true;
   @Output() fetchDataEvent = new EventEmitter<void>();
   constructor(
     private _dialog: MatDialog,
@@ -26,14 +27,18 @@ export class EmployeeDbComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
-    // console.timeLog(this._servicesService.empBack=this._servicesService.empData.slice(0,9));
+   
   }
 
   fetchData() {
     this._servicesService.getEmployees().subscribe((data) => {
-      // this.employees = data;
+
       this._servicesService.empData = data;
+      this.employees=this._servicesService.empData.slice(0,9);
+    
+      // this.employees = data;
      
+     this.loading=false;
 
       // this.employees = this._servicesService.empData;
       console.log(data);
