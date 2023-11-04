@@ -3,11 +3,9 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
 import {
-  FormControl,
   FormGroup,
   FormBuilder,
-  Validators,
-  MaxLengthValidator,
+  Validators
 } from '@angular/forms';
 import { ServicesService } from 'src/app/core/services.service';
 @Component({
@@ -90,7 +88,7 @@ export class AddEmpComponent implements OnInit {
           this.fetchData();
           this.loading = false;
           // console.log("data submitted",Response);
-          // this._dialog.closeAll();
+          this._dialog.closeAll();
         });
       (error: any) => {
         console.error('Error adding data:', error);

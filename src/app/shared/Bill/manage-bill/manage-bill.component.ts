@@ -1,16 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ServicesService } from 'src/app/core/services.service';
-import { ViewbillPopupComponent } from '../viewbill-popup/viewbill-popup.component';
 import { EditbillPopupComponent } from '../editbill-popup/editbill-popup.component';
-import { AddBillComponent } from '../add-bill/add-bill.component';
 import { Router } from '@angular/router';
-// import { AddEmpComponent } from '../add-emp/add-emp.component';
-// import { EmpPopDetailsComponent } from '../emp-pop-details/emp-pop-details.component';
-// import { AddproductComponent } from '../addproduct/addproduct.component';
-// import { ProductPopUpComponent } from '../product-pop-up/product-pop-up.component';
-// import { AddprojectComponent } from '../addproject/addproject.component';
-// import { ProjectPopUpComponent } from '../project-pop-up/project-pop-up.component';
 
 @Component({
   selector: 'app-manage-bill',
@@ -42,8 +34,9 @@ export class ManageBillComponent {
     const selectedValue = (event.target as HTMLSelectElement).value;
     if (selectedValue === 'viewBill') {
       this.showView = true;
-    } else {
-      this.showView = false;
+
+    }  if(selectedValue === 'editBill') {
+      this._dialog.open(EditbillPopupComponent)
     }
   }
   closeViewDetails() {
@@ -51,7 +44,7 @@ export class ManageBillComponent {
   }
   printBill(){
     window.print();
-    
+
   }
   
 

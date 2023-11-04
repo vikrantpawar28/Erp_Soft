@@ -1,7 +1,6 @@
 import {
   Component,
   OnInit,
-  TemplateRef,
   EventEmitter,
   Output,
 } from '@angular/core';
@@ -27,20 +26,13 @@ export class EmployeeDbComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchData();
-   
   }
 
   fetchData() {
     this._servicesService.getEmployees().subscribe((data) => {
-
       this._servicesService.empData = data;
-      this.employees=this._servicesService.empData.slice(0,9);
-    
-      // this.employees = data;
-     
+      this.employees=this._servicesService.empData.slice(0,9);     
      this.loading=false;
-
-      // this.employees = this._servicesService.empData;
       console.log(data);
     });
   }
@@ -66,7 +58,6 @@ export class EmployeeDbComponent implements OnInit {
   }
 
   status: boolean = false;
-
   fetchAsStatus() {
     this._servicesService.getEmployees().subscribe((data) => {
       this.employees = data.filter((item: any) => {
@@ -121,9 +112,8 @@ export class EmployeeDbComponent implements OnInit {
 
   updateEmployees() {
     // Calculate the start and end indices based on the currentPage and itemsPerPage
-    const startIndex = this.currentPage * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-
+    const startIndex = this.currentPage * this.itemsPerPage+1 ;
+    const endIndex = startIndex + this.itemsPerPage-1;
     // Slice the data to get the current page's elements
     this.employees = this._servicesService.empData.slice(startIndex, endIndex);
   }
