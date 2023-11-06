@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogClose } from '@angular/material/dialog';
+import { ServicesService } from 'src/app/core/services.service';
 
 @Component({
   selector: 'app-editbill-popup',
@@ -10,7 +11,7 @@ import { MatDialogClose } from '@angular/material/dialog';
 export class EditbillPopupComponent implements OnInit {
   billFrom!:FormGroup
 
-  constructor(private _fb:FormBuilder){}
+  constructor(private _fb:FormBuilder,  public _servicesService: ServicesService){ this._servicesService.getBill}
 ngOnInit(): void {
   this.billFrom=this._fb.group({
     client_name:['',Validators.required],

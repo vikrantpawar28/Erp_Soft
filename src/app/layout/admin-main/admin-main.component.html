@@ -72,12 +72,18 @@
                         </span>
                         <span class="font-semibold  text-black  hover:text-[#6F72F5]  ml-4">Projects</span>
                     </li>
-                    <!-- <li class="bg-white hover:bg-gray-100 cursor-pointer w-[230px] p-4 rounded-lg flex" (click)="OpenCRM()">
+                    <li class="bg-white hover:bg-gray-100 cursor-pointer w-[230px] p-4 rounded-lg flex"  (click)="toggleParagraphs2()">
                         <span class="material-symbols-outlined text-[#6F72F5]">
                             data_table
                             </span>
                         <span class="font-semibold  text-black  hover:text-[#6F72F5]  ml-4" >CRM</span>
-                    </li> -->
+                    </li>
+                    <ul class="list-disc opacity-75 relative top-0 left-8 p-1 w-[198px] " [hidden]="hideParagraphs2">
+                        <li class="py-2 my-1 bg-white cursor-pointer hover:text-[#6F72F5]" >
+                            <span class="text-sm font-semibold "(click)="openLeadmangment()">Lead Managment</span></li>
+                        <li class="py-2 my-1 bg-white cursor-pointer hover:text-[#6F72F5]" >
+                            <span class="text-sm font-semibold">opportunity Managment</span></li>
+                    </ul>
                     <!-- <li class="bg-white hover:bg-gray-100 cursor-pointer w-[230px] p-4 rounded-lg flex" (click)="OpenPayroll()">
                         <span class="material-symbols-outlined text-[#6F72F5]">
                             payments

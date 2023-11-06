@@ -12,41 +12,52 @@ import { Router } from '@angular/router';
 export class ManageBillComponent {
   employees: any[] = this._servicesService.projectData;
   modalService: any;
-  loading=true;
-  showView=false;
+  loading = true;
+  showView = false;
   showOptions: boolean = false;
+  showEditBill: boolean = false;
 
   @Output() fetchDataEvent = new EventEmitter<void>();
   dialogRef: any;
   constructor(
     private _dialog: MatDialog,
     public _servicesService: ServicesService,
-    private router: Router,
-    
-  ) { this._servicesService.prodData;}
+    private router: Router
+  ) {
+    this._servicesService.prodData;
+  }
 
   ngOnInit(): void {
     this.fetchData();
   }
-  onSelectChange1(event:Event,employee:any) {
-    this._servicesService.singleBillData[0]=employee;
-    console.log("service data",this._servicesService.singleBillData)
+  onSelectChange1(event: Event, employee: any) {
+    this._servicesService.singleBillData[0] = employee;
+    console.log('service data', this._servicesService.singleBillData);
     const selectedValue = (event.target as HTMLSelectElement).value;
     if (selectedValue === 'viewBill') {
       this.showView = true;
-
-    }  if(selectedValue === 'editBill') {
-      this._dialog.open(EditbillPopupComponent)
+      this.showEditBill = false; // Ensure Edit Bill is hidden
+    } else if (selectedValue === 'editBill') {
+      this.showView = false; // Hide View Bill
+      this.showEditBill = true; // Show Edit Bill
+    }
+    else if (selectedValue === 'deleteBill') {
+      this.showView = false; // Hide View Bill
+      this.showEditBill = false; // Show Edit Bill
+      // this._servicesService.empData.splice(this.data.i, 1);
+      alert('deleted');
+  
     }
   }
   closeViewDetails() {
     this.showView = false;
   }
-  printBill(){
-    window.print();
-
+  closeEditDetails() {
+    this.showEditBill = false;
   }
-  
+  printBill() {
+    window.print();
+  }
 
   addbill() {
     this.router.navigate(['/admin-main/addbill']);
@@ -54,7 +65,7 @@ export class ManageBillComponent {
   fetchData() {
     this._servicesService.getBill().subscribe((data) => {
       this._servicesService.billData = data;
-      this.loading=false;
+      this.loading = false;
       console.log('Bill', this._servicesService.billData);
     });
     this._servicesService.getProducts().subscribe((data) => {
@@ -146,17 +157,9 @@ export class ManageBillComponent {
     });
   }
 
-  // add_project() {
-  //   this._dialog.open(AddprojectComponent);
-  // }
-
   openDetails(data: any, i: any) {
     console.log(data, i);
-    // this._dialog.open(ProjectPopUpComponent, {
-    //   data: {
-    //     data,i
-    //   },
-    // });
+   
   }
 
   searchText: string = '';
@@ -208,7 +211,6 @@ export class ManageBillComponent {
   selectedFormat = 'csv';
   downloadLink: string | undefined;
   downloadFileName: string | undefined;
-
   convertData() {
     // Assuming you have your JSON data in this variable
     const jsonData = this._servicesService.billData;
@@ -223,18 +225,24 @@ export class ManageBillComponent {
   }
 
   createDownloadLink(data: Blob | string, fileName: string) {
-    const blob = typeof data === 'string' ? new Blob([data], { type: 'text/csv' }) : data;
+    const blob =
+      typeof data === 'string' ? new Blob([data], { type: 'text/csv' }) : data;
     const url = window.URL.createObjectURL(blob);
     this.downloadFileName = fileName;
     return url;
   }
 
-  sendViaEmail(){
-    this.showOptions=false;
+  sendViaEmail() {
+    this.showOptions = false;
   }
-  sendViaWhatsApp(){
-    this.showOptions=false;
+  sendViaWhatsApp() {
+    this.showOptions = false;
   }
 
-  
+  Save() {
+
+  }
+  cancelEdit() {
+    this.showEditBill = false;
+  }
 }

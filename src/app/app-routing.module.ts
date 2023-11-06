@@ -10,6 +10,7 @@ import { LoginComponent } from './shared/Login/login/login.component';
 import{AddBillComponent} from './shared/Bill/add-bill/add-bill.component'
 import { CRMComponent } from './shared/CRM/crm/crm.component';
 import { authGuard } from './auth.guard';
+import { LeadMangmentComponent } from './shared/CRM/lead-mangment/lead-mangment.component';
 
 
 const routes: Routes = [
@@ -22,7 +23,7 @@ const routes: Routes = [
     {path:'projects',component:ProjectComponent},
     {path:'managebill',component:ManageBillComponent},
     {path:'addbill',component:AddBillComponent},
-    {path:'crm',component:CRMComponent}
+    {path:'leadmangment',component:LeadMangmentComponent}
   ]},
 
   {

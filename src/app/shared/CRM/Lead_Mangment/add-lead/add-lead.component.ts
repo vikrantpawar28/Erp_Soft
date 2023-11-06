@@ -42,36 +42,7 @@ export class AddLeadComponent implements OnInit {
   lead_description: any;
 
   ngOnInit() {
-    // this._servicesService.getProjects().subscribe((data) => {
-    //   this._servicesService.projectData = data;
-    //   console.log(data);
-    // });
-    // this.fetchData();
-
-    // this.projectGroup = this._fb.group({
-    //   name: [
-    //     '',
-    //     [Validators.required, Validators.pattern('^[a-zA-Z]+$')],
-    //   ],
-    //   contact: [
-    //     '',
-    //     [Validators.required],
-    //   ],
-
-    //   project_start_date: [
-    //     '',
-    //     [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)],
-    //   ],
-    //   project_due_date: [
-    //     '',
-    //     [Validators.required, Validators.pattern(/^\d{4}-\d{2}-\d{2}$/)],
-    //   ],
-    //   project_workers: [
-    //     '',
-    //     [Validators.required, Validators.pattern('^[0-9]+$')],
-    //   ],
-    //   project_status: ['', [Validators.required]],
-    // });
+   
   }
   fetchData() {
     this._servicesService.getProjects().subscribe((data) => {
@@ -85,20 +56,17 @@ export class AddLeadComponent implements OnInit {
       name: this.name,
       contact: this.contact,
       email: this.email,
-company_details:{
-  company_name: this.company_name,
-  company_size: this.company_size,
-  industry: this.company_industry
+      company_details: {
+        company_name: this.company_name,
+        company_size: this.company_size,
+        industry: this.company_industry,
+      },
+      lead_status: this.lead_status,
+      dates: {
+        follow_up_date: this.follow_date,
+        conversation_date: this.conversation,
+      },
 
-},
-lead_status: this.lead_status,
-dates:{
-  follow_up_date: this.follow_date,
-  conversation_date: this.conversation,
-},
-     
-     
-      
       lead_tag: this.lead_tag,
       lead_description: this.lead_description,
     };

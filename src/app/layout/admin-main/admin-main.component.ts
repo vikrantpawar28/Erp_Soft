@@ -11,6 +11,7 @@ import { ServicesService } from '../../core/services.service';
 export class AdminMainComponent implements OnInit{
   isLoading = true;
   hideParagraphs: boolean = true;
+  hideParagraphs2: boolean = true;
   hideMenubar: boolean = false;
   Selected_value: any;
   currentUrl: string = '';
@@ -62,16 +63,23 @@ export class AdminMainComponent implements OnInit{
     this.currentUrl = this.router.url;
     this.router.navigate(['admin-main/managebill']);
   }
-  OpenCRM() {
-    this.currentUrl = this.router.url;
-    this.router.navigate(['admin-main/crm']);
-  }
+  // OpenCRM() {
+  //   this.currentUrl = this.router.url;
+  //   this.router.navigate(['admin-main/crm']);
+  // }
   toggleParagraphs() {
     this.hideParagraphs = !this.hideParagraphs;
+  }
+  toggleParagraphs2() {
+    this.hideParagraphs2 = !this.hideParagraphs2;
   }
   toggleMenubar() {
     this.hideMenubar = !this.hideMenubar;
     this.IsMobile=!this.IsMobile;
+  }
+  openLeadmangment() {
+    this.currentUrl = this.router.url;
+    this.router.navigate(['admin-main/leadmangment']);
   }
   showDashboard() {
     this.showTable = true;
@@ -86,7 +94,8 @@ export class AdminMainComponent implements OnInit{
       'projects',
       'managebill',
       'addbill',
-      'crm',
+      'leadmangment',
+      'opportunity'
     ];
     const value = components.some((comp) => this.currentUrl.includes(comp));
     if (value) {
