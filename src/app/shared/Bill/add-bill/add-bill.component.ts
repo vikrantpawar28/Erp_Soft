@@ -52,7 +52,8 @@ export class AddBillComponent {
   purchaseNote: any;
   grandTotal: any = this.calculateTotal();
   customerContact:any;
-  addProduct(data: any) {
+  addProduct(data: any) { 
+    console.log(data)
     if (this.selectedProduct) {
       const matchingProduct = this.service.prodData.find(
         (serviceProduct) => serviceProduct.product_name === data

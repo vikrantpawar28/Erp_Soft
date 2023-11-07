@@ -71,20 +71,17 @@ export class PopUpLeadComponent implements OnInit {
       name: this.name,
       contact: this.contact,
       email: this.email,
-company_details:{
-  company_name: this.company_name,
-  company_size: this.company_size,
-  industry: this.company_industry
+      company_details: {
+        company_name: this.company_name,
+        company_size: this.company_size,
+        industry: this.company_industry,
+      },
+      lead_status: this.lead_status,
+      dates: {
+        follow_up_date: this.follow_date,
+        conversation_date: this.conversation,
+      },
 
-},
-lead_status: this.lead_status,
-dates:{
-  follow_up_date: this.follow_date,
-  conversation_date: this.conversation,
-},
-     
-     
-      
       lead_tag: this.lead_tag,
       lead_description: this.lead_description,
     };

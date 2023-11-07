@@ -3,6 +3,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { ServicesService } from 'src/app/core/services.service';
 import { EditbillPopupComponent } from '../editbill-popup/editbill-popup.component';
 import { Router } from '@angular/router';
+interface Product {
+  productName: string;
+  quantity: any;
+  price: any;
+}
 
 @Component({
   selector: 'app-manage-bill',
@@ -40,13 +45,11 @@ export class ManageBillComponent {
     } else if (selectedValue === 'editBill') {
       this.showView = false; // Hide View Bill
       this.showEditBill = true; // Show Edit Bill
-    }
-    else if (selectedValue === 'deleteBill') {
+    } else if (selectedValue === 'deleteBill') {
       this.showView = false; // Hide View Bill
       this.showEditBill = false; // Show Edit Bill
       // this._servicesService.empData.splice(this.data.i, 1);
       alert('deleted');
-  
     }
   }
   closeViewDetails() {
@@ -71,6 +74,10 @@ export class ManageBillComponent {
     this._servicesService.getProducts().subscribe((data) => {
       this._servicesService.prodData = data;
       console.log('this is product data', this._servicesService.prodData);
+    });
+    this._servicesService.getEmployees().subscribe((data) => {
+      this._servicesService.empData = data;
+
     });
   }
   selectedValue: any = 'all';
@@ -159,7 +166,6 @@ export class ManageBillComponent {
 
   openDetails(data: any, i: any) {
     console.log(data, i);
-   
   }
 
   searchText: string = '';
@@ -239,10 +245,74 @@ export class ManageBillComponent {
     this.showOptions = false;
   }
 
-  Save() {
-
-  }
+  Save() {}
   cancelEdit() {
     this.showEditBill = false;
+  }
+ 
+  employeeId: any;
+  customerContact: any;
+  products: any[] = [];
+  billDate: any;
+  totalAmount: any;
+  taxGST: any;
+  shippingDetails: any;
+  grandTotal: any;
+  selectedProduct: any;
+  selectedProducts: Product[] = [];
+  selectedProductData:Product[] = [];
+
+  editBill(){
+    
+    const obj={
+      employeeId: this.employeeId,
+      
+      products: this.selectedProductData,
+      billDate: this.billDate,
+      totalAmount: this.totalAmount,
+
+      taxGST: this.taxGST,
+      shippingDetails: this.shippingDetails,
+      grandTotal: this.grandTotal
+    }
+
+
+const id=this._servicesService.singleBillData[0]._id
+    this._servicesService
+    .PatchBill(obj, id)
+    .subscribe((Response) => {
+      alert(Response.message);
+      this.fetchData();
+      console.log(Response);
+      // this._dialog.closeAll();
+     
+    });
+  (error: any) => {
+    console.error('Error adding data:', error);
+    alert(error)
+  };
+
+    console.log(obj);
+
+  }
+  addProduct(data: any) { 
+    console.log(data)
+    if (this.selectedProduct) {
+      const matchingProduct = this._servicesService.prodData.find(
+        (serviceProduct) => serviceProduct.product_name === data
+      );
+
+      const newProduct: Product = {
+        productName: this.selectedProduct,
+        quantity: 1,
+        price: matchingProduct.price.product_price,
+      };
+      this.selectedProducts.push(newProduct);
+      
+      this.selectedProduct = [];
+      this.selectedProductData.push(matchingProduct.id);
+
+      console.log(this.selectedProductData  );
+    }
   }
 }

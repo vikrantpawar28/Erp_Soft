@@ -213,9 +213,9 @@
 
 
             <div *ngIf="showView" class="col-span-12 bg-white">
-                <div class="flex flex-nowrap justify-between w-full py-4">
+                <div class="flex flex-nowrap justify-between w-full py-4 hiddenTag">
                     <h1 class="font-bold text-lg hiddenTag p-4">View Details</h1>
-                    <button type="button" (click)="closeViewDetails()"
+                    <button type="button" (click)="closeViewDetails()" hiddenTag
                         class=" top-[-50px] right-[-50px] float-right ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
                         data-dismiss-target="#toast-default" aria-label="Close">
                         <span class="sr-only">Close</span>
@@ -357,6 +357,8 @@
                     </button>
                 </div>
             </div>
+
+            
             <div *ngIf="showEditBill" class=" col-span-12">
                 <div class="flex flex-nowrap justify-between w-full py-4">
                     <h1 class="font-bold text-lg hiddenTag p-4">Edit Bill-Details</h1>
@@ -373,82 +375,79 @@
                 </div>
                 <div class="grid grid-cols-12 py-2 gap-5 mt-4">
                     <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                        <label class="text-sm font-semibold opacity-75" for="">Select Vendor</label>
-                        <input
-                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                            type="text" name="" value=""  required />
-                        <!-- <datalist id="selectedVendor"  class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100">
-                            <option *ngFor="let employee of this._servicesService.empData"[value]="employee._id">{{employee.employee_firstname}}</option>
-                        </datalist> -->
+                        <label
+                        class="text-sm font-semibold opacity-75">Select
+                            Vendor</label>
+                        <input list="selectedVendor" id="selectedVendordata" name="selectedVendor"
+                            [(ngModel)]="employeeId" [ngModelOptions]="{standalone: true}"
+                            placeholder="Search and select a vendor"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100">
+                        <datalist id="selectedVendor">
+                            <option *ngFor="let employee of this._servicesService.empData" [value]="employee._id">
+                                {{employee.employee_firstname}}</option>
+                        </datalist>
                     </div>
+
                     <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                        <label class="text-sm font-semibold opacity-75" for="">Customer Name</label>
-                        <input
-                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                            type="text" name="" value=""  required />
+                        <label for="selectedProduct"
+                        class="text-sm font-semibold opacity-75">Select
+                            Product</label>
+                        <input list="items" id="selectedProduct" name="selectedProduct" [(ngModel)]="selectedProduct"
+                            [ngModelOptions]="{standalone: true}" placeholder="Search and select a Product"
+                            (change)="addProduct(selectedProduct)"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100">
+                        <datalist id="items">
+                            <option *ngFor="let item of _servicesService.prodData">{{ item.product_name }}</option>
+                        </datalist>
                     </div>
+
                     <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                        <label class="text-sm font-semibold opacity-75" for="">Customer Contact</label>
-                        <input
+                        <label for="billDate"
+                        class="text-sm font-semibold opacity-75">Bill
+                            Date</label>
+                        <input type="date" id="billDate" name="billDate" [(ngModel)]="billDate"
+                            [ngModelOptions]="{standalone: true}"
                             class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                            type="number" name="" value=""  required />
-                    </div>
-                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                        <label class="text-sm font-semibold opacity-75" for="">Products</label>
-                        <input
-                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                            type="text" name="" value=""  required />
-                    </div>
-                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                        <label class="text-sm font-semibold opacity-75" for="">Order Number</label>
-                        <input
-                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                            type="number" name="" value=""  required />
-                    </div>
-                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                        <label class="text-sm font-semibold opacity-75" for="">Bill-Date</label>
-                        <input
-                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                            type="date" name="" value=""  required />
+                            required>
                     </div>
                     <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
                         <label class="text-sm font-semibold opacity-75" for="">ToalAmount</label>
                         <input
                             class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                            type="number" name="" value=""  required />
+                            type="number" [(ngModel)]="totalAmount" [ngModelOptions]="{standalone: true}" required />
                     </div>
                     <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
                         <label class="text-sm font-semibold opacity-75" for="">taxGST</label>
                         <input
                             class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                            type="number" name="" value=""  required />
+                            type="number" [(ngModel)]="taxGST" [ngModelOptions]="{standalone: true}" required />
                     </div>
+
+
                     <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                        <label class="text-sm font-semibold opacity-75" for="">taxGST</label>
-                        <input
-                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                            type="number" name="" value=""  required />
-                    </div>
-                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                        <label class="text-sm font-semibold opacity-75" for="">shippingDetails</label>
-                        <input
-                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                            type="text" name="" value=""  required />
+                        <label for="purchaseNote"
+                        class="text-sm font-semibold opacity-75">Purchase
+                            Note </label>
+                        <input type="text" id="purchaseNote" name="purchaseNote" [(ngModel)]="shippingDetails"
+                            [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100">
                     </div>
                     <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
                         <label class="text-sm font-semibold opacity-75" for="">GrandTotal</label>
                         <input
                             class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                            type="text" name="" value=""  required />
+                            type="text" [(ngModel)]="grandTotal" [ngModelOptions]="{standalone: true}" required />
                     </div>
                     <div class="col-span-12 gap-1 flex">
-                    <div class="py-2 col-span-6">
-                        <button (click)="Save()" class="bg-[#6F4EF6] hover:bg-[#41b78e] mt-5 shadow-md shadow-gray-400 text-base rounded-lg text-white font-semibold py-[10px] px-8 tracking-wide">Save</button>
+                        <div class="py-2 col-span-6">
+                            <button (click)="editBill()"
+                                class="bg-[#6F4EF6] hover:bg-[#41b78e] mt-5 shadow-md shadow-gray-400 text-base rounded-lg text-white font-semibold py-[10px] px-8 tracking-wide">Save</button>
+                        </div>
+                        <div (click)="cancelEdit()" class="py-2  col-span-6">
+                            <button
+                                class=" text-red-700 border bg-red-300 mt-5 shadow-md shadow-gray-400 text-base rounded-lg  font-semibold py-[10px] px-8 tracking-wide">Cancel</button>
+                        </div>
                     </div>
-                    <div (click)="cancelEdit()" class="py-2  col-span-6">
-                        <button class=" text-red-700 border bg-red-300 mt-5 shadow-md shadow-gray-400 text-base rounded-lg  font-semibold py-[10px] px-8 tracking-wide">Cancel</button>
-                    </div>
-                </div>
                 </div>
             </div>
         </div>

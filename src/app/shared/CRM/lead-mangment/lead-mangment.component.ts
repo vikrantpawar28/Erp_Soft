@@ -3,35 +3,49 @@ import { AddLeadComponent } from '../Lead_Mangment/add-lead/add-lead.component';
 import { PopUpLeadComponent } from '../Lead_Mangment/pop-up-lead/pop-up-lead.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ServicesService } from 'src/app/core/services.service';
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 @Component({
   selector: 'app-lead-mangment',
   templateUrl: './lead-mangment.component.html',
   styleUrls: ['./lead-mangment.component.css']
 })
 export class LeadMangmentComponent {
+  
   employees:any[]=this._servicesService.projectData;
   modalService: any; 
   activeTab: string = 'leadManagement';
   loading=true;
+  showadd=false;
+  showView=false;
+  projectGroup!: FormGroup;
+
+  tempCategory: any;
    
   @Output() fetchDataEvent = new EventEmitter<void>();
   constructor(
+  
+    public _servicesService: ServicesService,
     private _dialog: MatDialog,
-    public _servicesService: ServicesService
+    public _fb: FormBuilder,
+   
   ) {}
 
   ngOnInit(): void {
     // this.fetchData();
-
-
+    this._servicesService.getLead().subscribe((data) => {
+      this._servicesService.leadData = data;
+      this.loading = false;
+      console.log('Lead', this._servicesService.leadData);
+    });
   }
 
-  switchToLeadManagement() {
-    this.activeTab = 'leadManagement';
-  }
-  switchToOpportunity() {
-    this.activeTab = 'opportunity';
-  }
+  
 
   str="file:///";
   url:string='C:/Users/Vikrant/Downloads'+'/';
@@ -89,36 +103,15 @@ export class LeadMangmentComponent {
   }
 
   status: boolean = false;
-  // fetchAsStatus() {
-  //   this._servicesService.getProjects().subscribe((data) => {
-  //     this.employees = data.filter((item: any) => {
-  //       if (item.project_status === "complete") {
-  //         return item;
-  //       } else if (item.project_status === "incomplete") {
-  //         return item;
-  //       } else if(item.project_status === "pending")   {
-  //         return item;
-  //       }
-  //       else{
-  //         return item;
-  //       }
-  //     });
-  //   });
-  // }
-
+  
   add_lead() {
-    this._dialog.open(AddLeadComponent);
+    this.showadd = !this.showadd; // Toggle the value
   }
 
   
   openDetails() {
-
-    // console.log(data,i);
-    // this._dialog.open(PopUpLeadComponent, {
-    //   data: {
-    //     data,i
-    //   },
-    // });
+this.showadd=false;
+    this.showView=!this.showView;
   }
 
   searchText: string = '';
@@ -160,4 +153,33 @@ export class LeadMangmentComponent {
       this.updateEmployees();
     }
   }
+  name: any;
+  contact: any;
+  follow_date: any;
+  conversation: any;
+  company_name: any;
+  company_size: any;
+  company_industry: any;
+  lead_status: any;
+  email: any;
+  lead_tag: any;
+  lead_description: any;
+
+ 
+  fetchData() {
+    this._servicesService.getProjects().subscribe((data) => {
+      this._servicesService.projectData = data;
+      console.log('this is product data', this._servicesService.projectData);
+    });
+  }
+  onSubmit(){
+    
+  }
+  closeAddDetails(){
+    this.showadd = false;
+  }
+  cancelEdit() {
+    this.showadd = false;
+  }
+
 }
