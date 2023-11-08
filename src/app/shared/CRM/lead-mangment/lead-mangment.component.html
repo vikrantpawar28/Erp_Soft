@@ -1,5 +1,4 @@
-<!-- <div class="gird grid-cols-12"> -->
-<div class="p-6 bg-[#eef0f8] ">
+<!-- <div class="p-6 bg-[#eef0f8] ">
     <div class="flex justify-between bg-white p-4">
         <span class="text-base tracking-tight font-semibold text-black">Lead Managment</span>
     </div>
@@ -100,115 +99,108 @@
 
 
             <div>
-                <form>
-                    <div class="grid grid-cols-12  py-2 gap-5 mt-4">
-
-                        <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                            <label class="text-sm font-semibold opacity-75"> Name</label>
-                            <input type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"
-                                class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100">
-
-                        </div>
-                        <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                            <label class="text-sm font-semibold opacity-75">Contact
-                                Number</label>
-                            <input [(ngModel)]="contact" [ngModelOptions]="{standalone: true}"
-                                class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                                required />
-                        </div>
-
-                        <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                            <label class="text-sm font-semibold opacity-75">Email
-                            </label>
-                            <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"
-                                class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                                required>
-                        </div>
-
-                        <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                            <label class="text-sm font-semibold opacity-75">Company
-                                Name</label>
-                            <input type="text" [(ngModel)]="company_name" [ngModelOptions]="{standalone: true}"
-                                class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                                required>
-                        </div>
-                        <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                            <label class="text-sm font-semibold opacity-75">Company
-                                Size</label>
-                            <input type="number" [(ngModel)]="company_size" [ngModelOptions]="{standalone: true}"
-                                class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                                required>
-                        </div>
-
-                        <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                            <label class="text-sm font-semibold opacity-75">Company
-                                Industry</label>
-                            <input type="text" [(ngModel)]="company_industry" [ngModelOptions]="{standalone: true}"
-                                class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                                required>
-                        </div>
-                        <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                            <label class="text-sm font-semibold opacity-75">Lead
-                                Status</label>
-                            <select [(ngModel)]="lead_status" [ngModelOptions]="{standalone: true}"
-                                class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100">
-                                <option value="" disabled selected>Status</option>
-                                <option value="interseted">Intersted</option>
-                                <option value="non-intersted">Non-Intersted</option>
-                            </select>
-                        </div>
-
-                        <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                            <label class="text-sm font-semibold opacity-75">Follow-up
-                                Date</label>
-                            <input type="date" [(ngModel)]="follow_date" [ngModelOptions]="{standalone: true}"
-                                class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                                required>
-                        </div>
-                        <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                            <label class="ext-sm font-semibold opacity-75">Conversation
-                                Date</label>
-                            <input type="date" [(ngModel)]="conversation" [ngModelOptions]="{standalone: true}"
-                                class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                                required>
-                        </div>
-                        <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
-                            <label class="ext-sm font-semibold opacity-75">Lead Tag</label>
-                            <select [(ngModel)]="lead_tag" [ngModelOptions]="{standalone: true}"
-                                class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100">
-                                <option value="" disabled selected> Status</option>
-                                <option value="vip">VIP</option>
-                                <option value="regular">Regular</option>
-                                <option value="ordinery">Ordinery</option>
-                            </select>
-                        </div>
-
-                        <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-6">
-                            <label class="ext-sm font-semibold opacity-75">Lead
-                                Description</label>
-                            <textarea type="date" [(ngModel)]="lead_description" [ngModelOptions]="{standalone: true}"
-                                class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
-                                required></textarea>
-                        </div>
+                <div class="grid grid-cols-12  py-2 gap-5 mt-4">
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="text-sm font-semibold opacity-75"> Name</label>
+                        <input type="text" [(ngModel)]="name" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100">
                     </div>
-                    <div class="col-span-12 gap-1 flex">
-                        <div class="py-2 col-span-6">
-                            <button (click)="onSubmit()"
-                                class="bg-[#6F4EF6] hover:bg-[#41b78e] mt-5 shadow-md shadow-gray-400 text-base rounded-lg text-white font-semibold py-[10px] px-8 tracking-wide">Submit</button>
-                        </div>
-                        <div (click)="cancelEdit()" class="py-2  col-span-6">
-                            <button
-                                class=" text-red-700 border bg-red-300 mt-5 shadow-md shadow-gray-400 text-base rounded-lg  font-semibold py-[10px] px-8 tracking-wide">Cancel</button>
-                        </div>
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="text-sm font-semibold opacity-75">Contact
+                            Number</label>
+                        <input [(ngModel)]="contact" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                            required />
                     </div>
-                </form>
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="text-sm font-semibold opacity-75">Email
+                        </label>
+                        <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                            required>
+                    </div>
+
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="text-sm font-semibold opacity-75">Company
+                            Name</label>
+                        <input type="text" [(ngModel)]="company_name" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                            required>
+                    </div>
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="text-sm font-semibold opacity-75">Company
+                            Size</label>
+                        <input type="number" [(ngModel)]="company_size" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                            required>
+                    </div>
+
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="text-sm font-semibold opacity-75">Company
+                            Industry</label>
+                        <input type="text" [(ngModel)]="company_industry" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                            required>
+                    </div>
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="text-sm font-semibold opacity-75">Lead
+                            Status</label>
+                        <select [(ngModel)]="lead_status" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100">
+                            <option value="" disabled selected>Status</option>
+                            <option value="interseted">Intersted</option>
+                            <option value="non-intersted">Non-Intersted</option>
+                        </select>
+                    </div>
+
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="text-sm font-semibold opacity-75">Follow-up
+                            Date</label>
+                        <input type="date" [(ngModel)]="follow_date" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                            required>
+                    </div>
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="ext-sm font-semibold opacity-75">Conversation
+                            Date</label>
+                        <input type="date" [(ngModel)]="conversation" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                            required>
+                    </div>
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="ext-sm font-semibold opacity-75">Lead Tag</label>
+                        <select [(ngModel)]="lead_tag" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100">
+                            <option value="" disabled selected> Status</option>
+                            <option value="vip">VIP</option>
+                            <option value="regular">Regular</option>
+                            <option value="ordinery">Ordinery</option>
+                        </select>
+                    </div>
+
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-6">
+                        <label class="ext-sm font-semibold opacity-75">Lead
+                            Description</label>
+                        <textarea type="date" [(ngModel)]="lead_description" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                            required></textarea>
+                    </div>
+                </div>
+                <div class="col-span-12 gap-1 flex">
+                    <div class="py-2 col-span-6">
+                        <button (click)="onSubmit()"
+                            class="bg-[#6F4EF6] hover:bg-[#41b78e] mt-5 shadow-md shadow-gray-400 text-base rounded-lg text-white font-semibold py-[10px] px-8 tracking-wide">Submit</button>
+                    </div>
+                    <div (click)="cancelEdit()" class="py-2  col-span-6">
+                        <button
+                            class=" text-red-700 border bg-red-300 mt-5 shadow-md shadow-gray-400 text-base rounded-lg  font-semibold py-[10px] px-8 tracking-wide">Cancel</button>
+                    </div>
+                </div>
             </div>
-
-
         </div>
     </div>
     <div *ngIf="showView">
-        <table  class="w-full text-sm text-left text-gray-500 dark:text-gray-400 col-span-12">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 col-span-12">
             <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="px-6 py-3 rounded-lg" colspan="2">
@@ -228,8 +220,9 @@
                         </td>
                     </tr>
 
-                    <tr class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
-                        <th scope="row"  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <tr
+                        class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             Contact Number
                         </th>
                         <td class="px-6 py-4">
@@ -237,7 +230,8 @@
                         </td>
                     </tr>
 
-                    <tr class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
+                    <tr
+                        class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             Email
                         </th>
@@ -246,8 +240,9 @@
                         </td>
                     </tr>
 
-                    <tr class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
-                        <th scope="row"  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <tr
+                        class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             Company Name
                         </th>
                         <td class="px-6 py-4">
@@ -255,14 +250,16 @@
                         </td>
                     </tr>
 
-                    <tr class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
+                    <tr
+                        class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             Company Size
                         </th>
                         <td class="px-6 py-4">{{employee.contact_details.company_size}}</td>
                     </tr>
 
-                    <tr class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
+                    <tr
+                        class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             Company Industry
                         </th>
@@ -271,8 +268,9 @@
                         </td>
                     </tr>
 
-                    <tr class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
-                        <th scope="row"  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <tr
+                        class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             Lead Status
                         </th>
                         <td class="px-6 py-4">
@@ -280,25 +278,28 @@
                         </td>
                     </tr>
 
-                    <tr class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
-                        <th scope="row"  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <tr
+                        class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             Follow-up Date
                         </th>
                         <td class="px-6 py-4">
-                            {{employee.dates.followup_date}}
+                            {{employee.dates.followup_date| date:'dd-MM-yyyy'}}
                         </td>
                     </tr>
 
-                    <tr class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
+                    <tr
+                        class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             Conversation Date
                         </th>
                         <td class="px-6 py-4">
-                            {{employee.dates.conversation_date}}
+                            {{employee.dates.conversation_date | date:'dd-MM-yyyy'}}
                         </td>
                     </tr>
 
-                    <tr class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
+                    <tr
+                        class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             Lead Tag
                         </th>
@@ -307,8 +308,9 @@
                         </td>
                     </tr>
 
-                    <tr class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
-                        <th scope="row"  class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    <tr
+                        class="bg-white dark:bg-gray-800 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-3">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             Lead Description
                         </th>
                         <td class="px-6 py-4">
@@ -317,147 +319,443 @@
                     </tr>
 
                     <div class=" flex justify-center items-center gap-2 mt-8">
-                        <button
-                        class="text-green-700 border border-green-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center">Edit</button>
-                        <!-- (click)="editDetails()" -->
-                        <button
-                        class="text-red-700 border border-red-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center">Delete</button>
-                        <!-- (click)="deleteDetails()" -->
+                        <button (click)="editDetails()" 
+                            class="text-green-700 border border-green-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center">Edit</button>
+                       
+                        <button (click)="deleteDetails()"
+                            class="text-red-700 border border-red-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center">Delete</button>
+                       
                     </div>
                 </ng-container>
             </tbody>
         </table>
     </div>
-
-
-
-    <!-- </div> -->
-
+</div> -->
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- <div *ngIf="activeTab === 'opportunity'">
-            <h1>dfkhsdfksdkfjsdjkbfkewjvjk</h1>
-            <div class="grid grid-cols-12 py-4">
-                <div class="col-span-6">
-                    <input class="py-2 outline-none border px-3 rounded-md" type="text" placeholder="Search Projects"
-                        title="Search employee" [(ngModel)]="searchText" (input)="searchProjects()">
-                    <select class="py-2 px-3 w-[150px] border rounded-md focus:outline-none ml-2"
-                        [(ngModel)]="selectedValue" (change)="onSelectChange(selectedValue)">
-                        <option value="all" selected>All </option>
-                        <option value="complete">Complete</option>
-                        <option value="incomplete">Incomplete</option>
-                        <option value="pending">Pending</option>
-                    </select>
-                </div>
-
-                <div class="col-span-6">
-
-                    <button
-                        class="text-sm font-sans border py-2  px-4 bg-gray-50 mx-1 rounded-lg font-semibold my-1 float-right"
-                        (click)="add_lead()">Add Lead</button>
-                </div>
+<div class="flex justify-between bg-white p-4">
+    <span class="text-base tracking-tight font-semibold text-black">Lead Managment</span>
+</div>
+<div class="grid grid-cols-12">
+    <div class="py-4 col-span-12 grid grid-cols-12 gap-2 p-6">
+        <div class="col-span-12 sm:col-span-4 ">
+            <input class="py-2 outline-none border px-3 rounded-md w-full " type="text" placeholder="Search Leads"
+                title="Search employee" [(ngModel)]="searchText">
+        </div>
+        <div class="col-span-6 sm:col-span-2">
+            <div class="col-span-6 sm:col-span-2">
+                <select class="py-2 px-3 border rounded-md focus:outline-none w-full" (change)="onSelectChange($event)">
+                    <option value="all">All </option>
+                    <option [value]='true'>Active</option>
+                    <option [value]='false'>inActive</option>
+                </select>
             </div>
 
+        </div>
+        <div class=" col-span-6 sm:col-span-6 flex justify-end">
+            <button class="text-sm font-sans border py-2 px-4 bg-gray-50 font-semibold " (click)="add_lead()">Add
+                Lead</button>
+        </div>
+    </div>
+</div>
+<div class="bg-white mt-5 w-full border min-h-[100px] overflow-x-scroll sm:overflow-x-auto"
+    *ngIf="!showadd &&!showView">
+    <table class="w-full text-sm text-left text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase dark:text-gray-400 sticky top-[-1px] bg-white  ">
+            <tr class="border-b border-gray-200 dark:border-gray-700">
+                <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800 sticky left-[-1px]">
+                    ID
+                </th>
+                <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Lead Name</th>
+                <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Company Name</th>
+                <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Follow-up Date</th>
+                <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Status</th>
+                <th scope="col" class="px-6 py-3  bg-gray-50 dark:bg-gray-800">Action</th>
+            </tr>
+        </thead>
+        <tbody class="text-sm text-gray-500 dark:text-gray-400">
+            <ng-template #dataRows>
+                <tr class="border-b border-gray-200 dark:border-gray-700"
+                    *ngFor="let employee of (this.employees.length > 0 ? this.employees : this._servicesService.leadData); let i = index">
+                    <td scope="row"
+                        class="px-6 py-4 font-medium whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800 sticky left-[-1px]">
+                        {{i+1}}
+                    </td>
+                    <td class="px-6 py-4"> {{employee.name}}
+                    </td>
+                    <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap ">
+                        {{employee.contact_details.company_name}}
+                    </td>
+                    <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap  ">
+                        {{employee.dates.followup_date|date:'dd-MM-YYYY'}}
+                    </td>
+                    <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap ">
+                        {{employee.lead_status}}
+
+                    </td>
+                    <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap ">
+                        <button class="font-medium text-blue-600 dark:text-blue-500 px-2.5 h-5 inline-block"
+                            (click)="openDetails()">View</button>
+                    </td>
+                </tr>
+            </ng-template>
+
+            <tr *ngIf="loading; else dataRows">
+                <td colspan="5" class="px-6 py-4 text-center">
+
+                    <div class="spinner"></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="gird grid-cols-12 p-6" *ngIf="showadd&&!showView&&!showView">
+    <div class="p-6 col-span-12 lg:col-span-6 lg:block bg-[#eef0f8] ">
+        <div class="flex flex-nowrap justify-between w-full py-4 hiddenTag">
+            <h1 class="font-bold text-lg hiddenTag ">Add Details</h1>
+            <button type="button" mat-dialog-close (click)="closeAddDetails()"
+                class="float-right ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+                data-dismiss-target="#toast-default" aria-label="Close">
+                <span class="material-symbols-outlined">
+                    arrow_back
+                </span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                </svg>
+            </button>
+        </div>
 
 
-            <div class="grid grid-cols-12">
-                <div class="col-span-12 bg-white">
-                    <div class="relative sm:rounded-lg overflow-y-scroll lg:h-[252px] xl:h-[466px] 2xl:h-[566px]">
+        <div>
+            <form [formGroup]="add_form">
+                <div class="grid grid-cols-12  py-2 gap-5 mt-4">
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="text-sm font-semibold opacity-75"> Name</label>
+                        <input type="text" formControlName="first_name"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100">
+                    </div>
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="text-sm font-semibold opacity-75">Contact
+                            Number</label>
+                        <input [(ngModel)]="contact" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                            required />
+                    </div>
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="text-sm font-semibold opacity-75">Email
+                        </label>
+                        <input type="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                            required>
+                    </div>
 
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead
-                                class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3">
-                                        Id
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Lead Name
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Company Name
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Follow-up Date
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Status
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Action
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                                    *ngFor="let employee of (this.employees.length > 0 ? this.employees : this._servicesService.projData) let i = index">
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="text-sm font-semibold opacity-75">Company
+                            Name</label>
+                        <input type="text" [(ngModel)]="company_name" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                            required>
+                    </div>
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="text-sm font-semibold opacity-75">Company
+                            Size</label>
+                        <input type="number" [(ngModel)]="company_size" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                            required>
+                    </div>
 
-                                    <th scope="row"
-                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                        {{i+1}}
-                                    </th>
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="text-sm font-semibold opacity-75">Company
+                            Industry</label>
+                        <input type="text" [(ngModel)]="company_industry" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                            required>
+                    </div>
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="text-sm font-semibold opacity-75">Lead
+                            Status</label>
+                        <select [(ngModel)]="lead_status" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100">
+                            <option value="" disabled selected>Status</option>
+                            <option value="interseted">Intersted</option>
+                            <option value="non-intersted">Non-Intersted</option>
+                        </select>
+                    </div>
 
-                                    <td class="px-6 py-4">
-                                        {{employee.project_name}}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{employee.project_start_date|date:'dd/MM/YYYY'}}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{employee.project_status}}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        {{employee.project_status}}
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <button class="font-medium text-blue-600 dark:text-blue-500"
-                                            (click)="openDetails(employee,i)">View</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="text-sm font-semibold opacity-75">Follow-up
+                            Date</label>
+                        <input type="date" [(ngModel)]="follow_date" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                            required>
+                    </div>
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="ext-sm font-semibold opacity-75">Conversation
+                            Date</label>
+                        <input type="date" [(ngModel)]="conversation" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                            required>
+                    </div>
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-4">
+                        <label class="ext-sm font-semibold opacity-75">Lead Tag</label>
+                        <select [(ngModel)]="lead_tag" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100">
+                            <option value="" disabled selected> Status</option>
+                            <option value="vip">VIP</option>
+                            <option value="regular">Regular</option>
+                            <option value="ordinery">Ordinery</option>
+                        </select>
+                    </div>
+
+                    <div class="flex flex-col col-span-12 md:col-span-6 lg:col-span-6">
+                        <label class="ext-sm font-semibold opacity-75">Lead
+                            Description</label>
+                        <textarea type="date" [(ngModel)]="lead_description" [ngModelOptions]="{standalone: true}"
+                            class="border bg-[#FCFCFC] text-sm font-normal py-[10px] px-4 tracking-wide outline-none mt-2 hover:bg-gray-100"
+                            required></textarea>
                     </div>
                 </div>
+                <div class="col-span-12 gap-1 flex">
+                    <div class="py-2 col-span-6">
+                        <button (click)="onSubmit()" 
+                            class="bg-[#6F4EF6] hover:bg-[#41b78e] mt-5 shadow-md shadow-gray-400 text-base rounded-lg text-white font-semibold py-[10px] px-8 tracking-wide">Submit</button>
+                    </div>
+                    <div (click)="cancelEdit()" class="py-2  col-span-6">
+                        <button
+                            class=" text-red-700 border bg-red-300 mt-5 shadow-md shadow-gray-400 text-base rounded-lg  font-semibold py-[10px] px-8 tracking-wide">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div *ngIf="showView&&!showEdit" class="p-6 bg-[#eef0f8]">
+    <div class="flex flex-nowrap justify-between w-full py-4 hiddenTag">
+        <h1 class="font-bold text-lg hiddenTag ">View Details</h1>
+        <button type="button" mat-dialog-close (click)="closeViewDetails()"
+            class="float-right ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+            data-dismiss-target="#toast-default" aria-label="Close">
+            <span class="material-symbols-outlined">
+                arrow_back
+            </span>
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+        </button>
+    </div>
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 col-span-12">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+
+        </thead>
+        <tbody class="grid grid-cols-12 gap-4 p-4">
+            <ng-container *ngFor="let employee of this._servicesService.leadData; let i = index">
+                <tr class="bg-white dark:bg-gray-800  col-span-12 md:col-span-6 lg:col-span-4">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Name
+                    </th>
+                    <td class="px-6 py-4 ">
+                        {{employee.name
+                        }}
+                    </td>
+                </tr>
+
+                <tr class="bg-white dark:bg-gray-800 col-span-12 md:col-span-6 lg:col-span-4">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Contact Number
+                    </th>
+                    <td class="px-6 py-4 ">
+                        {{employee.contact}}
+                    </td>
+                </tr>
+
+                <tr class="bg-white dark:bg-gray-800 col-span-12 md:col-span-6 lg:col-span-4">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Email
+                    </th>
+                    <td class="px-6 py-4 ">
+                        {{employee.email }}
+                    </td>
+                </tr>
+
+                <tr class="bg-white dark:bg-gray-800 col-span-12 md:col-span-6 lg:col-span-4">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Company Name
+                    </th>
+                    <td class="px-6 py-4 ">
+                        {{employee.contact_details.company_name}}
+                    </td>
+                </tr>
+
+                <tr class="bg-white dark:bg-gray-800 col-span-12 md:col-span-6 lg:col-span-4">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Company Size
+                    </th>
+                    <td class="px-6 py-4 ">{{employee.contact_details.company_size}}</td>
+                </tr>
+
+                <tr class="bg-white dark:bg-gray-800 col-span-12 md:col-span-6 lg:col-span-4">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Company Industry
+                    </th>
+                    <td class="px-6 py-4 ">
+                        {{employee.contact_details.industry}}
+                    </td>
+                </tr>
+
+                <tr class="bg-white dark:bg-gray-800 col-span-12 md:col-span-6 lg:col-span-4">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Lead Status
+                    </th>
+                    <td class="px-6 py-4 ">
+                        {{employee.lead_status}}
+                    </td>
+                </tr>
+
+                <tr class="bg-white dark:bg-gray-800 col-span-12 md:col-span-6 lg:col-span-4">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Follow-up Date
+                    </th>
+                    <td class="px-6 py-4 ">
+                        {{employee.dates.followup_date| date:'dd-MM-yyyy'}}
+                    </td>
+                </tr>
+
+                <tr class="bg-white dark:bg-gray-800 col-span-12 md:col-span-6 lg:col-span-4">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Conversation Date
+                    </th>
+                    <td class="px-6 py-4 ">
+                        {{employee.dates.conversation_date | date:'dd-MM-yyyy'}}
+                    </td>
+                </tr>
+
+                <tr class="bg-white dark:bg-gray-800 col-span-12 md:col-span-6 lg:col-span-4">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Lead Tag
+                    </th>
+                    <td class="px-6 py-4 ">
+                        {{employee.lead_tag}}
+                    </td>
+                </tr>
+
+                <tr class="bg-white dark:bg-gray-800 col-span-12 md:col-span-6 lg:col-span-4">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        Lead Description
+                    </th>
+                    <td class="px-6 py-4 ">
+                        {{employee.lead_description}}
+                    </td>
+                </tr>
+
+                <div class=" flex justify-center items-center gap-2 mt-8">
+                    <button (click)="editDetails()"
+                        class="text-green-700 border border-green-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center">Edit</button>
+
+                    <button (click)="deleteDetails()"
+                        class="text-red-700 border border-red-700 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center">Delete</button>
+
+                </div>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
+<div *ngIf="showEdit" class="p-6 bg-[#eef0f8]">
+    <div class="flex flex-nowrap justify-between w-full py-4 hiddenTag">
+        <h1 class="font-bold text-lg hiddenTag ">Edit Details</h1>
+        <button type="button" mat-dialog-close (click)="closeEditDetails()"
+            class="float-right ml-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700"
+            data-dismiss-target="#toast-default" aria-label="Close">
+            <span class="material-symbols-outlined">
+                arrow_back
+            </span>
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+            </svg>
+        </button>
+    </div>
+    <form #myForm="ngForm">
+        <div class="grid grid-cols-12 gap-4 mt-4">
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-medium">Name</label>
+                <input class="w-full" type="text" [(ngModel)]="name" name="name" required
+                    class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+            </div>
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-medium">Contact Number</label>
+                <input type="number" [(ngModel)]="contact" name="contact"
+                    class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+            </div>
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-medium">Email</label>
+                <input class="w-full" type="email" [(ngModel)]="email" name="email"
+                    class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+            </div>
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-medium">Company Name</label>
+                <input class="w-full" type="text" [(ngModel)]="company_name" name="company_name"
+                    class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+            </div>
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-medium">Company Size</label>
+                <input class="w-full" type="number" [(ngModel)]="company_size" name="company_size"
+                    class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+            </div>
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-medium">Lead Status</label>
+                <select required [(ngModel)]="lead_status" name="lead_status"
+                    class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                    <option value="" disabled selected>Status</option>
+                    <option value="complete">Complete</option>
+                    <option value="incomplete">Incomplete</option>
+                    <option value="pending">Pending</option>
+                </select>
+            </div>
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-medium">Company Industry</label>
+                <input class="w-full" type="text" [(ngModel)]="company_industry" name="company_industry"
+                    class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+            </div>
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-medium">Follow-up Date</label>
+                <input class="w-full" type="date" [(ngModel)]="follow_date" name="follow_date"
+                    class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+            </div>
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-medium">Conversation Date</label>
+                <input class="w-full" type="date" [(ngModel)]="conversation" name="conversation"
+                    class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+            </div>
+            <div class="col-span-12 md:col-span-6 lg:col-span-4">
+                <label class="text-sm font-medium">Lead Tag</label>
+                <select required [(ngModel)]="lead_tag" name="lead_tag"
+                    class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300">
+                    <option value="" disabled selected>Status</option>
+                    <option value="complete">Complete</option>
+                    <option value="incomplete">Incomplete</option>
+                    <option value="pending">Pending</option>
+                </select>
+            </div>
+            <div class="col-span-12 md:col-span-6 lg:col-span-6">
+                <label class="text-sm font-medium">Lead Description</label>
+                <textarea class="w-full" type="text" [(ngModel)]="lead_description" name="lead_description"
+                    class="border rounded-lg px-3 py-2 mt-1 w-full focus:outline-none focus:ring focus:border-blue-300"></textarea>
+            </div>
+            <div class="col-span-12 flex  gap-2 items-center mt-2">
+
+                <button type="button"
+                    class=" col-span-6 text-green-700 border border-green-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-center"
+                    (click)="saveDetails()">Save</button>
+                <button type="button"
+                    class=" col-span-6 text-red-700 border border-red-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-cente"
+                    (click)="cancelEdit()">Cancel</button>
+
             </div>
         </div>
-    </div> -->
-    <!-- </div> -->
+    </form>
+</div>

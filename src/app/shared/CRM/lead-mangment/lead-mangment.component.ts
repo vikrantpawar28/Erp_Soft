@@ -9,6 +9,7 @@ import {
   FormBuilder,
   Validators,
   ReactiveFormsModule,
+  NgForm,
 } from '@angular/forms';
 @Component({
   selector: 'app-lead-mangment',
@@ -16,14 +17,17 @@ import {
   styleUrls: ['./lead-mangment.component.css']
 })
 export class LeadMangmentComponent {
-  
+  add_form!: FormGroup;
   employees:any[]=this._servicesService.projectData;
   modalService: any; 
   activeTab: string = 'leadManagement';
   loading=true;
   showadd=false;
   showView=false;
-  projectGroup!: FormGroup;
+  showEdit=false
+ 
+  
+  
 
   tempCategory: any;
    
@@ -37,6 +41,20 @@ export class LeadMangmentComponent {
   ) {}
 
   ngOnInit(): void {
+// this.add_form=this._fb.group({
+//   first_name: ['',[Validators.required,Validators.pattern(/^[a-zA-Z\s]+$/),
+//     ],
+//     last_name: [
+//       '',
+//       [
+//         Validators.required,
+//         Validators.pattern(/^[a-zA-Z\s]+$/),
+//         Validators.maxLength(20),
+//       ],
+//     ],
+//   ],
+
+// })
     // this.fetchData();
     this._servicesService.getLead().subscribe((data) => {
       this._servicesService.leadData = data;
@@ -113,7 +131,6 @@ export class LeadMangmentComponent {
 this.showadd=false;
     this.showView=!this.showView;
   }
-
   searchText: string = '';
   searchProjects() {
     if (this.searchText.trim() !== '') {
@@ -169,17 +186,44 @@ this.showadd=false;
   fetchData() {
     this._servicesService.getProjects().subscribe((data) => {
       this._servicesService.projectData = data;
-      console.log('this is product data', this._servicesService.projectData);
+      console.log('this is project data', this._servicesService.projectData);
     });
   }
   onSubmit(){
-    
+    console.log(this.add_form.value);
+    // if(this.addForm.valid){
+    //   // console.log(this.addForm.value);
+    //   this._servicesService
+    //     .postLead(this.addForm.value)
+    //     .subscribe((Response) => {
+    //       alert(Response.message);
+    //       console.log("ERR",Response.error)
+    //       this.fetchData();
+    //       this.loading = false;
+    //     })
+      
+    // }
   }
   closeAddDetails(){
     this.showadd = false;
   }
+  closeEditDetails(){
+    this.showEdit=false
+  }
+  closeViewDetails(){
+    this.showView=false
+  }
   cancelEdit() {
     this.showadd = false;
+  }
+  editDetails(){
+this.showEdit=!this.showEdit
+  }
+  deleteDetails(){
+
+  }
+  saveDetails(){
+
   }
 
 }
