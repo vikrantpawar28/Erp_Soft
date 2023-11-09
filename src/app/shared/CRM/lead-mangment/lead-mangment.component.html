@@ -524,7 +524,7 @@
                         <button (click)="onSubmit()" 
                             class="bg-[#6F4EF6] hover:bg-[#41b78e] mt-5 shadow-md shadow-gray-400 text-base rounded-lg text-white font-semibold py-[10px] px-8 tracking-wide">Submit</button>
                     </div>
-                    <div (click)="cancelEdit()" class="py-2  col-span-6">
+                    <div (click)="closeAddDetails()" class="py-2  col-span-6">
                         <button
                             class=" text-red-700 border bg-red-300 mt-5 shadow-md shadow-gray-400 text-base rounded-lg  font-semibold py-[10px] px-8 tracking-wide">Cancel</button>
                     </div>
@@ -753,7 +753,7 @@
                     (click)="saveDetails()">Save</button>
                 <button type="button"
                     class=" col-span-6 text-red-700 border border-red-700 focus:outline-none font-medium rounded-lg text-sm px-5 py-2 text-cente"
-                    (click)="cancelEdit()">Cancel</button>
+                    (click)="closeEditDetails()">Cancel</button>
 
             </div>
         </div>

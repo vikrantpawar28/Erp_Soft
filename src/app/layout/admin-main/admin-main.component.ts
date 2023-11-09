@@ -81,6 +81,10 @@ export class AdminMainComponent implements OnInit{
     this.currentUrl = this.router.url;
     this.router.navigate(['admin-main/leadmangment']);
   }
+  openOpportmang(){
+    this.currentUrl = this.router.url;
+    this.router.navigate(['admin-main/opportunity']);
+  }
   showDashboard() {
     this.showTable = true;
     this.router.navigate(['admin-main']);

@@ -31,6 +31,7 @@ import { CRMComponent } from './CRM/crm/crm.component';
 import { AddLeadComponent } from './CRM/Lead_Mangment/add-lead/add-lead.component';
 import { PopUpLeadComponent } from './CRM/Lead_Mangment/pop-up-lead/pop-up-lead.component';
 import { LeadMangmentComponent } from './CRM/lead-mangment/lead-mangment.component';
+import { OpportunityMangmentComponent } from './CRM/opportunity-mangment/opportunity-mangment.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { LeadMangmentComponent } from './CRM/lead-mangment/lead-mangment.compone
    
     AddLeadComponent,
         PopUpLeadComponent,
-        LeadMangmentComponent
+        LeadMangmentComponent,
+        OpportunityMangmentComponent
   ],
   imports: [
     CommonModule,

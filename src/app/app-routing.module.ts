@@ -11,6 +11,7 @@ import{AddBillComponent} from './shared/Bill/add-bill/add-bill.component'
 import { CRMComponent } from './shared/CRM/crm/crm.component';
 import { authGuard } from './auth.guard';
 import { LeadMangmentComponent } from './shared/CRM/lead-mangment/lead-mangment.component';
+import { OpportunityMangmentComponent } from './shared/CRM/opportunity-mangment/opportunity-mangment.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
     {path:'projects',component:ProjectComponent},
     {path:'managebill',component:ManageBillComponent},
     {path:'addbill',component:AddBillComponent},
-    {path:'leadmangment',component:LeadMangmentComponent}
+    {path:'leadmangment',component:LeadMangmentComponent},
+    {path:'opportunity',component:OpportunityMangmentComponent}
   ]},
 
   {
